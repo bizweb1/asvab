@@ -418,3 +418,655 @@ planData.forEach(p=>{const d=document.createElement('div');d.className='day'+(p.
 </script>
 </body>
 </html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ASVAB General Science — Field Manual</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Roboto+Condensed:wght@400;700&family=Roboto+Mono:wght@400;500;700&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --od:#3a3f2a;        /* olive drab */
+  --od-deep:#23271a;   /* deep field green */
+  --od-dark:#181b12;   /* near black green */
+  --sand:#d8cdb0;      /* canvas / sand */
+  --sand-2:#c4b894;
+  --amber:#e8a02a;     /* signal amber */
+  --amber-soft:#f0c468;
+  --rust:#a8431f;      /* alert / wrong */
+  --green:#6f8f3a;     /* correct */
+  --paper:#e9e2cd;     /* manual page */
+  --paper-2:#ded5bb;
+  --ink:#22241a;
+  --line:rgba(34,36,26,.18);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  font-family:'Roboto',sans-serif;
+  background:var(--od-dark);
+  color:var(--ink);
+  line-height:1.55;
+  -webkit-font-smoothing:antialiased;
+}
+::selection{background:var(--amber);color:var(--od-dark)}
+
+/* ---------- TOP CLASSIFICATION BAR ---------- */
+.classbar{
+  background:repeating-linear-gradient(45deg,var(--od-deep) 0 14px,#2b2f1f 14px 28px);
+  color:var(--sand);
+  font-family:'Roboto Mono',monospace;
+  font-size:.62rem;letter-spacing:.32em;font-weight:700;
+  text-transform:uppercase;
+  padding:7px 16px;
+  display:flex;justify-content:space-between;align-items:center;
+  border-bottom:1px solid #000;
+}
+.classbar span{opacity:.85}
+
+.seclink{background:var(--od-dark);display:flex;gap:0;border-bottom:1px solid rgba(216,205,176,.14)}
+.seclink a{flex:1;text-align:center;text-decoration:none;padding:11px 8px;font-family:'Roboto Mono',monospace;font-size:.6rem;letter-spacing:.16em;text-transform:uppercase;color:var(--sand-2);border-right:1px solid rgba(216,205,176,.14);transition:all .15s}
+.seclink a:last-child{border-right:none}
+.seclink a:hover{color:var(--paper);background:var(--od-deep)}
+.seclink a.here{color:var(--amber);font-weight:700;box-shadow:inset 0 -3px 0 var(--amber)}
+
+/* ---------- HERO ---------- */
+.hero{
+  position:relative;
+  background:
+    linear-gradient(180deg,rgba(24,27,18,.72),rgba(24,27,18,.92)),
+    radial-gradient(circle at 22% 18%,rgba(232,160,42,.13),transparent 45%),
+    var(--od-deep);
+  color:var(--sand);
+  padding:54px 22px 60px;
+  overflow:hidden;
+  border-bottom:3px solid var(--amber);
+}
+.hero::before{
+  content:"";position:absolute;inset:0;
+  background-image:linear-gradient(rgba(216,205,176,.04) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(216,205,176,.04) 1px,transparent 1px);
+  background-size:38px 38px;pointer-events:none;
+}
+.hero-inner{max-width:1080px;margin:0 auto;position:relative}
+.eyebrow{
+  font-family:'Roboto Mono',monospace;font-size:.7rem;letter-spacing:.34em;
+  color:var(--amber);text-transform:uppercase;font-weight:700;
+  display:flex;align-items:center;gap:10px;margin-bottom:18px;flex-wrap:wrap;
+}
+.eyebrow::after{content:"";height:1px;flex:1;min-width:30px;background:linear-gradient(90deg,var(--amber),transparent)}
+.hero h1{
+  font-family:'Oswald',sans-serif;font-weight:700;
+  font-size:clamp(2.5rem,8vw,5.4rem);line-height:.92;
+  text-transform:uppercase;letter-spacing:.01em;color:var(--paper);
+  text-shadow:3px 3px 0 rgba(0,0,0,.35);
+}
+.hero h1 .accent{
+  display:block;color:var(--amber);
+  font-size:clamp(1.1rem,3.4vw,2rem);letter-spacing:.18em;margin-top:8px;font-weight:600;
+}
+.hero p.lede{
+  max-width:560px;margin:22px 0 0;font-size:1.06rem;color:var(--sand-2);
+  font-family:'Roboto Condensed',sans-serif;
+}
+.specrow{
+  display:flex;gap:0;flex-wrap:wrap;margin-top:34px;
+  border:1px solid rgba(216,205,176,.28);
+  background:rgba(0,0,0,.22);
+}
+.spec{
+  flex:1;min-width:120px;padding:14px 18px;
+  border-right:1px solid rgba(216,205,176,.2);
+}
+.spec:last-child{border-right:none}
+.spec .k{font-family:'Roboto Mono',monospace;font-size:.6rem;letter-spacing:.22em;color:var(--amber);text-transform:uppercase}
+.spec .v{font-family:'Oswald',sans-serif;font-size:1.5rem;font-weight:600;color:var(--paper);margin-top:3px}
+.spec .v small{font-size:.7rem;color:var(--sand-2);font-family:'Roboto Mono',monospace;display:block;letter-spacing:.12em;font-weight:400}
+
+/* ---------- NAV / VIEW SWITCH ---------- */
+.viewnav{
+  position:sticky;top:0;z-index:40;
+  background:var(--od-dark);
+  border-bottom:1px solid rgba(216,205,176,.18);
+  display:flex;gap:0;overflow-x:auto;
+}
+.viewnav button{
+  flex:0 0 auto;
+  background:transparent;border:none;cursor:pointer;
+  color:var(--sand-2);
+  font-family:'Oswald',sans-serif;font-weight:500;font-size:.92rem;
+  letter-spacing:.12em;text-transform:uppercase;
+  padding:15px 22px;position:relative;white-space:nowrap;
+  transition:color .15s;
+}
+.viewnav button:hover{color:var(--paper)}
+.viewnav button.active{color:var(--amber)}
+.viewnav button.active::after{
+  content:"";position:absolute;left:14px;right:14px;bottom:0;height:3px;background:var(--amber);
+}
+.viewnav .count{font-family:'Roboto Mono',monospace;font-size:.62rem;opacity:.6;margin-left:6px}
+
+/* ---------- WRAP ---------- */
+.wrap{max-width:1080px;margin:0 auto;padding:38px 22px 80px}
+.view{display:none}
+.view.active{display:block;animation:fade .35s ease}
+@keyframes fade{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+
+.sechead{display:flex;align-items:baseline;gap:14px;margin-bottom:6px;flex-wrap:wrap}
+.sechead h2{
+  font-family:'Oswald',sans-serif;font-weight:700;text-transform:uppercase;
+  font-size:1.7rem;letter-spacing:.04em;color:var(--paper);
+}
+.sechead .tag{font-family:'Roboto Mono',monospace;font-size:.62rem;letter-spacing:.2em;color:var(--amber);text-transform:uppercase}
+.secsub{color:var(--sand-2);font-family:'Roboto Condensed',sans-serif;font-size:1rem;margin-bottom:26px;max-width:640px}
+
+/* ---------- FILTER CHIPS ---------- */
+.filters{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:24px}
+.chip{
+  font-family:'Roboto Mono',monospace;font-size:.66rem;letter-spacing:.12em;text-transform:uppercase;
+  padding:7px 13px;border:1px solid rgba(216,205,176,.3);background:transparent;color:var(--sand-2);
+  cursor:pointer;transition:all .15s;border-radius:1px;
+}
+.chip:hover{border-color:var(--amber);color:var(--paper)}
+.chip.active{background:var(--amber);color:var(--od-dark);border-color:var(--amber);font-weight:700}
+
+/* ---------- ROSTER GRID ---------- */
+.roster{display:grid;grid-template-columns:repeat(auto-fill,minmax(248px,1fr));gap:14px}
+.card{
+  background:var(--paper);
+  border:1px solid var(--line);
+  border-left:5px solid var(--cat,#888);
+  padding:16px 16px 15px;cursor:pointer;position:relative;
+  transition:transform .12s,box-shadow .12s;
+  display:flex;flex-direction:column;min-height:138px;
+}
+.card:hover{transform:translateY(-3px);box-shadow:6px 8px 0 rgba(0,0,0,.32)}
+.card .cardtop{display:flex;justify-content:space-between;align-items:center;margin-bottom:9px}
+.card .lnum{
+  font-family:'Roboto Mono',monospace;font-weight:700;font-size:.66rem;letter-spacing:.14em;
+  color:#6a6750;
+}
+.card .catpill{
+  font-family:'Roboto Mono',monospace;font-size:.54rem;letter-spacing:.1em;text-transform:uppercase;
+  padding:2px 7px;color:#fff;background:var(--cat,#888);font-weight:700;border-radius:1px;
+}
+.card h3{
+  font-family:'Oswald',sans-serif;font-weight:600;font-size:1.12rem;line-height:1.12;
+  color:var(--ink);margin-bottom:8px;text-transform:uppercase;letter-spacing:.01em;
+}
+.card .ans{
+  margin-top:auto;font-family:'Roboto Condensed',sans-serif;font-size:.82rem;color:#55523f;
+  display:flex;align-items:center;gap:6px;
+}
+.card .ans b{color:var(--rust);font-weight:700}
+.card .go{
+  position:absolute;right:13px;bottom:12px;font-family:'Roboto Mono',monospace;
+  font-size:.7rem;color:var(--cat,#888);opacity:0;transition:opacity .15s;letter-spacing:.1em;
+}
+.card:hover .go{opacity:1}
+
+/* ---------- LESSON DETAIL (MODAL) ---------- */
+.scrim{
+  position:fixed;inset:0;background:rgba(10,12,7,.82);z-index:90;
+  display:none;align-items:flex-start;justify-content:center;padding:24px 14px;overflow-y:auto;
+  backdrop-filter:blur(3px);
+}
+.scrim.open{display:flex}
+.dossier{
+  background:var(--paper);max-width:720px;width:100%;margin:auto;position:relative;
+  border:1px solid #000;box-shadow:0 30px 80px rgba(0,0,0,.6);
+  animation:pop .3s cubic-bezier(.2,.9,.3,1.2);
+}
+@keyframes pop{from{opacity:0;transform:scale(.96) translateY(14px)}to{opacity:1;transform:none}}
+.dossier-band{
+  background:var(--od-deep);color:var(--sand);padding:14px 22px;
+  display:flex;justify-content:space-between;align-items:center;
+  border-bottom:3px solid var(--amber);
+}
+.dossier-band .dnum{font-family:'Roboto Mono',monospace;font-size:.66rem;letter-spacing:.2em;color:var(--amber)}
+.dossier-band .dcat{font-family:'Roboto Mono',monospace;font-size:.58rem;letter-spacing:.12em;text-transform:uppercase;padding:3px 9px;background:var(--cat,#888);color:#fff;font-weight:700}
+.closeb{
+  position:absolute;top:9px;right:12px;background:none;border:none;color:var(--sand);
+  font-size:1.5rem;cursor:pointer;line-height:1;z-index:5;width:34px;height:34px;
+}
+.closeb:hover{color:var(--amber)}
+.dossier-body{padding:24px 26px 30px}
+.dossier-body h2{
+  font-family:'Oswald',sans-serif;font-weight:700;text-transform:uppercase;
+  font-size:1.7rem;line-height:1;color:var(--ink);margin-bottom:18px;letter-spacing:.01em;
+}
+.qbox{
+  background:var(--paper-2);border:1px dashed #9a937a;padding:14px 16px;margin-bottom:6px;
+}
+.qbox .ql{font-family:'Roboto Mono',monospace;font-size:.58rem;letter-spacing:.2em;color:#7a755e;text-transform:uppercase;margin-bottom:5px}
+.qbox .qt{font-family:'Roboto Condensed',sans-serif;font-size:1.02rem;color:var(--ink);font-style:italic}
+.answer-reveal{
+  margin:14px 0 22px;border:1px solid var(--line);background:#fff;
+}
+.answer-reveal .rev-btn{
+  width:100%;background:var(--od);color:var(--sand);border:none;cursor:pointer;
+  font-family:'Oswald',sans-serif;font-weight:600;letter-spacing:.16em;text-transform:uppercase;
+  font-size:.82rem;padding:11px;transition:background .15s;
+}
+.answer-reveal .rev-btn:hover{background:var(--od-deep)}
+.answer-reveal .rev-content{display:none;padding:14px 16px;text-align:center}
+.answer-reveal.shown .rev-content{display:block}
+.answer-reveal.shown .rev-btn{display:none}
+.answer-reveal .rev-content .lbl{font-family:'Roboto Mono',monospace;font-size:.58rem;letter-spacing:.2em;color:#7a755e;text-transform:uppercase}
+.answer-reveal .rev-content .val{font-family:'Oswald',sans-serif;font-size:1.7rem;font-weight:700;color:var(--green);text-transform:uppercase;margin-top:3px}
+
+.block{margin-bottom:20px}
+.block .bh{
+  font-family:'Oswald',sans-serif;font-weight:600;text-transform:uppercase;letter-spacing:.1em;
+  font-size:.92rem;color:var(--od);display:flex;align-items:center;gap:9px;margin-bottom:8px;
+}
+.block .bh::before{content:"";width:18px;height:2px;background:var(--amber)}
+.block p{font-size:.98rem;color:#33352a}
+.memory{
+  background:linear-gradient(180deg,#fbe9c4,#f5dca0);
+  border:1px solid #d9b35e;border-left:5px solid var(--amber);
+  padding:13px 16px;font-family:'Roboto Condensed',sans-serif;
+}
+.memory .mlbl{font-family:'Roboto Mono',monospace;font-size:.56rem;letter-spacing:.2em;color:#8a6a1c;text-transform:uppercase;margin-bottom:4px;font-weight:700}
+.memory .mtxt{font-size:1.08rem;font-weight:700;color:#5e4710}
+.reword-list{list-style:none}
+.reword-list li{
+  font-family:'Roboto Condensed',sans-serif;font-size:.95rem;color:#3a3c30;
+  padding:6px 0 6px 22px;position:relative;border-bottom:1px dotted var(--line);
+}
+.reword-list li::before{content:"▸";position:absolute;left:2px;color:var(--amber);font-size:.8rem;top:7px}
+.mini{background:var(--od-deep);color:var(--sand);padding:16px 18px}
+.mini .mh{font-family:'Oswald',sans-serif;font-weight:600;text-transform:uppercase;letter-spacing:.12em;font-size:.92rem;color:var(--amber);margin-bottom:9px}
+.mini ol{margin-left:18px}
+.mini li{font-family:'Roboto Condensed',sans-serif;font-size:.96rem;margin-bottom:6px;color:var(--sand)}
+.mini .note{font-family:'Roboto Mono',monospace;font-size:.62rem;color:#9a9577;margin-top:8px;letter-spacing:.06em}
+
+.dossier-nav{display:flex;justify-content:space-between;border-top:1px solid var(--line);padding:14px 26px;background:var(--paper-2)}
+.dossier-nav button{
+  background:none;border:1px solid var(--od);color:var(--od);cursor:pointer;
+  font-family:'Roboto Mono',monospace;font-size:.66rem;letter-spacing:.12em;text-transform:uppercase;
+  padding:8px 14px;transition:all .15s;
+}
+.dossier-nav button:hover:not(:disabled){background:var(--od);color:var(--sand)}
+.dossier-nav button:disabled{opacity:.3;cursor:default}
+
+/* ---------- FLASHCARDS ---------- */
+.flash-stage{max-width:540px;margin:0 auto}
+.flash-progress{font-family:'Roboto Mono',monospace;font-size:.7rem;letter-spacing:.18em;color:var(--sand-2);text-align:center;margin-bottom:14px}
+.flash-progress b{color:var(--amber)}
+.flashcard{
+  perspective:1600px;height:340px;cursor:pointer;margin-bottom:20px;
+}
+.flash-inner{position:relative;width:100%;height:100%;transition:transform .55s;transform-style:preserve-3d}
+.flashcard.flipped .flash-inner{transform:rotateY(180deg)}
+.flash-face{
+  position:absolute;inset:0;backface-visibility:hidden;
+  display:flex;flex-direction:column;justify-content:center;align-items:center;
+  padding:30px;text-align:center;border:1px solid #000;
+}
+.flash-front{background:var(--paper);border-left:6px solid var(--cat,#888)}
+.flash-front .fcat{position:absolute;top:14px;left:18px;font-family:'Roboto Mono',monospace;font-size:.56rem;letter-spacing:.14em;text-transform:uppercase;color:#fff;background:var(--cat,#888);padding:3px 9px;font-weight:700}
+.flash-front .fnum{position:absolute;top:14px;right:18px;font-family:'Roboto Mono',monospace;font-size:.62rem;color:#7a755e;letter-spacing:.1em}
+.flash-front .fq{font-family:'Roboto Condensed',sans-serif;font-size:1.22rem;color:var(--ink);font-style:italic;line-height:1.35}
+.flash-front .ftap{position:absolute;bottom:16px;font-family:'Roboto Mono',monospace;font-size:.58rem;letter-spacing:.18em;color:#9a937a;text-transform:uppercase}
+.flash-back{background:var(--od-deep);color:var(--sand);transform:rotateY(180deg);border-left:6px solid var(--amber)}
+.flash-back .balbl{font-family:'Roboto Mono',monospace;font-size:.58rem;letter-spacing:.22em;color:var(--amber);text-transform:uppercase;margin-bottom:6px}
+.flash-back .baval{font-family:'Oswald',sans-serif;font-size:2rem;font-weight:700;color:var(--paper);text-transform:uppercase;line-height:1.05;margin-bottom:16px}
+.flash-back .bmem{font-family:'Roboto Condensed',sans-serif;font-size:1rem;color:var(--amber-soft);border-top:1px solid rgba(216,205,176,.25);padding-top:14px;max-width:90%}
+.flash-controls{display:flex;gap:10px;justify-content:center}
+.flash-controls button{
+  background:var(--od);color:var(--sand);border:none;cursor:pointer;
+  font-family:'Oswald',sans-serif;font-weight:500;letter-spacing:.1em;text-transform:uppercase;
+  font-size:.82rem;padding:11px 20px;transition:background .15s;
+}
+.flash-controls button:hover:not(:disabled){background:var(--amber);color:var(--od-dark)}
+.flash-controls button:disabled{opacity:.3;cursor:default}
+
+/* ---------- EXAM ---------- */
+.exam-intro{background:var(--paper);border:1px solid var(--line);border-left:5px solid var(--amber);padding:20px 22px;margin-bottom:24px}
+.exam-intro p{font-family:'Roboto Condensed',sans-serif;color:#33352a;font-size:1rem}
+.exam-start{background:var(--amber);color:var(--od-dark);border:none;cursor:pointer;font-family:'Oswald',sans-serif;font-weight:700;letter-spacing:.14em;text-transform:uppercase;font-size:.92rem;padding:13px 26px;margin-top:14px}
+.exam-start:hover{background:var(--amber-soft)}
+.qcard{
+  background:var(--paper);border:1px solid var(--line);padding:18px 20px;margin-bottom:14px;
+}
+.qcard .qhead{display:flex;gap:10px;margin-bottom:13px}
+.qcard .qn{font-family:'Roboto Mono',monospace;font-weight:700;color:var(--amber);background:var(--od-deep);padding:2px 9px;font-size:.78rem;height:fit-content;letter-spacing:.05em}
+.qcard .qtext{font-family:'Roboto Condensed',sans-serif;font-size:1.05rem;color:var(--ink);font-weight:700;flex:1}
+.opts{display:grid;gap:8px}
+.opt{
+  display:flex;align-items:center;gap:11px;padding:10px 14px;border:1px solid var(--line);
+  background:#fff;cursor:pointer;transition:all .12s;font-family:'Roboto Condensed',sans-serif;font-size:.98rem;
+}
+.opt:hover{border-color:var(--od);background:#fbf8ef}
+.opt .ol{font-family:'Roboto Mono',monospace;font-weight:700;font-size:.78rem;color:var(--od);width:18px;flex:0 0 auto}
+.opt.selected{border-color:var(--od);background:#efe9d6;box-shadow:inset 3px 0 0 var(--od)}
+.opt.correct{border-color:var(--green);background:#e7eed3;box-shadow:inset 3px 0 0 var(--green)}
+.opt.wrong{border-color:var(--rust);background:#f1ddd2;box-shadow:inset 3px 0 0 var(--rust)}
+.opt.correct .ol{color:var(--green)}
+.opt.wrong .ol{color:var(--rust)}
+.exam-submit{background:var(--green);color:#fff;border:none;cursor:pointer;font-family:'Oswald',sans-serif;font-weight:700;letter-spacing:.14em;text-transform:uppercase;font-size:.92rem;padding:14px 30px;margin-top:8px;width:100%}
+.exam-submit:hover{background:#5e7a31}
+.exam-submit:disabled{opacity:.4;cursor:default}
+
+.scorecard{
+  background:var(--od-deep);color:var(--sand);border:3px solid var(--amber);padding:28px 24px;text-align:center;margin-bottom:26px;
+  display:none;
+}
+.scorecard.show{display:block;animation:fade .4s}
+.scorecard .stamp{font-family:'Roboto Mono',monospace;font-size:.62rem;letter-spacing:.26em;color:var(--amber);text-transform:uppercase}
+.scorecard .big{font-family:'Oswald',sans-serif;font-size:4.2rem;font-weight:700;color:var(--paper);line-height:1}
+.scorecard .big small{font-size:1.4rem;color:var(--sand-2)}
+.scorecard .verdict{font-family:'Oswald',sans-serif;font-size:1.3rem;text-transform:uppercase;letter-spacing:.1em;margin-top:6px}
+.scorecard .verdict.pass{color:var(--green)}
+.scorecard .verdict.review{color:var(--amber)}
+.scorecard .retake{background:none;border:1px solid var(--sand);color:var(--sand);cursor:pointer;font-family:'Roboto Mono',monospace;font-size:.66rem;letter-spacing:.14em;text-transform:uppercase;padding:9px 18px;margin-top:16px}
+.scorecard .retake:hover{background:var(--sand);color:var(--od-deep)}
+
+/* ---------- FOOTER ---------- */
+.foot{
+  background:var(--od-dark);color:var(--sand-2);border-top:1px solid rgba(216,205,176,.15);
+  padding:26px 22px;text-align:center;font-family:'Roboto Mono',monospace;font-size:.66rem;letter-spacing:.12em;
+}
+.foot b{color:var(--amber)}
+
+@media(max-width:600px){
+  .hero{padding:40px 18px 46px}
+  .spec{min-width:50%;border-bottom:1px solid rgba(216,205,176,.2)}
+  .spec:nth-child(odd){border-right:1px solid rgba(216,205,176,.2)}
+  .spec:nth-child(even){border-right:none}
+  .flashcard{height:300px}
+  .dossier-body{padding:20px 18px 24px}
+}
+</style>
+</head>
+<body>
+<div class="classbar">
+  <span>// ASVAB · ARMED SERVICES VOCATIONAL APTITUDE BATTERY</span>
+  <span>PART 1 · GS</span>
+</div>
+<nav class="seclink">
+  <a class="here">Part 1 · General Science</a>
+  <a href="asvab-arithmetic-reasoning.html">Part 2 · Arithmetic Reasoning</a>
+  <a href="asvab-word-knowledge.html">Part 3 · Word Knowledge</a>
+</nav>
+
+<header class="hero">
+  <div class="hero-inner">
+    <div class="eyebrow">Diagnostic Test · Part 1 · General Science</div>
+    <h1>General<br>Science
+      <span class="accent">Field Manual &amp; Study Drills</span>
+    </h1>
+    <p class="lede">Twenty-five concepts pulled straight from the GS diagnostic. Learn the idea behind each question so you score it even when the wording changes on test day.</p>
+    <div class="specrow">
+      <div class="spec"><div class="k">Time Limit</div><div class="v">11<small>Minutes</small></div></div>
+      <div class="spec"><div class="k">Questions</div><div class="v">25<small>Multiple Choice</small></div></div>
+      <div class="spec"><div class="k">Pace</div><div class="v">~26<small>Sec / Item</small></div></div>
+      <div class="spec"><div class="k">Domains</div><div class="v">4<small>Bio · Chem · Phys · Earth</small></div></div>
+    </div>
+  </div>
+</header>
+
+<nav class="viewnav" id="viewnav">
+  <button class="active" data-view="lessons">Lesson Roster<span class="count">25</span></button>
+  <button data-view="flash">Flashcard Drills</button>
+  <button data-view="exam">Practice Exam<span class="count">25</span></button>
+</nav>
+
+<main class="wrap">
+
+  <!-- LESSONS -->
+  <section class="view active" id="view-lessons">
+    <div class="sechead"><h2>Lesson Roster</h2><span class="tag">Tap any unit to open the dossier</span></div>
+    <p class="secsub">Each lesson breaks one diagnostic question down to its core concept, a memory trick, the ways the ASVAB may reword it, and a self-check.</p>
+    <div class="filters" id="filters"></div>
+    <div class="roster" id="roster"></div>
+  </section>
+
+  <!-- FLASHCARDS -->
+  <section class="view" id="view-flash">
+    <div class="sechead"><h2>Flashcard Drills</h2><span class="tag">Tap card to flip</span></div>
+    <p class="secsub">Front shows the prompt, back shows the answer and its memory trick. Run the deck until every answer is automatic.</p>
+    <div class="flash-stage">
+      <div class="flash-progress">CARD <b id="fIdx">1</b> / <span id="fTot">25</span> &nbsp;·&nbsp; <span id="fCat"></span></div>
+      <div class="flashcard" id="flashcard" onclick="flipCard()">
+        <div class="flash-inner">
+          <div class="flash-face flash-front">
+            <span class="fcat" id="ffCat"></span>
+            <span class="fnum" id="ffNum"></span>
+            <div class="fq" id="ffQ"></div>
+            <span class="ftap">Tap to reveal</span>
+          </div>
+          <div class="flash-face flash-back">
+            <div class="balbl">Answer</div>
+            <div class="baval" id="fbA"></div>
+            <div class="bmem" id="fbM"></div>
+          </div>
+        </div>
+      </div>
+      <div class="flash-controls">
+        <button id="fPrev" onclick="flashNav(-1)">◀ Prev</button>
+        <button onclick="shuffleDeck()">⤮ Shuffle</button>
+        <button id="fNext" onclick="flashNav(1)">Next ▶</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- EXAM -->
+  <section class="view" id="view-exam">
+    <div class="sechead"><h2>Practice Exam</h2><span class="tag">Same 25 concepts</span></div>
+    <p class="secsub">Answer without the lessons in front of you. Submit to score and see every correct answer marked.</p>
+    <div class="scorecard" id="scorecard">
+      <div class="stamp">// Results Logged</div>
+      <div class="big"><span id="scNum">0</span><small>/25</small></div>
+      <div class="verdict" id="scVerdict"></div>
+      <button class="retake" onclick="resetExam()">↻ Retake Exam</button>
+    </div>
+    <div id="examBody"></div>
+  </section>
+
+</main>
+
+<!-- DOSSIER MODAL -->
+<div class="scrim" id="scrim" onclick="if(event.target===this)closeDossier()">
+  <div class="dossier" id="dossier">
+    <button class="closeb" onclick="closeDossier()">✕</button>
+    <div class="dossier-band">
+      <span class="dnum" id="dNum"></span>
+      <span class="dcat" id="dCat"></span>
+    </div>
+    <div class="dossier-body" id="dBody"></div>
+    <div class="dossier-nav">
+      <button id="dPrev" onclick="dossierNav(-1)">◀ Previous</button>
+      <button id="dNext" onclick="dossierNav(1)">Next ▶</button>
+    </div>
+  </div>
+</div>
+
+<footer class="foot">
+  ASVAB GENERAL SCIENCE · FIELD MANUAL · <b>25 UNITS</b> · STUDY · DRILL · DEPLOY
+</footer>
+
+<script>
+const DATA = {"lessons": [{"num": 1, "title": "Proteins: Growth, Maintenance, and Repair", "question": "_____ are necessary for the body’s maintenance, growth, and repair.", "answer": "Proteins", "concept": "Proteins are nutrients your body uses to build and repair tissue. Muscles, skin, hair, enzymes, hormones, and many body structures depend on protein. On ASVAB-style questions, words like growth, repair, tissue building, and maintenance point to protein.", "memory": "Protein = Repair. If the question says repair or growth, choose protein.", "reword": ["Which nutrient repairs body tissue?", "What nutrient is needed for growth?"], "mini": ["Which nutrient is most connected to muscle repair?", "If a question says “main energy source,” would the answer still be protein?"], "cat": "Biology"}, {"num": 2, "title": "Boiling Point of Water in Fahrenheit", "question": "On a Fahrenheit thermometer, the boiling point of water at sea level is _____.", "answer": "212°F", "concept": "At sea level, pure water boils at 212°F or 100°C. Water freezes at 32°F or 0°C. ASVAB questions often test these basic temperature facts.", "memory": "32 freezes. 212 boils.", "reword": ["Water boils at what Fahrenheit temperature?", "What temperature is 100°C in Fahrenheit for boiling water?"], "mini": ["What is water’s boiling point in Celsius?", "What happens to water at 32°F?"], "cat": "Chemistry"}, {"num": 3, "title": "Cellular Respiration", "question": "The process by which the body’s cells use oxygen and glucose to produce energy is known as _____.", "answer": "Respiration", "concept": "Cellular respiration is how cells make usable energy. Cells take in glucose and oxygen, then release energy, carbon dioxide, and water. This is different from photosynthesis, where plants use sunlight to make glucose.", "memory": "People respire to release energy. Plants photosynthesize to make food.", "reword": ["What process releases energy from glucose?", "Cells use oxygen and sugar to make energy. What is this called?"], "mini": ["What two ingredients do cells use in respiration?", "Which process is mostly associated with plants making food?"], "cat": "Biology"}, {"num": 4, "title": "Veins Carry Blood Back", "question": "_____ carry blood back to the heart from the capillaries.", "answer": "Veins", "concept": "Arteries carry blood away from the heart. Veins carry blood back to the heart. Capillaries are tiny vessels where oxygen, nutrients, and wastes are exchanged with body tissues.", "memory": "Arteries = Away. Veins = Visit the heart.", "reword": ["Which vessels return blood to the heart?", "Blood travels from capillaries back to the heart through what?"], "mini": ["Which vessels carry blood away from the heart?", "What are capillaries mainly used for?"], "cat": "Biology"}, {"num": 5, "title": "Chemical vs Physical Change", "question": "Which of the following is an example of a chemical process?", "answer": "Iron forms rust", "concept": "A chemical change creates a new substance. Rust is a new substance that forms when iron reacts with oxygen. Physical changes change form or state but do not make a new substance.", "memory": "New substance = chemical change. Same substance = physical change.", "reword": ["Which change makes a new substance?", "Rusting is an example of what kind of change?"], "mini": ["Is burning wood chemical or physical?", "Is freezing water chemical or physical?"], "cat": "Chemistry"}, {"num": 6, "title": "Universal Donor Blood Type", "question": "A universal donor is a person with which blood type?", "answer": "O negative", "concept": "For red blood cell donation, O negative is known as the universal donor because it lacks A, B, and Rh markers that commonly trigger immune reactions. AB positive is often called the universal recipient.", "memory": "O negative gives out. AB positive receives all.", "reword": ["Which blood type can donate red blood cells to most people?", "Universal donor blood type is what?"], "mini": ["Which blood type is commonly called universal recipient?", "What does the negative refer to?"], "cat": "Biology"}, {"num": 7, "title": "Blood Entering the Right Atrium", "question": "Blood enters the right atrium of the heart from the _____.", "answer": "Vena cava", "concept": "The right atrium receives oxygen-poor blood returning from the body. That blood enters through the superior and inferior vena cava. Then it moves to the right ventricle and goes to the lungs.", "memory": "Vena cava returns body blood to the right atrium.", "reword": ["What vessel brings blood to the right atrium?", "Oxygen-poor blood returns to the heart through what vessel?"], "mini": ["Which vessel leaves the left ventricle?", "Do pulmonary veins go to the right atrium or left atrium?"], "cat": "Biology"}, {"num": 8, "title": "pH Scale: Acids and Bases", "question": "Which substance has the highest pH?", "answer": "Ammonia", "concept": "The pH scale measures how acidic or basic a substance is. Low pH means acidic. High pH means basic or alkaline. Battery acid is very acidic, water is neutral around 7, and ammonia is basic, so it has the highest pH in this list.", "memory": "High pH = base. Ammonia is a base.", "reword": ["Which is most basic?", "Which has the highest pH?"], "mini": ["Is battery acid high pH or low pH?", "What pH is neutral water near?"], "cat": "Chemistry"}, {"num": 9, "title": "Small Intestine and Enzymes", "question": "Which organ does the most work to break down food using enzymes?", "answer": "Small intestine", "concept": "Most chemical digestion happens in the small intestine. Enzymes from the pancreas and small intestine break down carbohydrates, proteins, and fats. The stomach starts protein digestion, but the small intestine does most absorption and much of the enzyme work.", "memory": "Small intestine = big job in digestion.", "reword": ["Where does most chemical digestion occur?", "Where do enzymes do most food breakdown?"], "mini": ["Which organ produces many digestive enzymes?", "Which intestine absorbs most nutrients?"], "cat": "Biology"}, {"num": 10, "title": "Female Reproductive System", "question": "Which of the following is NOT part of the female reproductive system?", "answer": "Testes", "concept": "Ovaries, uterus, and oviducts/fallopian tubes are parts of the female reproductive system. Testes are male reproductive organs that produce sperm and testosterone.", "memory": "Testes = male. Ovary, uterus, oviduct = female.", "reword": ["Which organ belongs to the male reproductive system?", "Which is not female: uterus, ovary, oviduct, testes?"], "mini": ["What organ produces eggs?", "What is another name for the oviduct?"], "cat": "Biology"}, {"num": 11, "title": "Gene: Basic Unit of Inheritance", "question": "The most basic unit of inheritance is known as a _____.", "answer": "Gene", "concept": "A gene is a section of DNA that carries instructions for a trait or protein. Chromosomes are larger structures made of DNA and many genes. Genotype is genetic makeup; phenotype is the visible trait.", "memory": "Genes give instructions. Chromosomes carry many genes.", "reword": ["What is the smallest unit of heredity?", "What DNA segment controls a trait?"], "mini": ["What is a visible trait called?", "Which is larger: a gene or a chromosome?"], "cat": "Biology"}, {"num": 12, "title": "Sedimentary Rock: Shale", "question": "Which of the following is a sedimentary rock?", "answer": "Shale", "concept": "Sedimentary rocks form when sediments are compacted and cemented over time. Shale forms from clay and mud sediments. Granite and obsidian are igneous; marble and slate are metamorphic.", "memory": "Sediments settle and become sedimentary. Shale is sedimentary.", "reword": ["Which rock forms from compacted sediment?", "Shale is what type of rock?"], "mini": ["What rock type forms from magma?", "What rock type forms from heat and pressure?"], "cat": "Earth & Space"}, {"num": 13, "title": "Producer = Autotroph", "question": "A producer is also known as a(n) _____.", "answer": "Autotroph", "concept": "A producer makes its own food, usually through photosynthesis. The science word for a producer is autotroph. Consumers are heterotrophs because they must eat other organisms.", "memory": "Auto = self. Autotroph = self-feeder.", "reword": ["What is another word for producer?", "An organism that makes its own food is called what?"], "mini": ["Are plants usually autotrophs or heterotrophs?", "What is a consumer called?"], "cat": "Biology"}, {"num": 14, "title": "Vulture = Scavenger", "question": "A vulture would be considered a _____.", "answer": "Scavenger", "concept": "A scavenger eats dead animals. Vultures are classic scavengers because they feed on carrion. They are not producers because they do not make their own food, and they are not parasites because they do not live in or on a host.", "memory": "Vultures scavenge carrion.", "reword": ["What animal eats carrion?", "What type of consumer is a vulture?"], "mini": ["Is a mushroom more like a decomposer or scavenger?", "What does a parasite need?"], "cat": "Biology"}, {"num": 15, "title": "Obsidian = Igneous Rock", "question": "What type of rock is obsidian?", "answer": "Igneous", "concept": "Obsidian is volcanic glass. It forms when lava cools very quickly, so it is an igneous rock. Igneous rocks form from molten material: magma underground or lava at the surface.", "memory": "Obsidian comes from lava, so it is igneous.", "reword": ["Volcanic glass is what rock type?", "Obsidian forms from cooled lava, so it is what?"], "mini": ["What rock type is formed by heat and pressure?", "Is lava connected to igneous or sedimentary rocks?"], "cat": "Earth & Space"}, {"num": 16, "title": "Lunar Eclipse", "question": "During a lunar eclipse _____.", "answer": "The Earth lies between the Moon and Sun", "concept": "A lunar eclipse happens when Earth blocks sunlight from reaching the Moon. The order is Sun - Earth - Moon. The Moon moves into Earth’s shadow.", "memory": "Lunar = Moon gets dark because Earth is in the middle.", "reword": ["What is between the Sun and Moon during a lunar eclipse?", "Whose shadow falls on the Moon?"], "mini": ["What object is in the middle during a solar eclipse?", "Whose shadow covers the Moon in a lunar eclipse?"], "cat": "Earth & Space"}, {"num": 17, "title": "Centimeter Meaning", "question": "A centimeter is _____.", "answer": "One hundredth of a meter", "concept": "The metric prefix centi- means one hundredth. Therefore, 1 centimeter is 1/100 of a meter. There are 100 centimeters in 1 meter.", "memory": "Century = 100 years. Centimeter = 1/100 meter.", "reword": ["What does centi- mean?", "How much of a meter is a centimeter?"], "mini": ["How many centimeters are in 1 meter?", "What does milli- mean?"], "cat": "Physics"}, {"num": 18, "title": "Momentum", "question": "Momentum is _____.", "answer": "The tendency of an object to continue moving in the same direction", "concept": "In physics, momentum is mass times velocity. More mass or more speed means more momentum. In basic wording, momentum describes how much motion an object has and its tendency to keep moving.", "memory": "Heavy and fast = lots of momentum.", "reword": ["What is mass times velocity?", "What describes how hard a moving object is to stop?"], "mini": ["Which has more momentum: a slow bicycle or a fast truck?", "What is a push or pull called?"], "cat": "Physics"}, {"num": 19, "title": "Visible Light Frequency", "question": "Which color’s light waves have the highest frequency?", "answer": "Violet", "concept": "In visible light, red has the longest wavelength and lowest frequency. Violet has the shortest wavelength and highest frequency. Frequency and wavelength move opposite directions: when wavelength gets shorter, frequency gets higher.", "memory": "ROYGBIV: frequency increases toward violet.", "reword": ["Which visible color has the shortest wavelength?", "Which color has the highest frequency?"], "mini": ["Which color has the longest wavelength?", "Does shorter wavelength mean higher or lower frequency?"], "cat": "Physics"}, {"num": 20, "title": "Atomic Mass: Protons and Neutrons", "question": "The major portion of an atom’s mass consists of _____.", "answer": "Neutrons and protons", "concept": "Almost all atomic mass is in the nucleus. The nucleus contains protons and neutrons. Electrons have very little mass compared with protons and neutrons.", "memory": "Mass is in the nucleus: protons + neutrons.", "reword": ["Where is most atomic mass located?", "Which particles make up most atomic mass?"], "mini": ["Where are electrons found?", "Which particles are in the nucleus?"], "cat": "Chemistry"}, {"num": 21, "title": "Arthropods vs Echinoderms", "question": "Which of the following is NOT an example of an arthropod?", "answer": "Sea urchin", "concept": "Arthropods have jointed legs and exoskeletons. Crabs, spiders, and centipedes are arthropods. Sea urchins are echinoderms, related to sea stars.", "memory": "Arthro = joint. Arthropods have jointed legs.", "reword": ["Which animal is not a joint-legged arthropod?", "Sea urchins belong to what group instead of arthropods?"], "mini": ["Is an insect an arthropod?", "What group includes sea stars and sea urchins?"], "cat": "Biology"}, {"num": 22, "title": "Table Salt = Ionic Compound", "question": "Table salt is considered a(n) _____.", "answer": "Ionic compound", "concept": "Table salt is sodium chloride, NaCl. Sodium is a metal and chlorine is a nonmetal. They form ions and attract each other, creating an ionic compound.", "memory": "Metal + nonmetal often means ionic. Table salt is ionic.", "reword": ["What type of compound is NaCl?", "Metal plus nonmetal usually forms what type of compound?"], "mini": ["What is the chemical formula for table salt?", "Do covalent compounds share or transfer electrons?"], "cat": "Chemistry"}, {"num": 23, "title": "Earth Rotation in 24 Hours", "question": "Over the course of 24 hours _____.", "answer": "The Earth rotates 360° about its axis", "concept": "One day is caused by Earth rotating once about its axis. A full rotation is 360 degrees and takes about 24 hours. Earth orbiting the Sun takes about one year.", "memory": "Rotation = day. Revolution = year.", "reword": ["What motion causes a day?", "Earth spins 360 degrees about what?"], "mini": ["What causes day and night?", "What motion causes one year?"], "cat": "Earth & Space"}, {"num": 24, "title": "Monera and Prokaryotes", "question": "Which kingdom is composed of prokaryotic life forms such as bacteria?", "answer": "Monera", "concept": "In older classification systems used by many test-prep books, Monera includes bacteria and other prokaryotes. Prokaryotic cells do not have a nucleus. Plants, animals, fungi, and protists are eukaryotic.", "memory": "Monera = no nucleus bacteria.", "reword": ["Which group includes bacteria in older taxonomy?", "What kingdom contains prokaryotic life forms?"], "mini": ["Do prokaryotes have a nucleus?", "Are plants prokaryotic or eukaryotic?"], "cat": "Biology"}, {"num": 25, "title": "Human Phylum = Chordata", "question": "Human beings belong to the phylum _____.", "answer": "Chordata", "concept": "Taxonomy organizes life into groups. Humans are in kingdom Animalia, phylum Chordata, class Mammalia, and order Primates. The question asks for phylum, so the answer is Chordata.", "memory": "Kingdom Animalia, Phylum Chordata, Class Mammalia, Order Primates.", "reword": ["What is the human phylum?", "Animalia, Chordata, Mammalia, Primata: which is phylum?"], "mini": ["What class are humans in?", "Why is Animalia not the answer when the question asks for phylum?"], "cat": "Biology"}], "practice": [{"num": 1, "q": "_____ are necessary for the body’s maintenance, growth, and repair.", "choices": ["Proteins", "Carbohydrates", "Fats", "Vitamins"], "answer": {"letter": "A", "text": "Proteins"}}, {"num": 2, "q": "On a Fahrenheit thermometer, the boiling point of water at sea level is _____.", "choices": ["100°", "180°", "212°", "373°"], "answer": {"letter": "C", "text": "212°F"}}, {"num": 3, "q": "The process by which the body’s cells use oxygen and glucose to produce energy is known as _____.", "choices": ["Decomposition", "Photosynthesis", "Oxidation", "Respiration"], "answer": {"letter": "D", "text": "Respiration"}}, {"num": 4, "q": "_____ carry blood back to the heart from the capillaries.", "choices": ["Arteries", "Veins", "Ventricles", "Red blood cells"], "answer": {"letter": "B", "text": "Veins"}}, {"num": 5, "q": "Which of the following is an example of a chemical process?", "choices": ["Helium mixes with neon", "Iron forms rust", "Sugar dissolves", "Ice melts"], "answer": {"letter": "B", "text": "Iron forms rust"}}, {"num": 6, "q": "A universal donor is a person with which blood type?", "choices": ["O negative", "A positive", "AB positive", "B negative"], "answer": {"letter": "A", "text": "O negative"}}, {"num": 7, "q": "Blood enters the right atrium of the heart from the _____.", "choices": ["Aorta", "Left ventricle", "Pulmonary vein", "Vena cava"], "answer": {"letter": "D", "text": "Vena cava"}}, {"num": 8, "q": "Which substance has the highest pH?", "choices": ["Ammonia", "Battery acid", "Isopropyl alcohol", "Water"], "answer": {"letter": "A", "text": "Ammonia"}}, {"num": 9, "q": "Which organ does the most work to break down food using enzymes?", "choices": ["Pancreas", "Stomach", "Small intestine", "Large intestine"], "answer": {"letter": "C", "text": "Small intestine"}}, {"num": 10, "q": "Which of the following is NOT part of the female reproductive system?", "choices": ["Oviduct", "Uterus", "Ovary", "Testes"], "answer": {"letter": "D", "text": "Testes"}}, {"num": 11, "q": "The most basic unit of inheritance is known as a _____.", "choices": ["Phenotype", "Genotype", "Chromosome", "Gene"], "answer": {"letter": "D", "text": "Gene"}}, {"num": 12, "q": "Which of the following is a sedimentary rock?", "choices": ["Granite", "Marble", "Shale", "Slate"], "answer": {"letter": "C", "text": "Shale"}}, {"num": 13, "q": "A producer is also known as a(n) _____.", "choices": ["Heterotroph", "Saprotroph", "Autotroph", "Scavenger"], "answer": {"letter": "C", "text": "Autotroph"}}, {"num": 14, "q": "A vulture would be considered a _____.", "choices": ["Producer", "Decomposer", "Scavenger", "Parasite"], "answer": {"letter": "C", "text": "Scavenger"}}, {"num": 15, "q": "What type of rock is obsidian?", "choices": ["Sedimentary", "Igneous", "Metamorphic", "Sandstone"], "answer": {"letter": "B", "text": "Igneous"}}, {"num": 16, "q": "During a lunar eclipse _____.", "choices": ["Moon between Earth and Sun", "Sun between Moon and Earth", "Earth between Moon and Sun", "Sun outside Moon’s umbra"], "answer": {"letter": "C", "text": "The Earth lies between the Moon and Sun"}}, {"num": 17, "q": "A centimeter is _____.", "choices": ["One hundredth of a meter", "One tenth of a meter", "Ten meters", "One hundred meters"], "answer": {"letter": "A", "text": "One hundredth of a meter"}}, {"num": 18, "q": "Momentum is _____.", "choices": ["Push or pull", "Rate of change of velocity", "Rate of position change", "Tendency of object to continue moving"], "answer": {"letter": "D", "text": "The tendency of an object to continue moving in the same direction"}}, {"num": 19, "q": "Which color’s light waves have the highest frequency?", "choices": ["Yellow", "Green", "Red", "Violet"], "answer": {"letter": "D", "text": "Violet"}}, {"num": 20, "q": "The major portion of an atom’s mass consists of _____.", "choices": ["Neutrons and protons", "Electrons and protons", "Electrons and neutrons", "Neutrons and positrons"], "answer": {"letter": "A", "text": "Neutrons and protons"}}, {"num": 21, "q": "Which of the following is NOT an example of an arthropod?", "choices": ["Crab", "Centipede", "Sea urchin", "Spider"], "answer": {"letter": "C", "text": "Sea urchin"}}, {"num": 22, "q": "Table salt is considered a(n) _____.", "choices": ["Ionic compound", "Semi-ionic compound", "Covalent compound", "Element"], "answer": {"letter": "A", "text": "Ionic compound"}}, {"num": 23, "q": "Over the course of 24 hours _____.", "choices": ["Earth rotates around Sun", "Moon rotates around Earth", "Earth rotates about its axis", "Moon rotates about its axis"], "answer": {"letter": "C", "text": "The Earth rotates 360° about its axis"}}, {"num": 24, "q": "Which kingdom is composed of prokaryotic life forms such as bacteria?", "choices": ["Fungi", "Protista", "Monera", "Plantae"], "answer": {"letter": "C", "text": "Monera"}}, {"num": 25, "q": "Human beings belong to the phylum _____.", "choices": ["Animalia", "Chordata", "Mammalia", "Primata"], "answer": {"letter": "B", "text": "Chordata"}}]};
+const CATCOLOR = {
+  'Biology':'#6f8f3a',
+  'Chemistry':'#3f7c9c',
+  'Physics':'#a8431f',
+  'Earth & Space':'#9a6a2e'
+};
+const lessons = DATA.lessons;
+const practice = DATA.practice;
+
+/* ---- VIEW SWITCH ---- */
+document.querySelectorAll('#viewnav button').forEach(b=>{
+  b.onclick=()=>{
+    document.querySelectorAll('#viewnav button').forEach(x=>x.classList.remove('active'));
+    document.querySelectorAll('.view').forEach(x=>x.classList.remove('active'));
+    b.classList.add('active');
+    document.getElementById('view-'+b.dataset.view).classList.add('active');
+    window.scrollTo({top:document.querySelector('.viewnav').offsetTop-1,behavior:'smooth'});
+  };
+});
+
+/* ---- FILTERS + ROSTER ---- */
+let activeFilter='All';
+const cats=['All',...Object.keys(CATCOLOR)];
+const fc=document.getElementById('filters');
+cats.forEach(c=>{
+  const b=document.createElement('button');
+  b.className='chip'+(c==='All'?' active':'');
+  b.textContent=c==='All'?'All Units':c;
+  b.onclick=()=>{activeFilter=c;document.querySelectorAll('.chip').forEach(x=>x.classList.remove('active'));b.classList.add('active');renderRoster();};
+  fc.appendChild(b);
+});
+
+function renderRoster(){
+  const r=document.getElementById('roster');r.innerHTML='';
+  lessons.filter(l=>activeFilter==='All'||l.cat===activeFilter).forEach(l=>{
+    const col=CATCOLOR[l.cat];
+    const c=document.createElement('div');
+    c.className='card';c.style.setProperty('--cat',col);
+    c.innerHTML=`
+      <div class="cardtop">
+        <span class="lnum">UNIT ${String(l.num).padStart(2,'0')}</span>
+        <span class="catpill">${l.cat}</span>
+      </div>
+      <h3>${l.title}</h3>
+      <div class="ans">Answer: <b>${l.answer}</b></div>
+      <span class="go">OPEN ▸</span>`;
+    c.onclick=()=>openDossier(l.num);
+    r.appendChild(c);
+  });
+}
+renderRoster();
+
+/* ---- DOSSIER ---- */
+let curLesson=0;
+function openDossier(num){
+  curLesson=lessons.findIndex(l=>l.num===num);
+  paintDossier();
+  document.getElementById('scrim').classList.add('open');
+  document.body.style.overflow='hidden';
+}
+function paintDossier(){
+  const l=lessons[curLesson];const col=CATCOLOR[l.cat];
+  document.getElementById('dossier').style.setProperty('--cat',col);
+  document.getElementById('dNum').textContent='UNIT '+String(l.num).padStart(2,'0')+' / 25';
+  document.getElementById('dCat').textContent=l.cat;
+  document.getElementById('dCat').style.background=col;
+  document.getElementById('dBody').innerHTML=`
+    <h2>${l.title}</h2>
+    <div class="qbox">
+      <div class="ql">Original Diagnostic Question</div>
+      <div class="qt">${l.question}</div>
+    </div>
+    <div class="answer-reveal" id="ansReveal">
+      <button class="rev-btn" onclick="document.getElementById('ansReveal').classList.add('shown')">Reveal Answer ▾</button>
+      <div class="rev-content"><div class="lbl">Correct Answer</div><div class="val">${l.answer}</div></div>
+    </div>
+    <div class="block"><div class="bh">Concept Brief</div><p>${l.concept}</p></div>
+    <div class="block memory"><div class="mlbl">Memory Trick</div><div class="mtxt">${l.memory}</div></div>
+    <div class="block"><div class="bh">How the ASVAB May Reword It</div>
+      <ul class="reword-list">${l.reword.map(x=>`<li>${x}</li>`).join('')}</ul></div>
+    <div class="block mini"><div class="mh">Mini-Check</div>
+      <ol>${l.mini.map(x=>`<li>${x}</li>`).join('')}</ol>
+      <div class="note">// Write your answers before checking the brief.</div></div>
+  `;
+  document.getElementById('dPrev').disabled=curLesson===0;
+  document.getElementById('dNext').disabled=curLesson===lessons.length-1;
+  document.querySelector('.scrim').scrollTop=0;
+  document.getElementById('dossier').scrollIntoView({block:'start'});
+}
+function dossierNav(d){curLesson=Math.max(0,Math.min(lessons.length-1,curLesson+d));paintDossier();}
+function closeDossier(){document.getElementById('scrim').classList.remove('open');document.body.style.overflow='';}
+document.addEventListener('keydown',e=>{
+  if(!document.getElementById('scrim').classList.contains('open'))return;
+  if(e.key==='Escape')closeDossier();
+  if(e.key==='ArrowRight'&&curLesson<lessons.length-1)dossierNav(1);
+  if(e.key==='ArrowLeft'&&curLesson>0)dossierNav(-1);
+});
+
+/* ---- FLASHCARDS ---- */
+let deck=lessons.map((_,i)=>i);
+let fPos=0;
+document.getElementById('fTot').textContent=lessons.length;
+function paintFlash(){
+  const l=lessons[deck[fPos]];const col=CATCOLOR[l.cat];
+  document.getElementById('flashcard').classList.remove('flipped');
+  document.getElementById('flashcard').style.setProperty('--cat',col);
+  document.getElementById('fIdx').textContent=fPos+1;
+  document.getElementById('fCat').textContent=l.cat.toUpperCase();
+  document.getElementById('ffCat').textContent=l.cat;
+  document.getElementById('ffCat').style.background=col;
+  document.getElementById('ffNum').textContent='UNIT '+String(l.num).padStart(2,'0');
+  document.getElementById('ffQ').textContent=l.question;
+  document.getElementById('fbA').textContent=l.answer;
+  document.getElementById('fbM').textContent=l.memory;
+  document.getElementById('fPrev').disabled=fPos===0;
+  document.getElementById('fNext').disabled=fPos===deck.length-1;
+}
+function flipCard(){document.getElementById('flashcard').classList.toggle('flipped');}
+function flashNav(d){fPos=Math.max(0,Math.min(deck.length-1,fPos+d));paintFlash();}
+function shuffleDeck(){for(let i=deck.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[deck[i],deck[j]]=[deck[j],deck[i]];}fPos=0;paintFlash();}
+paintFlash();
+
+/* ---- EXAM ---- */
+let answers={};let submitted=false;
+function renderExam(){
+  const b=document.getElementById('examBody');b.innerHTML='';
+  practice.forEach(q=>{
+    const card=document.createElement('div');card.className='qcard';
+    const letters=['A','B','C','D'];
+    card.innerHTML=`<div class="qhead"><span class="qn">${String(q.num).padStart(2,'0')}</span><span class="qtext">${q.q}</span></div>`;
+    const opts=document.createElement('div');opts.className='opts';
+    q.choices.forEach((ch,i)=>{
+      const o=document.createElement('div');o.className='opt';
+      o.dataset.q=q.num;o.dataset.l=letters[i];
+      o.innerHTML=`<span class="ol">${letters[i]}</span><span>${ch}</span>`;
+      o.onclick=()=>{if(submitted)return;answers[q.num]=letters[i];
+        opts.querySelectorAll('.opt').forEach(x=>x.classList.remove('selected'));
+        o.classList.add('selected');updateSubmit();};
+      opts.appendChild(o);
+    });
+    card.appendChild(opts);b.appendChild(card);
+  });
+  const sb=document.createElement('button');sb.className='exam-submit';sb.id='examSubmit';
+  sb.textContent='Submit Exam · 0 / 25 Answered';sb.disabled=true;sb.onclick=gradeExam;
+  b.appendChild(sb);
+}
+function updateSubmit(){
+  const n=Object.keys(answers).length;
+  const sb=document.getElementById('examSubmit');
+  sb.textContent=`Submit Exam · ${n} / 25 Answered`;
+  sb.disabled=n<25;
+}
+function gradeExam(){
+  submitted=true;let score=0;
+  practice.forEach(q=>{
+    const correct=q.answer.letter;const chosen=answers[q.num];
+    if(chosen===correct)score++;
+    document.querySelectorAll(`.opt[data-q="${q.num}"]`).forEach(o=>{
+      o.classList.remove('selected');
+      if(o.dataset.l===correct)o.classList.add('correct');
+      else if(o.dataset.l===chosen)o.classList.add('wrong');
+    });
+  });
+  const sc=document.getElementById('scorecard');
+  document.getElementById('scNum').textContent=score;
+  const pct=score/25*100;
+  const v=document.getElementById('scVerdict');
+  if(pct>=80){v.textContent='Mission Ready';v.className='verdict pass';}
+  else{v.textContent='Recommend Re-Drill';v.className='verdict review';}
+  sc.classList.add('show');
+  document.getElementById('examSubmit').style.display='none';
+  sc.scrollIntoView({behavior:'smooth',block:'center'});
+}
+function resetExam(){answers={};submitted=false;document.getElementById('scorecard').classList.remove('show');renderExam();window.scrollTo({top:document.querySelector('.viewnav').offsetTop,behavior:'smooth'});}
+renderExam();
+</script>
+</body>
+</html>

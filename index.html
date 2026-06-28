@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ASVAB Arithmetic Reasoning — Field Manual</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Roboto+Condensed:wght@400;700&family=Roboto+Mono:wght@400;500;700&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --od:#3a3f2a;--od-deep:#23271a;--od-dark:#181b12;
+  --sand:#d8cdb0;--sand-2:#c4b894;
+  --amber:#e8a02a;--amber-soft:#f0c468;
+  --rust:#a8431f;--green:#6f8f3a;
+  --paper:#e9e2cd;--paper-2:#ded5bb;
+  --ink:#22241a;--line:rgba(34,36,26,.18);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:'Roboto',sans-serif;background:var(--od-dark);color:var(--ink);line-height:1.55;-webkit-font-smoothing:antialiased}
+::selection{background:var(--amber);color:var(--od-dark)}
+
+.classbar{background:repeating-linear-gradient(45deg,var(--od-deep) 0 14px,#2b2f1f 14px 28px);color:var(--sand);font-family:'Roboto Mono',monospace;font-size:.62rem;letter-spacing:.32em;font-weight:700;text-transform:uppercase;padding:7px 16px;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid #000}
+.classbar span{opacity:.85}
+
+/* cross-link bar */
+.seclink{background:var(--od-dark);display:flex;gap:0;border-bottom:1px solid rgba(216,205,176,.14)}
+.seclink a{flex:1;text-align:center;text-decoration:none;padding:11px 8px;font-family:'Roboto Mono',monospace;font-size:.6rem;letter-spacing:.12em;text-transform:uppercase;color:var(--sand-2);border-right:1px solid rgba(216,205,176,.14);transition:all .15s}
+.seclink a:last-child{border-right:none}
+.seclink a:hover{color:var(--paper);background:var(--od-deep)}
+.seclink a.here{color:var(--amber);font-weight:700;box-shadow:inset 0 -3px 0 var(--amber)}
+
+.hero{position:relative;background:linear-gradient(180deg,rgba(24,27,18,.72),rgba(24,27,18,.92)),radial-gradient(circle at 78% 18%,rgba(232,160,42,.14),transparent 46%),var(--od-deep);color:var(--sand);padding:50px 22px 56px;overflow:hidden;border-bottom:3px solid var(--amber)}
+.hero::before{content:"";position:absolute;inset:0;background-image:linear-gradient(rgba(216,205,176,.04) 1px,transparent 1px),linear-gradient(90deg,rgba(216,205,176,.04) 1px,transparent 1px);background-size:38px 38px;pointer-events:none}
+.hero-inner{max-width:1080px;margin:0 auto;position:relative}
+.eyebrow{font-family:'Roboto Mono',monospace;font-size:.7rem;letter-spacing:.34em;color:var(--amber);text-transform:uppercase;font-weight:700;display:flex;align-items:center;gap:10px;margin-bottom:18px;flex-wrap:wrap}
+.eyebrow::after{content:"";height:1px;flex:1;min-width:30px;background:linear-gradient(90deg,var(--amber),transparent)}
+.hero h1{font-family:'Oswald',sans-serif;font-weight:700;font-size:clamp(2.4rem,7.5vw,5rem);line-height:.92;text-transform:uppercase;letter-spacing:.01em;color:var(--paper);text-shadow:3px 3px 0 rgba(0,0,0,.35)}
+.hero h1 .accent{display:block;color:var(--amber);font-size:clamp(1rem,3.2vw,1.9rem);letter-spacing:.16em;margin-top:8px;font-weight:600}
+.hero p.lede{max-width:560px;margin:22px 0 0;font-size:1.06rem;color:var(--sand-2);font-family:'Roboto Condensed',sans-serif}
+.specrow{display:flex;gap:0;flex-wrap:wrap;margin-top:32px;border:1px solid rgba(216,205,176,.28);background:rgba(0,0,0,.22)}
+.spec{flex:1;min-width:120px;padding:14px 18px;border-right:1px solid rgba(216,205,176,.2)}
+.spec:last-child{border-right:none}
+.spec .k{font-family:'Roboto Mono',monospace;font-size:.6rem;letter-spacing:.22em;color:var(--amber);text-transform:uppercase}
+.spec .v{font-family:'Oswald',sans-serif;font-size:1.5rem;font-weight:600;color:var(--paper);margin-top:3px}
+.spec .v small{font-size:.7rem;color:var(--sand-2);font-family:'Roboto Mono',monospace;display:block;letter-spacing:.1em;font-weight:400}
+
+.viewnav{position:sticky;top:0;z-index:40;background:var(--od-dark);border-bottom:1px solid rgba(216,205,176,.18);display:flex;overflow-x:auto}
+.viewnav button{flex:0 0 auto;background:transparent;border:none;cursor:pointer;color:var(--sand-2);font-family:'Oswald',sans-serif;font-weight:500;font-size:.92rem;letter-spacing:.12em;text-transform:uppercase;padding:15px 22px;position:relative;white-space:nowrap;transition:color .15s}
+.viewnav button:hover{color:var(--paper)}
+.viewnav button.active{color:var(--amber)}
+.viewnav button.active::after{content:"";position:absolute;left:14px;right:14px;bottom:0;height:3px;background:var(--amber)}
+.viewnav .count{font-family:'Roboto Mono',monospace;font-size:.62rem;opacity:.6;margin-left:6px}
+
+.wrap{max-width:1080px;margin:0 auto;padding:38px 22px 80px}
+.view{display:none}
+.view.active{display:block;animation:fade .35s ease}
+@keyframes fade{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+.sechead{display:flex;align-items:baseline;gap:14px;margin-bottom:6px;flex-wrap:wrap}
+.sechead h2{font-family:'Oswald',sans-serif;font-weight:700;text-transform:uppercase;font-size:1.7rem;letter-spacing:.04em;color:var(--paper)}
+.sechead .tag{font-family:'Roboto Mono',monospace;font-size:.62rem;letter-spacing:.2em;color:var(--amber);text-transform:uppercase}
+.secsub{color:var(--sand-2);font-family:'Roboto Condensed',sans-serif;font-size:1rem;margin-bottom:26px;max-width:660px}
+
+.filters{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:24px}
+.chip{font-family:'Roboto Mono',monospace;font-size:.66rem;letter-spacing:.1em;text-transform:uppercase;padding:7px 13px;border:1px solid rgba(216,205,176,.3);background:transparent;color:var(--sand-2);cursor:pointer;transition:all .15s;border-radius:1px}
+.chip:hover{border-color:var(--amber);color:var(--paper)}
+.chip.active{background:var(--amber);color:var(--od-dark);border-color:var(--amber);font-weight:700}
+
+/* lesson roster */
+.roster{display:grid;grid-template-columns:repeat(auto-fill,minmax(252px,1fr));gap:14px}
+.card{background:var(--paper);border:1px solid var(--line);border-left:5px solid var(--cat,#888);padding:16px;cursor:pointer;position:relative;transition:transform .12s,box-shadow .12s;display:flex;flex-direction:column;min-height:150px}
+.card:hover{transform:translateY(-3px);box-shadow:6px 8px 0 rgba(0,0,0,.32)}
+.card .cardtop{display:flex;justify-content:space-between;align-items:center;margin-bottom:9px}
+.card .lnum{font-family:'Roboto Mono',monospace;font-weight:700;font-size:.66rem;letter-spacing:.14em;color:#6a6750}
+.card .catpill{font-family:'Roboto Mono',monospace;font-size:.52rem;letter-spacing:.08em;text-transform:uppercase;padding:2px 7px;color:#fff;background:var(--cat,#888);font-weight:700;border-radius:1px}
+.card h3{font-family:'Oswald',sans-serif;font-weight:600;font-size:1.15rem;line-height:1.12;color:var(--ink);margin-bottom:9px;text-transform:uppercase;letter-spacing:.01em}
+.card .formula{margin-top:auto;font-family:'Roboto Mono',monospace;font-size:.74rem;color:#55523f;background:var(--paper-2);padding:7px 9px;border-left:2px solid var(--cat,#888);line-height:1.35}
+.card .go{position:absolute;right:13px;bottom:11px;font-family:'Roboto Mono',monospace;font-size:.66rem;color:var(--cat,#888);opacity:0;transition:opacity .15s;letter-spacing:.1em}
+.card:hover .go{opacity:1}
+
+/* dossier modal */
+.scrim{position:fixed;inset:0;background:rgba(10,12,7,.82);z-index:90;display:none;align-items:flex-start;justify-content:center;padding:24px 14px;overflow-y:auto;backdrop-filter:blur(3px)}
+.scrim.open{display:flex}
+.dossier{background:var(--paper);max-width:740px;width:100%;margin:auto;position:relative;border:1px solid #000;box-shadow:0 30px 80px rgba(0,0,0,.6);animation:pop .3s cubic-bezier(.2,.9,.3,1.2)}
+@keyframes pop{from{opacity:0;transform:scale(.96) translateY(14px)}to{opacity:1;transform:none}}
+.dossier-band{background:var(--od-deep);color:var(--sand);padding:14px 22px;display:flex;justify-content:space-between;align-items:center;border-bottom:3px solid var(--amber)}
+.dossier-band .dnum{font-family:'Roboto Mono',monospace;font-size:.66rem;letter-spacing:.2em;color:var(--amber)}
+.dossier-band .dcat{font-family:'Roboto Mono',monospace;font-size:.56rem;letter-spacing:.1em;text-transform:uppercase;padding:3px 9px;background:var(--cat,#888);color:#fff;font-weight:700}
+.closeb{position:absolute;top:9px;right:12px;background:none;border:none;color:var(--sand);font-size:1.5rem;cursor:pointer;line-height:1;z-index:5;width:34px;height:34px}
+.closeb:hover{color:var(--amber)}
+.dossier-body{padding:24px 26px 30px}
+.dossier-body h2{font-family:'Oswald',sans-serif;font-weight:700;text-transform:uppercase;font-size:1.7rem;line-height:1;color:var(--ink);margin-bottom:18px;letter-spacing:.01em}
+.block{margin-bottom:20px}
+.block .bh{font-family:'Oswald',sans-serif;font-weight:600;text-transform:uppercase;letter-spacing:.1em;font-size:.92rem;color:var(--od);display:flex;align-items:center;gap:9px;margin-bottom:8px}
+.block .bh::before{content:"";width:18px;height:2px;background:var(--amber)}
+.block p{font-size:.98rem;color:#33352a}
+.formbox{background:var(--od-deep);color:var(--sand);padding:13px 16px;font-family:'Roboto Mono',monospace;font-size:.92rem;line-height:1.5}
+.formbox .flbl{font-size:.56rem;letter-spacing:.2em;color:var(--amber);text-transform:uppercase;margin-bottom:5px;font-weight:700}
+.shortcut{background:linear-gradient(180deg,#fbe9c4,#f5dca0);border:1px solid #d9b35e;border-left:5px solid var(--amber);padding:13px 16px;font-family:'Roboto Condensed',sans-serif}
+.shortcut .mlbl{font-family:'Roboto Mono',monospace;font-size:.56rem;letter-spacing:.2em;color:#8a6a1c;text-transform:uppercase;margin-bottom:4px;font-weight:700}
+.shortcut .mtxt{font-size:1.02rem;color:#5e4710}
+.worked{background:#fff;border:1px solid var(--line)}
+.worked .wq{background:var(--paper-2);padding:12px 16px;font-family:'Roboto Condensed',sans-serif;font-style:italic;font-size:1rem;color:var(--ink);border-bottom:1px dashed #9a937a}
+.worked ol{list-style:none;counter-reset:s;padding:14px 16px 6px}
+.worked ol li{counter-increment:s;position:relative;padding:0 0 12px 34px;font-family:'Roboto Condensed',sans-serif;font-size:.97rem;color:#33352a}
+.worked ol li::before{content:counter(s);position:absolute;left:0;top:-1px;width:22px;height:22px;background:var(--od);color:var(--sand);font-family:'Roboto Mono',monospace;font-size:.72rem;font-weight:700;display:flex;align-items:center;justify-content:center;border-radius:1px}
+.worked .wa{background:#e7eed3;border-top:1px solid var(--line);padding:11px 16px;font-family:'Oswald',sans-serif;text-transform:uppercase;letter-spacing:.06em;font-size:1rem;color:var(--green);font-weight:700}
+.worked .wa span{font-family:'Roboto Mono',monospace;font-size:.56rem;letter-spacing:.2em;color:#5d7a2f;display:block;font-weight:400;margin-bottom:2px}
+/* practice with reveal */
+.pracitem{border:1px solid var(--line);background:#fff;margin-bottom:9px}
+.pracitem .pq{padding:11px 14px;font-family:'Roboto Condensed',sans-serif;font-size:.97rem;color:var(--ink);display:flex;gap:9px}
+.pracitem .pq .pn{font-family:'Roboto Mono',monospace;color:var(--od);font-weight:700;font-size:.8rem;flex:0 0 auto}
+.pracitem .pbtn{width:100%;background:var(--paper-2);border:none;border-top:1px solid var(--line);cursor:pointer;font-family:'Roboto Mono',monospace;font-size:.64rem;letter-spacing:.14em;text-transform:uppercase;color:var(--od);padding:8px;text-align:left;padding-left:14px}
+.pracitem .pbtn:hover{background:#d3c9a9}
+.pracitem .pa{display:none;padding:11px 14px;background:#eef3e0;font-family:'Roboto Condensed',sans-serif;font-size:.95rem;color:#33421f;border-top:1px solid var(--line)}
+.pracitem.open .pa{display:block}
+.pracitem.open .pbtn{display:none}
+
+.dossier-nav{display:flex;justify-content:space-between;border-top:1px solid var(--line);padding:14px 26px;background:var(--paper-2)}
+.dossier-nav button{background:none;border:1px solid var(--od);color:var(--od);cursor:pointer;font-family:'Roboto Mono',monospace;font-size:.66rem;letter-spacing:.12em;text-transform:uppercase;padding:8px 14px;transition:all .15s}
+.dossier-nav button:hover:not(:disabled){background:var(--od);color:var(--sand)}
+.dossier-nav button:disabled{opacity:.3;cursor:default}
+
+/* exam */
+.exam-meta{display:flex;gap:0;flex-wrap:wrap;margin-bottom:22px;border:1px solid var(--line);background:var(--paper)}
+.exam-meta .m{flex:1;min-width:110px;padding:12px 16px;border-right:1px solid var(--line)}
+.exam-meta .m:last-child{border-right:none}
+.exam-meta .mk{font-family:'Roboto Mono',monospace;font-size:.56rem;letter-spacing:.18em;text-transform:uppercase;color:#7a755e}
+.exam-meta .mv{font-family:'Oswald',sans-serif;font-size:1.2rem;font-weight:600;color:var(--ink);margin-top:2px}
+.qcard{background:var(--paper);border:1px solid var(--line);padding:18px 20px;margin-bottom:14px}
+.qcard .qhead{display:flex;gap:10px;margin-bottom:13px}
+.qcard .qn{font-family:'Roboto Mono',monospace;font-weight:700;color:var(--amber);background:var(--od-deep);padding:2px 9px;font-size:.78rem;height:fit-content;letter-spacing:.05em}
+.qcard .qtext{font-family:'Roboto Condensed',sans-serif;font-size:1.05rem;color:var(--ink);font-weight:700;flex:1}
+.opts{display:grid;gap:8px}
+.opt{display:flex;align-items:center;gap:11px;padding:10px 14px;border:1px solid var(--line);background:#fff;cursor:pointer;transition:all .12s;font-family:'Roboto Condensed',sans-serif;font-size:.98rem}
+.opt:hover{border-color:var(--od);background:#fbf8ef}
+.opt .ol{font-family:'Roboto Mono',monospace;font-weight:700;font-size:.78rem;color:var(--od);width:18px;flex:0 0 auto}
+.opt.selected{border-color:var(--od);background:#efe9d6;box-shadow:inset 3px 0 0 var(--od)}
+.opt.correct{border-color:var(--green);background:#e7eed3;box-shadow:inset 3px 0 0 var(--green)}
+.opt.wrong{border-color:var(--rust);background:#f1ddd2;box-shadow:inset 3px 0 0 var(--rust)}
+.opt.correct .ol{color:var(--green)}
+.opt.wrong .ol{color:var(--rust)}
+.qsol{display:none;margin-top:12px;background:var(--od-deep);color:var(--sand);padding:13px 16px;font-family:'Roboto Condensed',sans-serif;font-size:.97rem;border-left:4px solid var(--amber)}
+.qsol.show{display:block;animation:fade .3s}
+.qsol .sl{font-family:'Roboto Mono',monospace;font-size:.56rem;letter-spacing:.2em;color:var(--amber);text-transform:uppercase;margin-bottom:5px;font-weight:700;display:flex;justify-content:space-between}
+.qsol .sl a{color:var(--amber-soft);text-decoration:underline;cursor:pointer;letter-spacing:.06em}
+.exam-submit{background:var(--green);color:#fff;border:none;cursor:pointer;font-family:'Oswald',sans-serif;font-weight:700;letter-spacing:.14em;text-transform:uppercase;font-size:.92rem;padding:14px 30px;margin-top:8px;width:100%}
+.exam-submit:hover{background:#5e7a31}
+.exam-submit:disabled{opacity:.4;cursor:default}
+.scorecard{background:var(--od-deep);color:var(--sand);border:3px solid var(--amber);padding:28px 24px;text-align:center;margin-bottom:26px;display:none}
+.scorecard.show{display:block;animation:fade .4s}
+.scorecard .stamp{font-family:'Roboto Mono',monospace;font-size:.62rem;letter-spacing:.26em;color:var(--amber);text-transform:uppercase}
+.scorecard .big{font-family:'Oswald',sans-serif;font-size:4.2rem;font-weight:700;color:var(--paper);line-height:1}
+.scorecard .big small{font-size:1.4rem;color:var(--sand-2)}
+.scorecard .verdict{font-family:'Oswald',sans-serif;font-size:1.3rem;text-transform:uppercase;letter-spacing:.1em;margin-top:6px}
+.scorecard .verdict.pass{color:var(--green)}
+.scorecard .verdict.review{color:var(--amber)}
+.scorecard .weak{font-family:'Roboto Condensed',sans-serif;font-size:.95rem;color:var(--sand-2);margin-top:12px}
+.scorecard .weak b{color:var(--amber-soft)}
+.scorecard .retake{background:none;border:1px solid var(--sand);color:var(--sand);cursor:pointer;font-family:'Roboto Mono',monospace;font-size:.66rem;letter-spacing:.14em;text-transform:uppercase;padding:9px 18px;margin-top:16px}
+.scorecard .retake:hover{background:var(--sand);color:var(--od-deep)}
+
+/* study plan */
+.plan{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:12px;margin-bottom:30px}
+.day{background:var(--paper);border:1px solid var(--line);border-top:4px solid var(--amber);padding:14px}
+.day .dl{font-family:'Roboto Mono',monospace;font-size:.6rem;letter-spacing:.16em;text-transform:uppercase;color:#7a755e}
+.day .dt{font-family:'Oswald',sans-serif;font-size:1.05rem;font-weight:600;text-transform:uppercase;color:var(--ink);margin-top:3px;line-height:1.15}
+.day.test{border-top-color:var(--green)}
+.day.test .dt{color:var(--green)}
+
+.foot{background:var(--od-dark);color:var(--sand-2);border-top:1px solid rgba(216,205,176,.15);padding:26px 22px;text-align:center;font-family:'Roboto Mono',monospace;font-size:.66rem;letter-spacing:.12em}
+.foot b{color:var(--amber)}
+
+@media(max-width:600px){
+  .hero{padding:38px 18px 44px}
+  .spec{min-width:50%;border-bottom:1px solid rgba(216,205,176,.2)}
+  .spec:nth-child(odd){border-right:1px solid rgba(216,205,176,.2)}
+  .spec:nth-child(even){border-right:none}
+  .dossier-body{padding:20px 18px 24px}
+}
+</style>
+</head>
+<body>
+<div class="classbar"><span>// ASVAB · ARMED SERVICES VOCATIONAL APTITUDE BATTERY</span><span>PART 2 · AR</span></div>
+
+<nav class="seclink">
+  <a href="asvab-general-science.html">Part 1 · General Science</a>
+  <a class="here">Part 2 · Arithmetic Reasoning</a>
+  <a href="asvab-word-knowledge.html">Part 3 · Word Knowledge</a>
+</nav>
+
+<header class="hero">
+  <div class="hero-inner">
+    <div class="eyebrow">Diagnostic Test · Part 2 · Arithmetic Reasoning</div>
+    <h1>Arithmetic<br>Reasoning
+      <span class="accent">Field Manual &amp; Solved Drills</span>
+    </h1>
+    <p class="lede">Ten core concepts and all thirty diagnostic word problems, each one fully worked. Learn the method behind each question so you can run the math fast and clean on test day.</p>
+    <div class="specrow">
+      <div class="spec"><div class="k">Time Limit</div><div class="v">36<small>Minutes</small></div></div>
+      <div class="spec"><div class="k">Questions</div><div class="v">30<small>Word Problems</small></div></div>
+      <div class="spec"><div class="k">Pace</div><div class="v">~72<small>Sec / Item</small></div></div>
+      <div class="spec"><div class="k">Concepts</div><div class="v">10<small>Lesson Units</small></div></div>
+    </div>
+  </div>
+</header>
+
+<nav class="viewnav" id="viewnav">
+  <button class="active" data-view="lessons">Concept Lessons<span class="count">10</span></button>
+  <button data-view="exam">Solved Exam<span class="count">30</span></button>
+  <button data-view="plan">Study Plan</button>
+</nav>
+
+<main class="wrap">
+
+  <section class="view active" id="view-lessons">
+    <div class="sechead"><h2>Concept Lessons</h2><span class="tag">Tap any unit to open</span></div>
+    <p class="secsub">Each unit gives the core idea, the formula, a fast shortcut, one fully worked example, and three practice problems with reveal-able solutions.</p>
+    <div class="filters" id="filters"></div>
+    <div class="roster" id="roster"></div>
+  </section>
+
+  <section class="view" id="view-exam">
+    <div class="sechead"><h2>Solved Exam</h2><span class="tag">All 30 diagnostic questions</span></div>
+    <p class="secsub">Answer each item, then submit to score. Every question reveals a full worked solution and links back to the concept lesson it tests.</p>
+    <div class="exam-meta">
+      <div class="m"><div class="mk">Section</div><div class="mv">AR · Part 2</div></div>
+      <div class="m"><div class="mk">Items</div><div class="mv">30</div></div>
+      <div class="m"><div class="mk">Time On Test</div><div class="mv">36 min</div></div>
+      <div class="m"><div class="mk">Passing Target</div><div class="mv">80%+</div></div>
+    </div>
+    <div class="scorecard" id="scorecard">
+      <div class="stamp">// Results Logged</div>
+      <div class="big"><span id="scNum">0</span><small>/30</small></div>
+      <div class="verdict" id="scVerdict"></div>
+      <div class="weak" id="scWeak"></div>
+      <button class="retake" onclick="resetExam()">↻ Retake Exam</button>
+    </div>
+    <div id="examBody"></div>
+  </section>
+
+  <section class="view" id="view-plan">
+    <div class="sechead"><h2>7-Day Study Plan</h2><span class="tag">From the master course</span></div>
+    <p class="secsub">A week-long rotation: two concepts a day, then the full practice test, then targeted review of whatever you missed.</p>
+    <div class="plan" id="planGrid"></div>
+    <p class="secsub" style="max-width:680px">Tip: after the Day 6 practice test, the scorecard flags your weakest concepts. Spend Day 7 reopening those specific lesson units and re-solving their practice problems until the method is automatic.</p>
+  </section>
+
+</main>
+
+<div class="scrim" id="scrim" onclick="if(event.target===this)closeDossier()">
+  <div class="dossier" id="dossier">
+    <button class="closeb" onclick="closeDossier()">✕</button>
+    <div class="dossier-band"><span class="dnum" id="dNum"></span><span class="dcat" id="dCat"></span></div>
+    <div class="dossier-body" id="dBody"></div>
+    <div class="dossier-nav">
+      <button id="dPrev" onclick="dossierNav(-1)">◀ Previous</button>
+      <button id="dNext" onclick="dossierNav(1)">Next ▶</button>
+    </div>
+  </div>
+</div>
+
+<footer class="foot">ASVAB ARITHMETIC REASONING · FIELD MANUAL · <b>10 CONCEPTS · 30 SOLVED</b> · STUDY · DRILL · DEPLOY</footer>
+
+<script>
+const DATA = {"lessons": [{"num": 1, "title": "Percent Discounts", "cat": "Percents", "idea": "A percent means 'per hundred,' so 20% = 20/100 = 0.20. To take a discount off a price, you can find the discount and subtract it, or multiply by what's left after the discount.", "formula": "Sale Price = Original × (1 − discount)", "shortcut": "Find 10% by moving the decimal one place left ($160 → $16). Build other percents from that: 20% is two 10%s, 5% is half of 10%.", "example": {"q": "A camera normally costs $160. It is reduced 20% during a sale. What is the sale price?", "steps": ["20% off means you still pay 80% (100% − 20%).", "Convert: 80% = 0.80.", "Multiply: $160 × 0.80 = $128.", "Check: 10% of $160 = $16, so 20% = $32 off. $160 − $32 = $128. ✓"], "answer": "$128"}, "practice": [{"q": "A $90 jacket is marked 30% off. What is the sale price?", "a": "$90 × 0.70 = $63"}, {"q": "A $250 tire is on sale for 15% off. What do you pay?", "a": "$250 × 0.85 = $212.50"}, {"q": "Shoes cost $48 after a 20% discount. What was the original price?", "a": "$48 ÷ 0.80 = $60 (the $48 is 80% of the original)"}]}, {"num": 2, "title": "Rates, Time & Distance", "cat": "Rates", "idea": "A rate connects two quantities, like miles per hour or stations per minute. If you know any two of distance, rate, and time, you can find the third. The key skill is keeping your units consistent.", "formula": "Distance = Rate × Time   •   Rate = Distance ÷ Time   •   Time = Distance ÷ Rate", "shortcut": "To scale a rate to a new time, multiply by how many of those time blocks fit. 3 stations per 10 minutes × 6 ten-minute blocks in an hour = 18 stations.", "example": {"q": "A subway car passes 3 stations every 10 minutes. At this rate, how many stations will it pass in one hour?", "steps": ["One hour = 60 minutes.", "How many 10-minute blocks in 60 minutes? 60 ÷ 10 = 6.", "Each block = 3 stations, so 3 × 6 = 18 stations.", "Check: 3 stations/10 min is the same as 18 stations/60 min. ✓"], "answer": "18 stations"}, "practice": [{"q": "A car travels 1/100 of a kilometer each second. How far in one hour?", "a": "3600 seconds × 1/100 km = 36 km"}, {"q": "A printer makes 9 copies every 15 seconds. How many per minute?", "a": "60 ÷ 15 = 4 blocks; 9 × 4 = 36 copies"}, {"q": "A runner covers 2 miles in 16 minutes. What is the pace per mile?", "a": "16 ÷ 2 = 8 minutes per mile"}]}, {"num": 3, "title": "Ratios & Proportions", "cat": "Ratios", "idea": "A ratio compares amounts (2 baseballs to 3 golf balls = 2:3). A proportion sets two ratios equal. Solve proportions by cross-multiplying, and simplify ratios by dividing both sides by the same number.", "formula": "If a/b = c/d, then a×d = b×c (cross multiply)", "shortcut": "Find the 'one unit' value first. If 2:3 and there are 30 of the '2' part, each ratio unit = 15, so the '3' part = 45.", "example": {"q": "On a map, 3/4 inch represents 1 mile. What distance, in miles, is shown by 1 3/4 inches?", "steps": ["Set up a proportion: (3/4 inch)/(1 mile) = (1 3/4 inch)/(x miles).", "Write 1 3/4 as 7/4.", "Cross multiply: (3/4)×x = (7/4)×1.", "Solve: x = (7/4) ÷ (3/4) = 7/3 = 2 1/3 miles. ✓"], "answer": "2 1/3 miles"}, "practice": [{"q": "Baseballs to golf balls is 2:3. If there are 30 baseballs, how many golf balls?", "a": "30 ÷ 2 = 15 per unit; 3 × 15 = 45 golf balls"}, {"q": "The ratio 3 1/4 to 5 1/4 equals what whole-number ratio?", "a": "13/4 to 21/4 = 13 to 21"}, {"q": "A recipe uses 2 cups flour per 3 eggs. How much flour for 9 eggs?", "a": "9 ÷ 3 = 3 units; 2 × 3 = 6 cups"}]}, {"num": 4, "title": "Fractions", "cat": "Fractions", "idea": "Fractions show parts of a whole. Convert mixed numbers to improper fractions before multiplying or dividing. To divide by a fraction, multiply by its reciprocal (flip it). 'Of' usually means multiply.", "formula": "a/b × c/d = (a×c)/(b×d)   •   a/b ÷ c/d = a/b × d/c", "shortcut": "Dividing a total by a fractional amount tells you 'how many fit.' 72 ÷ 3/8 = 72 × 8/3 = 192.", "example": {"q": "A cat is fed 3/8 of a pound of food per day. For how many days will 72 pounds last?", "steps": ["You want how many 3/8-pound servings fit in 72 pounds: 72 ÷ 3/8.", "Dividing by a fraction = multiply by its reciprocal: 72 × 8/3.", "72 × 8 = 576; 576 ÷ 3 = 192.", "Check: 192 days × 3/8 lb = 72 lb. ✓"], "answer": "192 days"}, "practice": [{"q": "After spending 5/12 of her salary, Eva has $420 left. What is her salary?", "a": "Left = 7/12 of salary. $420 ÷ 7/12 = $420 × 12/7 = $720"}, {"q": "What is 2 1/4 × 4?", "a": "9/4 × 4 = 9"}, {"q": "How many 1/2-cup scoops are in 6 cups?", "a": "6 ÷ 1/2 = 12 scoops"}]}, {"num": 5, "title": "Probability", "cat": "Probability", "idea": "Probability measures how likely an outcome is, from 0 (never) to 1 (always). Count the outcomes you want, divide by the total number of equally likely outcomes. For 'either/or' with separate groups, add the favorable counts first.", "formula": "Probability = Favorable Outcomes ÷ Total Outcomes", "shortcut": "For 'red or black,' add red + black, then divide by the total. Always simplify the final fraction.", "example": {"q": "Marty has 5 blue pens, 6 black pens, and 4 red pens. He pulls one at random. What is the probability it is red or black?", "steps": ["Total pens: 5 + 6 + 4 = 15.", "Favorable (red or black): 4 + 6 = 10.", "Probability = 10/15.", "Simplify: divide top and bottom by 5 → 2/3. ✓"], "answer": "2/3"}, "practice": [{"q": "A bag has 3 white and 7 green marbles. P(white)?", "a": "3/(3+7) = 3/10"}, {"q": "A die is rolled. P(rolling a 5 or 6)?", "a": "2/6 = 1/3"}, {"q": "8 red, 4 blue, 8 yellow cards. P(red or yellow)?", "a": "(8+8)/20 = 16/20 = 4/5"}]}, {"num": 6, "title": "Prime Factorization", "cat": "Number Sense", "idea": "Every whole number is a product of prime numbers (2, 3, 5, 7, 11…). Build a factor tree: split the number into any two factors, then keep splitting until everything is prime. The order doesn't matter, but each prime must appear the right number of times.", "formula": "Prime factorization = the unique set of primes whose product is the number", "shortcut": "Start by pulling out small primes: keep dividing by 2 while even, then try 3, then 5, then 7.", "example": {"q": "What is the prime factorization of 140?", "steps": ["140 is even: 140 = 2 × 70.", "70 is even: 70 = 2 × 35.", "35 = 5 × 7, both prime.", "So 140 = 2 × 2 × 5 × 7. ✓"], "answer": "2 × 2 × 5 × 7"}, "practice": [{"q": "Prime factorization of 60?", "a": "2 × 2 × 3 × 5"}, {"q": "Prime factorization of 4! (which is 24)?", "a": "24 = 2 × 2 × 2 × 3"}, {"q": "What is 4! ?", "a": "4 × 3 × 2 × 1 = 24"}]}, {"num": 7, "title": "Percent Increase & Decrease", "cat": "Percents", "idea": "Percent change is always measured against the starting value. A decrease then an increase do NOT cancel out, because the second percent is taken from a different base. To stack changes, multiply the factors.", "formula": "New = Old × (1 ± percent)   •   Percent change = (change ÷ original) × 100", "shortcut": "To reverse a 20% drop you need MORE than 20% back: the drop was off the big number, the recovery is off the smaller number.", "example": {"q": "A stock drops 20%. By what percent must it rise to return to its original value?", "steps": ["Say it started at $100. After −20%: $100 × 0.80 = $80.", "It must climb from $80 back to $100, a gain of $20.", "Percent increase = change ÷ new base = 20 ÷ 80 = 0.25.", "0.25 = 25%. ✓"], "answer": "25%"}, "practice": [{"q": "Population rises 100% then 50%. Total increase?", "a": "×2 then ×1.5 = ×3 → 200% increase"}, {"q": "A $50 item rises 10% then falls 10%. Final price?", "a": "50 × 1.1 × 0.9 = $49.50 (not $50)"}, {"q": "A price falls 25%. What rise restores it?", "a": "0.25 ÷ 0.75 = 33 1/3%"}]}, {"num": 8, "title": "Work Problems", "cat": "Work & Wages", "idea": "When people work together, their RATES add, not their times. If someone finishes in T minutes, their rate is 1/T of the job per minute. Add the rates to find the combined rate, then flip it to get the combined time.", "formula": "1/T = 1/A + 1/B   (then T = combined time)", "shortcut": "Working together is always FASTER than the fastest single worker — use that to rule out answer choices.", "example": {"q": "Joan shovels a driveway in 50 minutes; Mary in 20 minutes. How long together (nearest minute)?", "steps": ["Joan's rate = 1/50 per minute; Mary's = 1/20 per minute.", "Add rates: 1/50 + 1/20. Common denominator 100 → 2/100 + 5/100 = 7/100.", "Combined time = flip the rate = 100/7 ≈ 14.3 minutes.", "Nearest minute = 14. (Faster than Mary's 20 alone. ✓)"], "answer": "14 minutes"}, "practice": [{"q": "A pipe fills a tank in 6 hr, another in 3 hr. Together?", "a": "1/6 + 1/3 = 1/6 + 2/6 = 3/6 = 1/2 → 2 hours"}, {"q": "Worker A: 4 hr, Worker B: 4 hr. Together?", "a": "1/4 + 1/4 = 1/2 → 2 hours"}, {"q": "Why can't two workers each taking 30 min finish in 40 min together?", "a": "Together must be faster than 30 min, so 40 is impossible"}]}, {"num": 9, "title": "Salary & Wage Problems", "cat": "Work & Wages", "idea": "These problems turn sentences into equations. Find the hourly rate first. Overtime is usually 'time and a half' (1.5 × regular rate) for hours beyond 40. Read carefully for 'more than' and 'less than' chains.", "formula": "Pay = Regular hours × rate + Overtime hours × (1.5 × rate)", "shortcut": "For 'A is $70 less than B, B is $50 more than C,' work from the known person outward, one step at a time.", "example": {"q": "A worker earns $200 for the first 40 hours, then 1.5× the regular rate after that. How many hours to earn $230?", "steps": ["Regular rate = $200 ÷ 40 = $5/hour.", "Overtime rate = 1.5 × $5 = $7.50/hour.", "Needs $230 − $200 = $30 more from overtime.", "$30 ÷ $7.50 = 4 overtime hours → 40 + 4 = 44 hours total. ✓"], "answer": "44 hours"}, "practice": [{"q": "June earns $70 less than Kelly; Kelly earns $50 more than Eileen; Eileen earns $280. June's pay?", "a": "Kelly = 280 + 50 = 330; June = 330 − 70 = $260"}, {"q": "A painter at $12/hr and son at $6/hr work the same time; combined charge $108. Hours each?", "a": "(12 + 6) × t = 108 → t = 6 hours"}, {"q": "Regular rate $8/hr. What is the overtime rate at time-and-a-half?", "a": "1.5 × 8 = $12/hour"}]}, {"num": 10, "title": "Mental Math & ASVAB Shortcuts", "cat": "Strategy", "idea": "The AR section is timed (about 72 seconds per question), so speed matters. Estimate to eliminate impossible choices, round to friendly numbers, and watch for answer choices that are 'traps' built from a common mistake.", "formula": "Estimate first → eliminate → compute only what's left", "shortcut": "10% tricks, doubling/halving, and 'does this answer even make sense?' checks save more points than raw calculation. If two workers team up, the answer must be smaller than either alone.", "example": {"q": "Four people share a $36 taxi fare plus a 25% tip, split evenly. How much does each pay?", "steps": ["Tip = 25% of $36 = $9. Total = $36 + $9 = $45.", "Split four ways: $45 ÷ 4 = $11.25.", "Estimate check: $45/4 is a bit over $11, so $11.25 fits.", "Trap: $9.00 (forgetting the tip, 36÷4) is a wrong choice. ✓"], "answer": "$11.25"}, "practice": [{"q": "Quickly estimate 19% of $200.", "a": "≈ 20% = $40 (slightly less)"}, {"q": "2 1/4 lb of lumber at $4.00/lb plus 7% tax. Total?", "a": "2.25 × 4 = $9.00; ×1.07 = $9.63"}, {"q": "Garage A: $8.75 first hour + $1.25 each more. Cost for 5 hours?", "a": "8.75 + 1.25×4 = $13.75"}]}], "exam": [{"num": 1, "q": "John bought a camera on sale that normally costs $160. If the price was reduced 20% during the sale, what was the sale price of the camera?", "choices": ["$120", "$124", "$128", "$140"], "ans": "C", "lesson": 1, "sol": "You still pay 100% − 20% = 80%. $160 × 0.80 = $128. (10% of 160 is $16, so 20% off is $32; 160 − 32 = 128.)"}, {"num": 2, "q": "A subway car passes 3 stations every 10 minutes. At this rate, how many stations will it pass in one hour?", "choices": ["15", "18", "20", "30"], "ans": "B", "lesson": 2, "sol": "One hour has six 10-minute blocks (60 ÷ 10 = 6). 3 stations per block × 6 = 18 stations."}, {"num": 3, "q": "On a certain map, 3/4 inch represents one mile. What distance, in miles, is represented by 1 3/4 inches?", "choices": ["1 1/2", "2 1/3", "2 1/2", "5 1/4"], "ans": "B", "lesson": 3, "sol": "1 3/4 = 7/4. Divide map inches by the per-mile inches: (7/4) ÷ (3/4) = 7/3 = 2 1/3 miles."}, {"num": 4, "q": "A box contains baseballs and golf balls. If the ratio of baseballs to golf balls is 2:3 and there are 30 baseballs, how many golf balls are there?", "choices": ["18", "20", "36", "45"], "ans": "D", "lesson": 3, "sol": "30 baseballs ÷ 2 = 15 per ratio unit. Golf balls = 3 units × 15 = 45."}, {"num": 5, "q": "Four people shared a taxi. The fare was $36.00, and they gave a tip equal to 25% of the fare. If they equally shared the cost of fare and tip, how much did each person pay?", "choices": ["$9.75", "$10.25", "$10.75", "$11.25"], "ans": "D", "lesson": 10, "sol": "Tip = 25% of $36 = $9. Total = $45. Split four ways: $45 ÷ 4 = $11.25."}, {"num": 6, "q": "If a car travels 1/100 of a kilometer each second, how many kilometers does it travel in an hour?", "choices": ["36", "60", "72", "100"], "ans": "A", "lesson": 2, "sol": "One hour = 3600 seconds. 3600 × 1/100 = 36 km."}, {"num": 7, "q": "20 − (−5) =", "choices": ["−25", "25", "15", "−15"], "ans": "B", "lesson": 6, "sol": "Subtracting a negative is adding: 20 − (−5) = 20 + 5 = 25."}, {"num": 8, "q": "Ms. Smith drove 700 miles. Her car averaged 35 miles per gallon and gasoline cost $1.25 per gallon. What was the cost of the gasoline for the trip?", "choices": ["$20.00", "$24.00", "$25.00", "$40.00"], "ans": "C", "lesson": 2, "sol": "Gallons used = 700 ÷ 35 = 20. Cost = 20 × $1.25 = $25.00."}, {"num": 9, "q": "After eating 25% of the jelly beans, Brett had 72 left. How many jelly beans did Brett have originally?", "choices": ["90", "94", "95", "96"], "ans": "D", "lesson": 1, "sol": "If 25% is eaten, 75% remains. 72 is 75% of the original: 72 ÷ 0.75 = 96."}, {"num": 10, "q": "A student finishes the first half of an exam in 2/3 the time it takes to finish the second half. If the entire exam takes one hour, how many minutes does he spend on the first half?", "choices": ["20", "24", "27", "36"], "ans": "B", "lesson": 4, "sol": "Let second half = t. First half = (2/3)t. Together: (2/3)t + t = 60 → (5/3)t = 60 → t = 36. First half = (2/3)(36) = 24 minutes."}, {"num": 11, "q": "A 25-ounce solution is 20% alcohol. If 50 ounces of water are added, what percent of the new solution is alcohol?", "choices": ["6 2/3%", "7 1/2%", "10%", "13 1/3%"], "ans": "A", "lesson": 7, "sol": "Alcohol amount = 20% of 25 = 5 oz (unchanged). New total = 25 + 50 = 75 oz. 5 ÷ 75 = 1/15 = 6 2/3%."}, {"num": 12, "q": "Marty has 5 blue pens, 6 black pens, and 4 red pens. If he pulls one at random, what is the probability the pen is either red or black?", "choices": ["2/3", "3/5", "2/5", "1/3"], "ans": "A", "lesson": 5, "sol": "Total = 15. Red or black = 4 + 6 = 10. 10/15 = 2/3."}, {"num": 13, "q": "From 1980 to 1990 the population of Country X increased 100%. From 1990 to 2000 it increased 50%. What was the combined increase for 1980–2000?", "choices": ["150%", "166 2/3%", "175%", "200%"], "ans": "D", "lesson": 7, "sol": "Multiply the growth factors: ×2.0 then ×1.5 = ×3.0. Tripling is a 200% increase."}, {"num": 14, "q": "A worker earns $200 for the first 40 hours, then is paid one-and-one-half times her regular rate for additional hours. How many hours must she work to make $230 in a week?", "choices": ["43", "44", "45", "46"], "ans": "B", "lesson": 9, "sol": "Regular rate = 200 ÷ 40 = $5/hr. Overtime = 1.5 × 5 = $7.50/hr. Need $30 more: 30 ÷ 7.50 = 4 OT hours. Total = 44 hours."}, {"num": 15, "q": "If 50% of x is 150, what is 75% of x?", "choices": ["225", "250", "275", "300"], "ans": "A", "lesson": 1, "sol": "50% of x = 150 means x = 300. 75% of 300 = 225."}, {"num": 16, "q": "The total fare for two adults and three children on an excursion boat is $14. If each child's fare is half of each adult's fare, what is the adult fare?", "choices": ["$2.00", "$3.00", "$3.50", "$4.00"], "ans": "D", "lesson": 9, "sol": "Let adult = a, child = a/2. 2a + 3(a/2) = 14 → 2a + 1.5a = 14 → 3.5a = 14 → a = $4.00."}, {"num": 17, "q": "What is the prime factorization of 140?", "choices": ["2 × 70", "2 × 3 × 5 × 7", "2 × 2 × 5 × 7", "2 × 2 × 2 × 5 × 7"], "ans": "C", "lesson": 6, "sol": "140 = 2 × 70 = 2 × 2 × 35 = 2 × 2 × 5 × 7. (2×70 isn't all primes; the product 2×2×2×5×7 = 280, too big.)"}, {"num": 18, "q": "A painter charges $12 an hour while his son charges $6 an hour. If father and son worked the same amount of time together and the combined charge was $108, how many hours did each work?", "choices": ["6", "9", "12", "18"], "ans": "A", "lesson": 9, "sol": "Together they charge $12 + $6 = $18 per hour. $108 ÷ $18 = 6 hours each."}, {"num": 19, "q": "4! =", "choices": ["4", "16", "24", "256"], "ans": "C", "lesson": 6, "sol": "The factorial 4! means 4 × 3 × 2 × 1 = 24."}, {"num": 20, "q": "At garage A it costs $8.75 for the first hour and $1.25 for each additional hour. At garage B it costs $5.50 for the first hour and $2.50 for each additional hour. What is the difference in cost to park for 5 hours?", "choices": ["$2.25", "$1.75", "$1.50", "$1.25"], "ans": "B", "lesson": 10, "sol": "Garage A: 8.75 + 1.25×4 = $13.75. Garage B: 5.50 + 2.50×4 = $15.50. Difference = 15.50 − 13.75 = $1.75."}, {"num": 21, "q": "Jan types at an average rate of 12 pages per hour. How long will it take Jan to type 100 pages?", "choices": ["8 hr 10 min", "8 hr 15 min", "8 hr 20 min", "8 hr 30 min"], "ans": "C", "lesson": 2, "sol": "100 ÷ 12 = 8 1/3 hours. 1/3 of an hour = 20 minutes → 8 hr 20 min."}, {"num": 22, "q": "Two large sodas contain the same amount as three medium sodas. Two medium sodas contain the same as three small sodas. How many small sodas contain the same amount as eight large sodas?", "choices": ["24", "18", "16", "12"], "ans": "B", "lesson": 3, "sol": "2L = 3M, so 8L = 12M. 2M = 3S, so 12M = 18S. Eight large = 18 small."}, {"num": 23, "q": "If each digit 5 in the number 258,546 is replaced with the digit 7, by how much will the number be increased?", "choices": ["2,020", "2,200", "20,020", "20,200"], "ans": "D", "lesson": 6, "sol": "The 5s sit in the ten-thousands place and the hundreds place. Each rises by 2: 2×10,000 + 2×100 = 20,000 + 200 = 20,200."}, {"num": 24, "q": "Michael bought 2 1/4 pounds of lumber at $4.00 per pound. If a 7% sales tax was added, how much did Michael pay?", "choices": ["$9.63", "$9.98", "$10.70", "$11.77"], "ans": "A", "lesson": 10, "sol": "2 1/4 × $4 = $9.00. Tax: $9.00 × 1.07 = $9.63."}, {"num": 25, "q": "The ratio of 3 1/4 to 5 1/4 is equivalent to the ratio of", "choices": ["3 to 5", "4 to 7", "8 to 13", "13 to 21"], "ans": "D", "lesson": 3, "sol": "3 1/4 = 13/4 and 5 1/4 = 21/4. Same denominator, so the ratio is 13 to 21."}, {"num": 26, "q": "A cat is fed 3/8 of a pound of cat food every day. For how many days will 72 pounds of food feed the cat?", "choices": ["160", "172", "180", "192"], "ans": "D", "lesson": 4, "sol": "72 ÷ 3/8 = 72 × 8/3 = 192 days."}, {"num": 27, "q": "After spending 5/12 of her salary, Eva has $420 left. What is her salary?", "choices": ["$175", "$245", "$720", "$1,008"], "ans": "C", "lesson": 4, "sol": "She kept 1 − 5/12 = 7/12 of her salary, which is $420. Salary = $420 ÷ 7/12 = $420 × 12/7 = $720."}, {"num": 28, "q": "A stock decreases in value by 20%. By what percent must the stock price increase to reach its former value?", "choices": ["15%", "20%", "25%", "40%"], "ans": "C", "lesson": 7, "sol": "Start at $100 → drops to $80. To regain $20 from $80: 20 ÷ 80 = 25%."}, {"num": 29, "q": "Joan can shovel a driveway in 50 minutes. Mary can shovel the same driveway in 20 minutes. How long, to the nearest minute, if they work together?", "choices": ["12", "13", "14", "15"], "ans": "C", "lesson": 8, "sol": "Combined rate = 1/50 + 1/20 = 2/100 + 5/100 = 7/100. Time = 100/7 ≈ 14.3 → 14 minutes."}, {"num": 30, "q": "June's weekly salary is $70 less than Kelly's, which is $50 more than Eileen's. If Eileen earns $280 per week, how much does June earn per week?", "choices": ["$160", "$260", "$280", "$300"], "ans": "B", "lesson": 9, "sol": "Kelly = Eileen + $50 = $330. June = Kelly − $70 = $260."}]};
+const CATCOLOR = {
+  'Percents':'#c9772a','Rates':'#3f7c9c','Ratios':'#6f8f3a','Fractions':'#7a5aa0',
+  'Probability':'#a8431f','Number Sense':'#2e7d6b','Work & Wages':'#9a6a2e','Strategy':'#566023'
+};
+const lessons = DATA.lessons, exam = DATA.exam;
+
+document.querySelectorAll('#viewnav button').forEach(b=>{
+  b.onclick=()=>{
+    document.querySelectorAll('#viewnav button').forEach(x=>x.classList.remove('active'));
+    document.querySelectorAll('.view').forEach(x=>x.classList.remove('active'));
+    b.classList.add('active');
+    document.getElementById('view-'+b.dataset.view).classList.add('active');
+    window.scrollTo({top:document.querySelector('.viewnav').offsetTop-1,behavior:'smooth'});
+  };
+});
+function switchView(v){document.querySelector('#viewnav button[data-view="'+v+'"]').click();}
+
+/* filters + roster */
+let activeFilter='All';
+const cats=['All',...[...new Set(lessons.map(l=>l.cat))]];
+const fc=document.getElementById('filters');
+cats.forEach(c=>{
+  const b=document.createElement('button');
+  b.className='chip'+(c==='All'?' active':'');
+  b.textContent=c==='All'?'All Concepts':c;
+  b.onclick=()=>{activeFilter=c;document.querySelectorAll('.chip').forEach(x=>x.classList.remove('active'));b.classList.add('active');renderRoster();};
+  fc.appendChild(b);
+});
+function renderRoster(){
+  const r=document.getElementById('roster');r.innerHTML='';
+  lessons.filter(l=>activeFilter==='All'||l.cat===activeFilter).forEach(l=>{
+    const col=CATCOLOR[l.cat]||'#888';
+    const c=document.createElement('div');
+    c.className='card';c.style.setProperty('--cat',col);
+    c.innerHTML=`<div class="cardtop"><span class="lnum">UNIT ${String(l.num).padStart(2,'0')}</span><span class="catpill">${l.cat}</span></div>
+      <h3>${l.title}</h3>
+      <div class="formula">${l.formula}</div>
+      <span class="go">OPEN ▸</span>`;
+    c.onclick=()=>openDossier(l.num);
+    r.appendChild(c);
+  });
+}
+renderRoster();
+
+/* dossier */
+let curLesson=0;
+function openDossier(num){curLesson=lessons.findIndex(l=>l.num===num);paintDossier();document.getElementById('scrim').classList.add('open');document.body.style.overflow='hidden';}
+function paintDossier(){
+  const l=lessons[curLesson];const col=CATCOLOR[l.cat]||'#888';
+  document.getElementById('dossier').style.setProperty('--cat',col);
+  document.getElementById('dNum').textContent='UNIT '+String(l.num).padStart(2,'0')+' / 10';
+  document.getElementById('dCat').textContent=l.cat;document.getElementById('dCat').style.background=col;
+  document.getElementById('dBody').innerHTML=`
+    <h2>${l.title}</h2>
+    <div class="block"><div class="bh">The Idea</div><p>${l.idea}</p></div>
+    <div class="block formbox"><div class="flbl">Formula</div>${l.formula}</div>
+    <div class="block shortcut"><div class="mlbl">Fast Shortcut</div><div class="mtxt">${l.shortcut}</div></div>
+    <div class="block"><div class="bh">Worked Example</div>
+      <div class="worked">
+        <div class="wq">${l.example.q}</div>
+        <ol>${l.example.steps.map(s=>`<li>${s}</li>`).join('')}</ol>
+        <div class="wa"><span>Answer</span>${l.example.answer}</div>
+      </div>
+    </div>
+    <div class="block"><div class="bh">Practice — Reveal Each Solution</div>
+      ${l.practice.map((p,i)=>`
+        <div class="pracitem" id="prac-${i}">
+          <div class="pq"><span class="pn">${i+1}.</span><span>${p.q}</span></div>
+          <button class="pbtn" onclick="document.getElementById('prac-${i}').classList.add('open')">▾ Reveal solution</button>
+          <div class="pa">${p.a}</div>
+        </div>`).join('')}
+    </div>`;
+  document.getElementById('dPrev').disabled=curLesson===0;
+  document.getElementById('dNext').disabled=curLesson===lessons.length-1;
+  document.querySelector('.scrim').scrollTop=0;document.getElementById('dossier').scrollIntoView({block:'start'});
+}
+function dossierNav(d){curLesson=Math.max(0,Math.min(lessons.length-1,curLesson+d));paintDossier();}
+function closeDossier(){document.getElementById('scrim').classList.remove('open');document.body.style.overflow='';}
+document.addEventListener('keydown',e=>{
+  if(!document.getElementById('scrim').classList.contains('open'))return;
+  if(e.key==='Escape')closeDossier();
+  if(e.key==='ArrowRight'&&curLesson<lessons.length-1)dossierNav(1);
+  if(e.key==='ArrowLeft'&&curLesson>0)dossierNav(-1);
+});
+
+/* exam */
+let answers={},submitted=false;
+function renderExam(){
+  const b=document.getElementById('examBody');b.innerHTML='';
+  const letters=['A','B','C','D'];
+  exam.forEach(q=>{
+    const card=document.createElement('div');card.className='qcard';card.id='q-'+q.num;
+    card.innerHTML=`<div class="qhead"><span class="qn">${String(q.num).padStart(2,'0')}</span><span class="qtext">${q.q}</span></div>`;
+    const opts=document.createElement('div');opts.className='opts';
+    q.choices.forEach((ch,i)=>{
+      const o=document.createElement('div');o.className='opt';o.dataset.q=q.num;o.dataset.l=letters[i];
+      o.innerHTML=`<span class="ol">${letters[i]}</span><span>${ch}</span>`;
+      o.onclick=()=>{if(submitted)return;answers[q.num]=letters[i];opts.querySelectorAll('.opt').forEach(x=>x.classList.remove('selected'));o.classList.add('selected');updateSubmit();};
+      opts.appendChild(o);
+    });
+    card.appendChild(opts);
+    const sol=document.createElement('div');sol.className='qsol';sol.id='sol-'+q.num;
+    const lesson=lessons.find(l=>l.num===q.lesson);
+    sol.innerHTML=`<div class="sl"><span>Worked Solution</span><a onclick="closeAndOpen(${q.lesson})">▸ Unit ${String(q.lesson).padStart(2,'0')}: ${lesson.title}</a></div>${q.sol}`;
+    card.appendChild(sol);
+    b.appendChild(card);
+  });
+  const sb=document.createElement('button');sb.className='exam-submit';sb.id='examSubmit';sb.textContent='Submit Exam · 0 / 30 Answered';sb.disabled=true;sb.onclick=gradeExam;
+  b.appendChild(sb);
+}
+function closeAndOpen(num){switchView('lessons');setTimeout(()=>openDossier(num),120);}
+function updateSubmit(){const n=Object.keys(answers).length;const sb=document.getElementById('examSubmit');sb.textContent=`Submit Exam · ${n} / 30 Answered`;sb.disabled=n<30;}
+function gradeExam(){
+  submitted=true;let score=0;const missByCat={};
+  exam.forEach(q=>{
+    const correct=q.ans,chosen=answers[q.num];
+    if(chosen===correct)score++; else {const c=lessons.find(l=>l.num===q.lesson).cat;missByCat[c]=(missByCat[c]||0)+1;}
+    document.querySelectorAll(`.opt[data-q="${q.num}"]`).forEach(o=>{
+      o.classList.remove('selected');
+      if(o.dataset.l===correct)o.classList.add('correct');
+      else if(o.dataset.l===chosen)o.classList.add('wrong');
+    });
+    document.getElementById('sol-'+q.num).classList.add('show');
+  });
+  document.getElementById('scNum').textContent=score;
+  const pct=score/30*100;
+  const v=document.getElementById('scVerdict');
+  if(pct>=80){v.textContent='Mission Ready';v.className='verdict pass';}
+  else{v.textContent='Recommend Re-Drill';v.className='verdict review';}
+  const weak=Object.entries(missByCat).sort((a,b)=>b[1]-a[1]).slice(0,3).map(e=>e[0]);
+  document.getElementById('scWeak').innerHTML = weak.length? 'Weakest areas: '+weak.map(w=>`<b>${w}</b>`).join(' · ') : 'Clean sweep — no missed concepts.';
+  document.getElementById('scorecard').classList.add('show');
+  document.getElementById('examSubmit').style.display='none';
+  document.getElementById('scorecard').scrollIntoView({behavior:'smooth',block:'center'});
+}
+function resetExam(){answers={};submitted=false;document.getElementById('scorecard').classList.remove('show');renderExam();window.scrollTo({top:document.querySelector('.viewnav').offsetTop,behavior:'smooth'});}
+renderExam();
+
+/* study plan */
+const planData=[
+  {d:'Day 1',t:'Lessons 1–2',k:'Percents · Rates'},
+  {d:'Day 2',t:'Lessons 3–4',k:'Ratios · Fractions'},
+  {d:'Day 3',t:'Lessons 5–6',k:'Probability · Factoring'},
+  {d:'Day 4',t:'Lessons 7–8',k:'% Change · Work'},
+  {d:'Day 5',t:'Lessons 9–10',k:'Wages · Shortcuts'},
+  {d:'Day 6',t:'Practice Test',k:'All 30, no notes',test:true},
+  {d:'Day 7',t:'Review Weak Areas',k:'Re-drill misses',test:true},
+];
+const pg=document.getElementById('planGrid');
+planData.forEach(p=>{const d=document.createElement('div');d.className='day'+(p.test?' test':'');d.innerHTML=`<div class="dl">${p.d}</div><div class="dt">${p.t}</div><div class="dl" style="margin-top:6px;letter-spacing:.06em">${p.k}</div>`;pg.appendChild(d);});
+</script>
+</body>
+</html>

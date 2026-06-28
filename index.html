@@ -1,895 +1,111 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>ASVAB Arithmetic Reasoning — Field Manual</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Roboto+Condensed:wght@400;700&family=Roboto+Mono:wght@400;500;700&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+<!DOCTYPE html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>ASVAB Study Guide</title>
 <style>
-:root{
-  --od:#3a3f2a;--od-deep:#23271a;--od-dark:#181b12;
-  --sand:#d8cdb0;--sand-2:#c4b894;
-  --amber:#e8a02a;--amber-soft:#f0c468;
-  --rust:#a8431f;--green:#6f8f3a;
-  --paper:#e9e2cd;--paper-2:#ded5bb;
-  --ink:#22241a;--line:rgba(34,36,26,.18);
-}
-*{box-sizing:border-box;margin:0;padding:0}
-html{scroll-behavior:smooth}
-body{font-family:'Roboto',sans-serif;background:var(--od-dark);color:var(--ink);line-height:1.55;-webkit-font-smoothing:antialiased}
-::selection{background:var(--amber);color:var(--od-dark)}
-
-.classbar{background:repeating-linear-gradient(45deg,var(--od-deep) 0 14px,#2b2f1f 14px 28px);color:var(--sand);font-family:'Roboto Mono',monospace;font-size:.62rem;letter-spacing:.32em;font-weight:700;text-transform:uppercase;padding:7px 16px;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid #000}
-.classbar span{opacity:.85}
-
-/* cross-link bar */
-.seclink{background:var(--od-dark);display:flex;gap:0;border-bottom:1px solid rgba(216,205,176,.14)}
-.seclink a{flex:1;text-align:center;text-decoration:none;padding:11px 8px;font-family:'Roboto Mono',monospace;font-size:.6rem;letter-spacing:.12em;text-transform:uppercase;color:var(--sand-2);border-right:1px solid rgba(216,205,176,.14);transition:all .15s}
-.seclink a:last-child{border-right:none}
-.seclink a:hover{color:var(--paper);background:var(--od-deep)}
-.seclink a.here{color:var(--amber);font-weight:700;box-shadow:inset 0 -3px 0 var(--amber)}
-
-.hero{position:relative;background:linear-gradient(180deg,rgba(24,27,18,.72),rgba(24,27,18,.92)),radial-gradient(circle at 78% 18%,rgba(232,160,42,.14),transparent 46%),var(--od-deep);color:var(--sand);padding:50px 22px 56px;overflow:hidden;border-bottom:3px solid var(--amber)}
-.hero::before{content:"";position:absolute;inset:0;background-image:linear-gradient(rgba(216,205,176,.04) 1px,transparent 1px),linear-gradient(90deg,rgba(216,205,176,.04) 1px,transparent 1px);background-size:38px 38px;pointer-events:none}
-.hero-inner{max-width:1080px;margin:0 auto;position:relative}
-.eyebrow{font-family:'Roboto Mono',monospace;font-size:.7rem;letter-spacing:.34em;color:var(--amber);text-transform:uppercase;font-weight:700;display:flex;align-items:center;gap:10px;margin-bottom:18px;flex-wrap:wrap}
-.eyebrow::after{content:"";height:1px;flex:1;min-width:30px;background:linear-gradient(90deg,var(--amber),transparent)}
-.hero h1{font-family:'Oswald',sans-serif;font-weight:700;font-size:clamp(2.4rem,7.5vw,5rem);line-height:.92;text-transform:uppercase;letter-spacing:.01em;color:var(--paper);text-shadow:3px 3px 0 rgba(0,0,0,.35)}
-.hero h1 .accent{display:block;color:var(--amber);font-size:clamp(1rem,3.2vw,1.9rem);letter-spacing:.16em;margin-top:8px;font-weight:600}
-.hero p.lede{max-width:560px;margin:22px 0 0;font-size:1.06rem;color:var(--sand-2);font-family:'Roboto Condensed',sans-serif}
-.specrow{display:flex;gap:0;flex-wrap:wrap;margin-top:32px;border:1px solid rgba(216,205,176,.28);background:rgba(0,0,0,.22)}
-.spec{flex:1;min-width:120px;padding:14px 18px;border-right:1px solid rgba(216,205,176,.2)}
-.spec:last-child{border-right:none}
-.spec .k{font-family:'Roboto Mono',monospace;font-size:.6rem;letter-spacing:.22em;color:var(--amber);text-transform:uppercase}
-.spec .v{font-family:'Oswald',sans-serif;font-size:1.5rem;font-weight:600;color:var(--paper);margin-top:3px}
-.spec .v small{font-size:.7rem;color:var(--sand-2);font-family:'Roboto Mono',monospace;display:block;letter-spacing:.1em;font-weight:400}
-
-.viewnav{position:sticky;top:0;z-index:40;background:var(--od-dark);border-bottom:1px solid rgba(216,205,176,.18);display:flex;overflow-x:auto}
-.viewnav button{flex:0 0 auto;background:transparent;border:none;cursor:pointer;color:var(--sand-2);font-family:'Oswald',sans-serif;font-weight:500;font-size:.92rem;letter-spacing:.12em;text-transform:uppercase;padding:15px 22px;position:relative;white-space:nowrap;transition:color .15s}
-.viewnav button:hover{color:var(--paper)}
-.viewnav button.active{color:var(--amber)}
-.viewnav button.active::after{content:"";position:absolute;left:14px;right:14px;bottom:0;height:3px;background:var(--amber)}
-.viewnav .count{font-family:'Roboto Mono',monospace;font-size:.62rem;opacity:.6;margin-left:6px}
-
-.wrap{max-width:1080px;margin:0 auto;padding:38px 22px 80px}
-.view{display:none}
-.view.active{display:block;animation:fade .35s ease}
-@keyframes fade{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
-.sechead{display:flex;align-items:baseline;gap:14px;margin-bottom:6px;flex-wrap:wrap}
-.sechead h2{font-family:'Oswald',sans-serif;font-weight:700;text-transform:uppercase;font-size:1.7rem;letter-spacing:.04em;color:var(--paper)}
-.sechead .tag{font-family:'Roboto Mono',monospace;font-size:.62rem;letter-spacing:.2em;color:var(--amber);text-transform:uppercase}
-.secsub{color:var(--sand-2);font-family:'Roboto Condensed',sans-serif;font-size:1rem;margin-bottom:26px;max-width:660px}
-
-.filters{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:24px}
-.chip{font-family:'Roboto Mono',monospace;font-size:.66rem;letter-spacing:.1em;text-transform:uppercase;padding:7px 13px;border:1px solid rgba(216,205,176,.3);background:transparent;color:var(--sand-2);cursor:pointer;transition:all .15s;border-radius:1px}
-.chip:hover{border-color:var(--amber);color:var(--paper)}
-.chip.active{background:var(--amber);color:var(--od-dark);border-color:var(--amber);font-weight:700}
-
-/* lesson roster */
-.roster{display:grid;grid-template-columns:repeat(auto-fill,minmax(252px,1fr));gap:14px}
-.card{background:var(--paper);border:1px solid var(--line);border-left:5px solid var(--cat,#888);padding:16px;cursor:pointer;position:relative;transition:transform .12s,box-shadow .12s;display:flex;flex-direction:column;min-height:150px}
-.card:hover{transform:translateY(-3px);box-shadow:6px 8px 0 rgba(0,0,0,.32)}
-.card .cardtop{display:flex;justify-content:space-between;align-items:center;margin-bottom:9px}
-.card .lnum{font-family:'Roboto Mono',monospace;font-weight:700;font-size:.66rem;letter-spacing:.14em;color:#6a6750}
-.card .catpill{font-family:'Roboto Mono',monospace;font-size:.52rem;letter-spacing:.08em;text-transform:uppercase;padding:2px 7px;color:#fff;background:var(--cat,#888);font-weight:700;border-radius:1px}
-.card h3{font-family:'Oswald',sans-serif;font-weight:600;font-size:1.15rem;line-height:1.12;color:var(--ink);margin-bottom:9px;text-transform:uppercase;letter-spacing:.01em}
-.card .formula{margin-top:auto;font-family:'Roboto Mono',monospace;font-size:.74rem;color:#55523f;background:var(--paper-2);padding:7px 9px;border-left:2px solid var(--cat,#888);line-height:1.35}
-.card .go{position:absolute;right:13px;bottom:11px;font-family:'Roboto Mono',monospace;font-size:.66rem;color:var(--cat,#888);opacity:0;transition:opacity .15s;letter-spacing:.1em}
-.card:hover .go{opacity:1}
-
-/* dossier modal */
-.scrim{position:fixed;inset:0;background:rgba(10,12,7,.82);z-index:90;display:none;align-items:flex-start;justify-content:center;padding:24px 14px;overflow-y:auto;backdrop-filter:blur(3px)}
-.scrim.open{display:flex}
-.dossier{background:var(--paper);max-width:740px;width:100%;margin:auto;position:relative;border:1px solid #000;box-shadow:0 30px 80px rgba(0,0,0,.6);animation:pop .3s cubic-bezier(.2,.9,.3,1.2)}
-@keyframes pop{from{opacity:0;transform:scale(.96) translateY(14px)}to{opacity:1;transform:none}}
-.dossier-band{background:var(--od-deep);color:var(--sand);padding:14px 22px;display:flex;justify-content:space-between;align-items:center;border-bottom:3px solid var(--amber)}
-.dossier-band .dnum{font-family:'Roboto Mono',monospace;font-size:.66rem;letter-spacing:.2em;color:var(--amber)}
-.dossier-band .dcat{font-family:'Roboto Mono',monospace;font-size:.56rem;letter-spacing:.1em;text-transform:uppercase;padding:3px 9px;background:var(--cat,#888);color:#fff;font-weight:700}
-.closeb{position:absolute;top:9px;right:12px;background:none;border:none;color:var(--sand);font-size:1.5rem;cursor:pointer;line-height:1;z-index:5;width:34px;height:34px}
-.closeb:hover{color:var(--amber)}
-.dossier-body{padding:24px 26px 30px}
-.dossier-body h2{font-family:'Oswald',sans-serif;font-weight:700;text-transform:uppercase;font-size:1.7rem;line-height:1;color:var(--ink);margin-bottom:18px;letter-spacing:.01em}
-.block{margin-bottom:20px}
-.block .bh{font-family:'Oswald',sans-serif;font-weight:600;text-transform:uppercase;letter-spacing:.1em;font-size:.92rem;color:var(--od);display:flex;align-items:center;gap:9px;margin-bottom:8px}
-.block .bh::before{content:"";width:18px;height:2px;background:var(--amber)}
-.block p{font-size:.98rem;color:#33352a}
-.formbox{background:var(--od-deep);color:var(--sand);padding:13px 16px;font-family:'Roboto Mono',monospace;font-size:.92rem;line-height:1.5}
-.formbox .flbl{font-size:.56rem;letter-spacing:.2em;color:var(--amber);text-transform:uppercase;margin-bottom:5px;font-weight:700}
-.shortcut{background:linear-gradient(180deg,#fbe9c4,#f5dca0);border:1px solid #d9b35e;border-left:5px solid var(--amber);padding:13px 16px;font-family:'Roboto Condensed',sans-serif}
-.shortcut .mlbl{font-family:'Roboto Mono',monospace;font-size:.56rem;letter-spacing:.2em;color:#8a6a1c;text-transform:uppercase;margin-bottom:4px;font-weight:700}
-.shortcut .mtxt{font-size:1.02rem;color:#5e4710}
-.worked{background:#fff;border:1px solid var(--line)}
-.worked .wq{background:var(--paper-2);padding:12px 16px;font-family:'Roboto Condensed',sans-serif;font-style:italic;font-size:1rem;color:var(--ink);border-bottom:1px dashed #9a937a}
-.worked ol{list-style:none;counter-reset:s;padding:14px 16px 6px}
-.worked ol li{counter-increment:s;position:relative;padding:0 0 12px 34px;font-family:'Roboto Condensed',sans-serif;font-size:.97rem;color:#33352a}
-.worked ol li::before{content:counter(s);position:absolute;left:0;top:-1px;width:22px;height:22px;background:var(--od);color:var(--sand);font-family:'Roboto Mono',monospace;font-size:.72rem;font-weight:700;display:flex;align-items:center;justify-content:center;border-radius:1px}
-.worked .wa{background:#e7eed3;border-top:1px solid var(--line);padding:11px 16px;font-family:'Oswald',sans-serif;text-transform:uppercase;letter-spacing:.06em;font-size:1rem;color:var(--green);font-weight:700}
-.worked .wa span{font-family:'Roboto Mono',monospace;font-size:.56rem;letter-spacing:.2em;color:#5d7a2f;display:block;font-weight:400;margin-bottom:2px}
-/* practice with reveal */
-.pracitem{border:1px solid var(--line);background:#fff;margin-bottom:9px}
-.pracitem .pq{padding:11px 14px;font-family:'Roboto Condensed',sans-serif;font-size:.97rem;color:var(--ink);display:flex;gap:9px}
-.pracitem .pq .pn{font-family:'Roboto Mono',monospace;color:var(--od);font-weight:700;font-size:.8rem;flex:0 0 auto}
-.pracitem .pbtn{width:100%;background:var(--paper-2);border:none;border-top:1px solid var(--line);cursor:pointer;font-family:'Roboto Mono',monospace;font-size:.64rem;letter-spacing:.14em;text-transform:uppercase;color:var(--od);padding:8px;text-align:left;padding-left:14px}
-.pracitem .pbtn:hover{background:#d3c9a9}
-.pracitem .pa{display:none;padding:11px 14px;background:#eef3e0;font-family:'Roboto Condensed',sans-serif;font-size:.95rem;color:#33421f;border-top:1px solid var(--line)}
-.pracitem.open .pa{display:block}
-.pracitem.open .pbtn{display:none}
-
-.dossier-nav{display:flex;justify-content:space-between;border-top:1px solid var(--line);padding:14px 26px;background:var(--paper-2)}
-.dossier-nav button{background:none;border:1px solid var(--od);color:var(--od);cursor:pointer;font-family:'Roboto Mono',monospace;font-size:.66rem;letter-spacing:.12em;text-transform:uppercase;padding:8px 14px;transition:all .15s}
-.dossier-nav button:hover:not(:disabled){background:var(--od);color:var(--sand)}
-.dossier-nav button:disabled{opacity:.3;cursor:default}
-
-/* exam */
-.exam-meta{display:flex;gap:0;flex-wrap:wrap;margin-bottom:22px;border:1px solid var(--line);background:var(--paper)}
-.exam-meta .m{flex:1;min-width:110px;padding:12px 16px;border-right:1px solid var(--line)}
-.exam-meta .m:last-child{border-right:none}
-.exam-meta .mk{font-family:'Roboto Mono',monospace;font-size:.56rem;letter-spacing:.18em;text-transform:uppercase;color:#7a755e}
-.exam-meta .mv{font-family:'Oswald',sans-serif;font-size:1.2rem;font-weight:600;color:var(--ink);margin-top:2px}
-.qcard{background:var(--paper);border:1px solid var(--line);padding:18px 20px;margin-bottom:14px}
-.qcard .qhead{display:flex;gap:10px;margin-bottom:13px}
-.qcard .qn{font-family:'Roboto Mono',monospace;font-weight:700;color:var(--amber);background:var(--od-deep);padding:2px 9px;font-size:.78rem;height:fit-content;letter-spacing:.05em}
-.qcard .qtext{font-family:'Roboto Condensed',sans-serif;font-size:1.05rem;color:var(--ink);font-weight:700;flex:1}
-.opts{display:grid;gap:8px}
-.opt{display:flex;align-items:center;gap:11px;padding:10px 14px;border:1px solid var(--line);background:#fff;cursor:pointer;transition:all .12s;font-family:'Roboto Condensed',sans-serif;font-size:.98rem}
-.opt:hover{border-color:var(--od);background:#fbf8ef}
-.opt .ol{font-family:'Roboto Mono',monospace;font-weight:700;font-size:.78rem;color:var(--od);width:18px;flex:0 0 auto}
-.opt.selected{border-color:var(--od);background:#efe9d6;box-shadow:inset 3px 0 0 var(--od)}
-.opt.correct{border-color:var(--green);background:#e7eed3;box-shadow:inset 3px 0 0 var(--green)}
-.opt.wrong{border-color:var(--rust);background:#f1ddd2;box-shadow:inset 3px 0 0 var(--rust)}
-.opt.correct .ol{color:var(--green)}
-.opt.wrong .ol{color:var(--rust)}
-.qsol{display:none;margin-top:12px;background:var(--od-deep);color:var(--sand);padding:13px 16px;font-family:'Roboto Condensed',sans-serif;font-size:.97rem;border-left:4px solid var(--amber)}
-.qsol.show{display:block;animation:fade .3s}
-.qsol .sl{font-family:'Roboto Mono',monospace;font-size:.56rem;letter-spacing:.2em;color:var(--amber);text-transform:uppercase;margin-bottom:5px;font-weight:700;display:flex;justify-content:space-between}
-.qsol .sl a{color:var(--amber-soft);text-decoration:underline;cursor:pointer;letter-spacing:.06em}
-.exam-submit{background:var(--green);color:#fff;border:none;cursor:pointer;font-family:'Oswald',sans-serif;font-weight:700;letter-spacing:.14em;text-transform:uppercase;font-size:.92rem;padding:14px 30px;margin-top:8px;width:100%}
-.exam-submit:hover{background:#5e7a31}
-.exam-submit:disabled{opacity:.4;cursor:default}
-.scorecard{background:var(--od-deep);color:var(--sand);border:3px solid var(--amber);padding:28px 24px;text-align:center;margin-bottom:26px;display:none}
-.scorecard.show{display:block;animation:fade .4s}
-.scorecard .stamp{font-family:'Roboto Mono',monospace;font-size:.62rem;letter-spacing:.26em;color:var(--amber);text-transform:uppercase}
-.scorecard .big{font-family:'Oswald',sans-serif;font-size:4.2rem;font-weight:700;color:var(--paper);line-height:1}
-.scorecard .big small{font-size:1.4rem;color:var(--sand-2)}
-.scorecard .verdict{font-family:'Oswald',sans-serif;font-size:1.3rem;text-transform:uppercase;letter-spacing:.1em;margin-top:6px}
-.scorecard .verdict.pass{color:var(--green)}
-.scorecard .verdict.review{color:var(--amber)}
-.scorecard .weak{font-family:'Roboto Condensed',sans-serif;font-size:.95rem;color:var(--sand-2);margin-top:12px}
-.scorecard .weak b{color:var(--amber-soft)}
-.scorecard .retake{background:none;border:1px solid var(--sand);color:var(--sand);cursor:pointer;font-family:'Roboto Mono',monospace;font-size:.66rem;letter-spacing:.14em;text-transform:uppercase;padding:9px 18px;margin-top:16px}
-.scorecard .retake:hover{background:var(--sand);color:var(--od-deep)}
-
-/* study plan */
-.plan{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:12px;margin-bottom:30px}
-.day{background:var(--paper);border:1px solid var(--line);border-top:4px solid var(--amber);padding:14px}
-.day .dl{font-family:'Roboto Mono',monospace;font-size:.6rem;letter-spacing:.16em;text-transform:uppercase;color:#7a755e}
-.day .dt{font-family:'Oswald',sans-serif;font-size:1.05rem;font-weight:600;text-transform:uppercase;color:var(--ink);margin-top:3px;line-height:1.15}
-.day.test{border-top-color:var(--green)}
-.day.test .dt{color:var(--green)}
-
-.foot{background:var(--od-dark);color:var(--sand-2);border-top:1px solid rgba(216,205,176,.15);padding:26px 22px;text-align:center;font-family:'Roboto Mono',monospace;font-size:.66rem;letter-spacing:.12em}
-.foot b{color:var(--amber)}
-
-@media(max-width:600px){
-  .hero{padding:38px 18px 44px}
-  .spec{min-width:50%;border-bottom:1px solid rgba(216,205,176,.2)}
-  .spec:nth-child(odd){border-right:1px solid rgba(216,205,176,.2)}
-  .spec:nth-child(even){border-right:none}
-  .dossier-body{padding:20px 18px 24px}
-}
-</style>
-</head>
-<body>
-<div class="classbar"><span>// ASVAB · ARMED SERVICES VOCATIONAL APTITUDE BATTERY</span><span>PART 2 · AR</span></div>
-
-<nav class="seclink">
-  <a href="asvab-general-science.html">Part 1 · General Science</a>
-  <a class="here">Part 2 · Arithmetic Reasoning</a>
-  <a href="asvab-word-knowledge.html">Part 3 · Word Knowledge</a>
-</nav>
-
-<header class="hero">
-  <div class="hero-inner">
-    <div class="eyebrow">Diagnostic Test · Part 2 · Arithmetic Reasoning</div>
-    <h1>Arithmetic<br>Reasoning
-      <span class="accent">Field Manual &amp; Solved Drills</span>
-    </h1>
-    <p class="lede">Ten core concepts and all thirty diagnostic word problems, each one fully worked. Learn the method behind each question so you can run the math fast and clean on test day.</p>
-    <div class="specrow">
-      <div class="spec"><div class="k">Time Limit</div><div class="v">36<small>Minutes</small></div></div>
-      <div class="spec"><div class="k">Questions</div><div class="v">30<small>Word Problems</small></div></div>
-      <div class="spec"><div class="k">Pace</div><div class="v">~72<small>Sec / Item</small></div></div>
-      <div class="spec"><div class="k">Concepts</div><div class="v">10<small>Lesson Units</small></div></div>
-    </div>
-  </div>
-</header>
-
-<nav class="viewnav" id="viewnav">
-  <button class="active" data-view="lessons">Concept Lessons<span class="count">10</span></button>
-  <button data-view="exam">Solved Exam<span class="count">30</span></button>
-  <button data-view="plan">Study Plan</button>
-</nav>
-
-<main class="wrap">
-
-  <section class="view active" id="view-lessons">
-    <div class="sechead"><h2>Concept Lessons</h2><span class="tag">Tap any unit to open</span></div>
-    <p class="secsub">Each unit gives the core idea, the formula, a fast shortcut, one fully worked example, and three practice problems with reveal-able solutions.</p>
-    <div class="filters" id="filters"></div>
-    <div class="roster" id="roster"></div>
-  </section>
-
-  <section class="view" id="view-exam">
-    <div class="sechead"><h2>Solved Exam</h2><span class="tag">All 30 diagnostic questions</span></div>
-    <p class="secsub">Answer each item, then submit to score. Every question reveals a full worked solution and links back to the concept lesson it tests.</p>
-    <div class="exam-meta">
-      <div class="m"><div class="mk">Section</div><div class="mv">AR · Part 2</div></div>
-      <div class="m"><div class="mk">Items</div><div class="mv">30</div></div>
-      <div class="m"><div class="mk">Time On Test</div><div class="mv">36 min</div></div>
-      <div class="m"><div class="mk">Passing Target</div><div class="mv">80%+</div></div>
-    </div>
-    <div class="scorecard" id="scorecard">
-      <div class="stamp">// Results Logged</div>
-      <div class="big"><span id="scNum">0</span><small>/30</small></div>
-      <div class="verdict" id="scVerdict"></div>
-      <div class="weak" id="scWeak"></div>
-      <button class="retake" onclick="resetExam()">↻ Retake Exam</button>
-    </div>
-    <div id="examBody"></div>
-  </section>
-
-  <section class="view" id="view-plan">
-    <div class="sechead"><h2>7-Day Study Plan</h2><span class="tag">From the master course</span></div>
-    <p class="secsub">A week-long rotation: two concepts a day, then the full practice test, then targeted review of whatever you missed.</p>
-    <div class="plan" id="planGrid"></div>
-    <p class="secsub" style="max-width:680px">Tip: after the Day 6 practice test, the scorecard flags your weakest concepts. Spend Day 7 reopening those specific lesson units and re-solving their practice problems until the method is automatic.</p>
-  </section>
-
-</main>
-
-<div class="scrim" id="scrim" onclick="if(event.target===this)closeDossier()">
-  <div class="dossier" id="dossier">
-    <button class="closeb" onclick="closeDossier()">✕</button>
-    <div class="dossier-band"><span class="dnum" id="dNum"></span><span class="dcat" id="dCat"></span></div>
-    <div class="dossier-body" id="dBody"></div>
-    <div class="dossier-nav">
-      <button id="dPrev" onclick="dossierNav(-1)">◀ Previous</button>
-      <button id="dNext" onclick="dossierNav(1)">Next ▶</button>
-    </div>
-  </div>
-</div>
-
-<footer class="foot">ASVAB ARITHMETIC REASONING · FIELD MANUAL · <b>10 CONCEPTS · 30 SOLVED</b> · STUDY · DRILL · DEPLOY</footer>
-
-<script>
-const DATA = {"lessons": [{"num": 1, "title": "Percent Discounts", "cat": "Percents", "idea": "A percent means 'per hundred,' so 20% = 20/100 = 0.20. To take a discount off a price, you can find the discount and subtract it, or multiply by what's left after the discount.", "formula": "Sale Price = Original × (1 − discount)", "shortcut": "Find 10% by moving the decimal one place left ($160 → $16). Build other percents from that: 20% is two 10%s, 5% is half of 10%.", "example": {"q": "A camera normally costs $160. It is reduced 20% during a sale. What is the sale price?", "steps": ["20% off means you still pay 80% (100% − 20%).", "Convert: 80% = 0.80.", "Multiply: $160 × 0.80 = $128.", "Check: 10% of $160 = $16, so 20% = $32 off. $160 − $32 = $128. ✓"], "answer": "$128"}, "practice": [{"q": "A $90 jacket is marked 30% off. What is the sale price?", "a": "$90 × 0.70 = $63"}, {"q": "A $250 tire is on sale for 15% off. What do you pay?", "a": "$250 × 0.85 = $212.50"}, {"q": "Shoes cost $48 after a 20% discount. What was the original price?", "a": "$48 ÷ 0.80 = $60 (the $48 is 80% of the original)"}]}, {"num": 2, "title": "Rates, Time & Distance", "cat": "Rates", "idea": "A rate connects two quantities, like miles per hour or stations per minute. If you know any two of distance, rate, and time, you can find the third. The key skill is keeping your units consistent.", "formula": "Distance = Rate × Time   •   Rate = Distance ÷ Time   •   Time = Distance ÷ Rate", "shortcut": "To scale a rate to a new time, multiply by how many of those time blocks fit. 3 stations per 10 minutes × 6 ten-minute blocks in an hour = 18 stations.", "example": {"q": "A subway car passes 3 stations every 10 minutes. At this rate, how many stations will it pass in one hour?", "steps": ["One hour = 60 minutes.", "How many 10-minute blocks in 60 minutes? 60 ÷ 10 = 6.", "Each block = 3 stations, so 3 × 6 = 18 stations.", "Check: 3 stations/10 min is the same as 18 stations/60 min. ✓"], "answer": "18 stations"}, "practice": [{"q": "A car travels 1/100 of a kilometer each second. How far in one hour?", "a": "3600 seconds × 1/100 km = 36 km"}, {"q": "A printer makes 9 copies every 15 seconds. How many per minute?", "a": "60 ÷ 15 = 4 blocks; 9 × 4 = 36 copies"}, {"q": "A runner covers 2 miles in 16 minutes. What is the pace per mile?", "a": "16 ÷ 2 = 8 minutes per mile"}]}, {"num": 3, "title": "Ratios & Proportions", "cat": "Ratios", "idea": "A ratio compares amounts (2 baseballs to 3 golf balls = 2:3). A proportion sets two ratios equal. Solve proportions by cross-multiplying, and simplify ratios by dividing both sides by the same number.", "formula": "If a/b = c/d, then a×d = b×c (cross multiply)", "shortcut": "Find the 'one unit' value first. If 2:3 and there are 30 of the '2' part, each ratio unit = 15, so the '3' part = 45.", "example": {"q": "On a map, 3/4 inch represents 1 mile. What distance, in miles, is shown by 1 3/4 inches?", "steps": ["Set up a proportion: (3/4 inch)/(1 mile) = (1 3/4 inch)/(x miles).", "Write 1 3/4 as 7/4.", "Cross multiply: (3/4)×x = (7/4)×1.", "Solve: x = (7/4) ÷ (3/4) = 7/3 = 2 1/3 miles. ✓"], "answer": "2 1/3 miles"}, "practice": [{"q": "Baseballs to golf balls is 2:3. If there are 30 baseballs, how many golf balls?", "a": "30 ÷ 2 = 15 per unit; 3 × 15 = 45 golf balls"}, {"q": "The ratio 3 1/4 to 5 1/4 equals what whole-number ratio?", "a": "13/4 to 21/4 = 13 to 21"}, {"q": "A recipe uses 2 cups flour per 3 eggs. How much flour for 9 eggs?", "a": "9 ÷ 3 = 3 units; 2 × 3 = 6 cups"}]}, {"num": 4, "title": "Fractions", "cat": "Fractions", "idea": "Fractions show parts of a whole. Convert mixed numbers to improper fractions before multiplying or dividing. To divide by a fraction, multiply by its reciprocal (flip it). 'Of' usually means multiply.", "formula": "a/b × c/d = (a×c)/(b×d)   •   a/b ÷ c/d = a/b × d/c", "shortcut": "Dividing a total by a fractional amount tells you 'how many fit.' 72 ÷ 3/8 = 72 × 8/3 = 192.", "example": {"q": "A cat is fed 3/8 of a pound of food per day. For how many days will 72 pounds last?", "steps": ["You want how many 3/8-pound servings fit in 72 pounds: 72 ÷ 3/8.", "Dividing by a fraction = multiply by its reciprocal: 72 × 8/3.", "72 × 8 = 576; 576 ÷ 3 = 192.", "Check: 192 days × 3/8 lb = 72 lb. ✓"], "answer": "192 days"}, "practice": [{"q": "After spending 5/12 of her salary, Eva has $420 left. What is her salary?", "a": "Left = 7/12 of salary. $420 ÷ 7/12 = $420 × 12/7 = $720"}, {"q": "What is 2 1/4 × 4?", "a": "9/4 × 4 = 9"}, {"q": "How many 1/2-cup scoops are in 6 cups?", "a": "6 ÷ 1/2 = 12 scoops"}]}, {"num": 5, "title": "Probability", "cat": "Probability", "idea": "Probability measures how likely an outcome is, from 0 (never) to 1 (always). Count the outcomes you want, divide by the total number of equally likely outcomes. For 'either/or' with separate groups, add the favorable counts first.", "formula": "Probability = Favorable Outcomes ÷ Total Outcomes", "shortcut": "For 'red or black,' add red + black, then divide by the total. Always simplify the final fraction.", "example": {"q": "Marty has 5 blue pens, 6 black pens, and 4 red pens. He pulls one at random. What is the probability it is red or black?", "steps": ["Total pens: 5 + 6 + 4 = 15.", "Favorable (red or black): 4 + 6 = 10.", "Probability = 10/15.", "Simplify: divide top and bottom by 5 → 2/3. ✓"], "answer": "2/3"}, "practice": [{"q": "A bag has 3 white and 7 green marbles. P(white)?", "a": "3/(3+7) = 3/10"}, {"q": "A die is rolled. P(rolling a 5 or 6)?", "a": "2/6 = 1/3"}, {"q": "8 red, 4 blue, 8 yellow cards. P(red or yellow)?", "a": "(8+8)/20 = 16/20 = 4/5"}]}, {"num": 6, "title": "Prime Factorization", "cat": "Number Sense", "idea": "Every whole number is a product of prime numbers (2, 3, 5, 7, 11…). Build a factor tree: split the number into any two factors, then keep splitting until everything is prime. The order doesn't matter, but each prime must appear the right number of times.", "formula": "Prime factorization = the unique set of primes whose product is the number", "shortcut": "Start by pulling out small primes: keep dividing by 2 while even, then try 3, then 5, then 7.", "example": {"q": "What is the prime factorization of 140?", "steps": ["140 is even: 140 = 2 × 70.", "70 is even: 70 = 2 × 35.", "35 = 5 × 7, both prime.", "So 140 = 2 × 2 × 5 × 7. ✓"], "answer": "2 × 2 × 5 × 7"}, "practice": [{"q": "Prime factorization of 60?", "a": "2 × 2 × 3 × 5"}, {"q": "Prime factorization of 4! (which is 24)?", "a": "24 = 2 × 2 × 2 × 3"}, {"q": "What is 4! ?", "a": "4 × 3 × 2 × 1 = 24"}]}, {"num": 7, "title": "Percent Increase & Decrease", "cat": "Percents", "idea": "Percent change is always measured against the starting value. A decrease then an increase do NOT cancel out, because the second percent is taken from a different base. To stack changes, multiply the factors.", "formula": "New = Old × (1 ± percent)   •   Percent change = (change ÷ original) × 100", "shortcut": "To reverse a 20% drop you need MORE than 20% back: the drop was off the big number, the recovery is off the smaller number.", "example": {"q": "A stock drops 20%. By what percent must it rise to return to its original value?", "steps": ["Say it started at $100. After −20%: $100 × 0.80 = $80.", "It must climb from $80 back to $100, a gain of $20.", "Percent increase = change ÷ new base = 20 ÷ 80 = 0.25.", "0.25 = 25%. ✓"], "answer": "25%"}, "practice": [{"q": "Population rises 100% then 50%. Total increase?", "a": "×2 then ×1.5 = ×3 → 200% increase"}, {"q": "A $50 item rises 10% then falls 10%. Final price?", "a": "50 × 1.1 × 0.9 = $49.50 (not $50)"}, {"q": "A price falls 25%. What rise restores it?", "a": "0.25 ÷ 0.75 = 33 1/3%"}]}, {"num": 8, "title": "Work Problems", "cat": "Work & Wages", "idea": "When people work together, their RATES add, not their times. If someone finishes in T minutes, their rate is 1/T of the job per minute. Add the rates to find the combined rate, then flip it to get the combined time.", "formula": "1/T = 1/A + 1/B   (then T = combined time)", "shortcut": "Working together is always FASTER than the fastest single worker — use that to rule out answer choices.", "example": {"q": "Joan shovels a driveway in 50 minutes; Mary in 20 minutes. How long together (nearest minute)?", "steps": ["Joan's rate = 1/50 per minute; Mary's = 1/20 per minute.", "Add rates: 1/50 + 1/20. Common denominator 100 → 2/100 + 5/100 = 7/100.", "Combined time = flip the rate = 100/7 ≈ 14.3 minutes.", "Nearest minute = 14. (Faster than Mary's 20 alone. ✓)"], "answer": "14 minutes"}, "practice": [{"q": "A pipe fills a tank in 6 hr, another in 3 hr. Together?", "a": "1/6 + 1/3 = 1/6 + 2/6 = 3/6 = 1/2 → 2 hours"}, {"q": "Worker A: 4 hr, Worker B: 4 hr. Together?", "a": "1/4 + 1/4 = 1/2 → 2 hours"}, {"q": "Why can't two workers each taking 30 min finish in 40 min together?", "a": "Together must be faster than 30 min, so 40 is impossible"}]}, {"num": 9, "title": "Salary & Wage Problems", "cat": "Work & Wages", "idea": "These problems turn sentences into equations. Find the hourly rate first. Overtime is usually 'time and a half' (1.5 × regular rate) for hours beyond 40. Read carefully for 'more than' and 'less than' chains.", "formula": "Pay = Regular hours × rate + Overtime hours × (1.5 × rate)", "shortcut": "For 'A is $70 less than B, B is $50 more than C,' work from the known person outward, one step at a time.", "example": {"q": "A worker earns $200 for the first 40 hours, then 1.5× the regular rate after that. How many hours to earn $230?", "steps": ["Regular rate = $200 ÷ 40 = $5/hour.", "Overtime rate = 1.5 × $5 = $7.50/hour.", "Needs $230 − $200 = $30 more from overtime.", "$30 ÷ $7.50 = 4 overtime hours → 40 + 4 = 44 hours total. ✓"], "answer": "44 hours"}, "practice": [{"q": "June earns $70 less than Kelly; Kelly earns $50 more than Eileen; Eileen earns $280. June's pay?", "a": "Kelly = 280 + 50 = 330; June = 330 − 70 = $260"}, {"q": "A painter at $12/hr and son at $6/hr work the same time; combined charge $108. Hours each?", "a": "(12 + 6) × t = 108 → t = 6 hours"}, {"q": "Regular rate $8/hr. What is the overtime rate at time-and-a-half?", "a": "1.5 × 8 = $12/hour"}]}, {"num": 10, "title": "Mental Math & ASVAB Shortcuts", "cat": "Strategy", "idea": "The AR section is timed (about 72 seconds per question), so speed matters. Estimate to eliminate impossible choices, round to friendly numbers, and watch for answer choices that are 'traps' built from a common mistake.", "formula": "Estimate first → eliminate → compute only what's left", "shortcut": "10% tricks, doubling/halving, and 'does this answer even make sense?' checks save more points than raw calculation. If two workers team up, the answer must be smaller than either alone.", "example": {"q": "Four people share a $36 taxi fare plus a 25% tip, split evenly. How much does each pay?", "steps": ["Tip = 25% of $36 = $9. Total = $36 + $9 = $45.", "Split four ways: $45 ÷ 4 = $11.25.", "Estimate check: $45/4 is a bit over $11, so $11.25 fits.", "Trap: $9.00 (forgetting the tip, 36÷4) is a wrong choice. ✓"], "answer": "$11.25"}, "practice": [{"q": "Quickly estimate 19% of $200.", "a": "≈ 20% = $40 (slightly less)"}, {"q": "2 1/4 lb of lumber at $4.00/lb plus 7% tax. Total?", "a": "2.25 × 4 = $9.00; ×1.07 = $9.63"}, {"q": "Garage A: $8.75 first hour + $1.25 each more. Cost for 5 hours?", "a": "8.75 + 1.25×4 = $13.75"}]}], "exam": [{"num": 1, "q": "John bought a camera on sale that normally costs $160. If the price was reduced 20% during the sale, what was the sale price of the camera?", "choices": ["$120", "$124", "$128", "$140"], "ans": "C", "lesson": 1, "sol": "You still pay 100% − 20% = 80%. $160 × 0.80 = $128. (10% of 160 is $16, so 20% off is $32; 160 − 32 = 128.)"}, {"num": 2, "q": "A subway car passes 3 stations every 10 minutes. At this rate, how many stations will it pass in one hour?", "choices": ["15", "18", "20", "30"], "ans": "B", "lesson": 2, "sol": "One hour has six 10-minute blocks (60 ÷ 10 = 6). 3 stations per block × 6 = 18 stations."}, {"num": 3, "q": "On a certain map, 3/4 inch represents one mile. What distance, in miles, is represented by 1 3/4 inches?", "choices": ["1 1/2", "2 1/3", "2 1/2", "5 1/4"], "ans": "B", "lesson": 3, "sol": "1 3/4 = 7/4. Divide map inches by the per-mile inches: (7/4) ÷ (3/4) = 7/3 = 2 1/3 miles."}, {"num": 4, "q": "A box contains baseballs and golf balls. If the ratio of baseballs to golf balls is 2:3 and there are 30 baseballs, how many golf balls are there?", "choices": ["18", "20", "36", "45"], "ans": "D", "lesson": 3, "sol": "30 baseballs ÷ 2 = 15 per ratio unit. Golf balls = 3 units × 15 = 45."}, {"num": 5, "q": "Four people shared a taxi. The fare was $36.00, and they gave a tip equal to 25% of the fare. If they equally shared the cost of fare and tip, how much did each person pay?", "choices": ["$9.75", "$10.25", "$10.75", "$11.25"], "ans": "D", "lesson": 10, "sol": "Tip = 25% of $36 = $9. Total = $45. Split four ways: $45 ÷ 4 = $11.25."}, {"num": 6, "q": "If a car travels 1/100 of a kilometer each second, how many kilometers does it travel in an hour?", "choices": ["36", "60", "72", "100"], "ans": "A", "lesson": 2, "sol": "One hour = 3600 seconds. 3600 × 1/100 = 36 km."}, {"num": 7, "q": "20 − (−5) =", "choices": ["−25", "25", "15", "−15"], "ans": "B", "lesson": 6, "sol": "Subtracting a negative is adding: 20 − (−5) = 20 + 5 = 25."}, {"num": 8, "q": "Ms. Smith drove 700 miles. Her car averaged 35 miles per gallon and gasoline cost $1.25 per gallon. What was the cost of the gasoline for the trip?", "choices": ["$20.00", "$24.00", "$25.00", "$40.00"], "ans": "C", "lesson": 2, "sol": "Gallons used = 700 ÷ 35 = 20. Cost = 20 × $1.25 = $25.00."}, {"num": 9, "q": "After eating 25% of the jelly beans, Brett had 72 left. How many jelly beans did Brett have originally?", "choices": ["90", "94", "95", "96"], "ans": "D", "lesson": 1, "sol": "If 25% is eaten, 75% remains. 72 is 75% of the original: 72 ÷ 0.75 = 96."}, {"num": 10, "q": "A student finishes the first half of an exam in 2/3 the time it takes to finish the second half. If the entire exam takes one hour, how many minutes does he spend on the first half?", "choices": ["20", "24", "27", "36"], "ans": "B", "lesson": 4, "sol": "Let second half = t. First half = (2/3)t. Together: (2/3)t + t = 60 → (5/3)t = 60 → t = 36. First half = (2/3)(36) = 24 minutes."}, {"num": 11, "q": "A 25-ounce solution is 20% alcohol. If 50 ounces of water are added, what percent of the new solution is alcohol?", "choices": ["6 2/3%", "7 1/2%", "10%", "13 1/3%"], "ans": "A", "lesson": 7, "sol": "Alcohol amount = 20% of 25 = 5 oz (unchanged). New total = 25 + 50 = 75 oz. 5 ÷ 75 = 1/15 = 6 2/3%."}, {"num": 12, "q": "Marty has 5 blue pens, 6 black pens, and 4 red pens. If he pulls one at random, what is the probability the pen is either red or black?", "choices": ["2/3", "3/5", "2/5", "1/3"], "ans": "A", "lesson": 5, "sol": "Total = 15. Red or black = 4 + 6 = 10. 10/15 = 2/3."}, {"num": 13, "q": "From 1980 to 1990 the population of Country X increased 100%. From 1990 to 2000 it increased 50%. What was the combined increase for 1980–2000?", "choices": ["150%", "166 2/3%", "175%", "200%"], "ans": "D", "lesson": 7, "sol": "Multiply the growth factors: ×2.0 then ×1.5 = ×3.0. Tripling is a 200% increase."}, {"num": 14, "q": "A worker earns $200 for the first 40 hours, then is paid one-and-one-half times her regular rate for additional hours. How many hours must she work to make $230 in a week?", "choices": ["43", "44", "45", "46"], "ans": "B", "lesson": 9, "sol": "Regular rate = 200 ÷ 40 = $5/hr. Overtime = 1.5 × 5 = $7.50/hr. Need $30 more: 30 ÷ 7.50 = 4 OT hours. Total = 44 hours."}, {"num": 15, "q": "If 50% of x is 150, what is 75% of x?", "choices": ["225", "250", "275", "300"], "ans": "A", "lesson": 1, "sol": "50% of x = 150 means x = 300. 75% of 300 = 225."}, {"num": 16, "q": "The total fare for two adults and three children on an excursion boat is $14. If each child's fare is half of each adult's fare, what is the adult fare?", "choices": ["$2.00", "$3.00", "$3.50", "$4.00"], "ans": "D", "lesson": 9, "sol": "Let adult = a, child = a/2. 2a + 3(a/2) = 14 → 2a + 1.5a = 14 → 3.5a = 14 → a = $4.00."}, {"num": 17, "q": "What is the prime factorization of 140?", "choices": ["2 × 70", "2 × 3 × 5 × 7", "2 × 2 × 5 × 7", "2 × 2 × 2 × 5 × 7"], "ans": "C", "lesson": 6, "sol": "140 = 2 × 70 = 2 × 2 × 35 = 2 × 2 × 5 × 7. (2×70 isn't all primes; the product 2×2×2×5×7 = 280, too big.)"}, {"num": 18, "q": "A painter charges $12 an hour while his son charges $6 an hour. If father and son worked the same amount of time together and the combined charge was $108, how many hours did each work?", "choices": ["6", "9", "12", "18"], "ans": "A", "lesson": 9, "sol": "Together they charge $12 + $6 = $18 per hour. $108 ÷ $18 = 6 hours each."}, {"num": 19, "q": "4! =", "choices": ["4", "16", "24", "256"], "ans": "C", "lesson": 6, "sol": "The factorial 4! means 4 × 3 × 2 × 1 = 24."}, {"num": 20, "q": "At garage A it costs $8.75 for the first hour and $1.25 for each additional hour. At garage B it costs $5.50 for the first hour and $2.50 for each additional hour. What is the difference in cost to park for 5 hours?", "choices": ["$2.25", "$1.75", "$1.50", "$1.25"], "ans": "B", "lesson": 10, "sol": "Garage A: 8.75 + 1.25×4 = $13.75. Garage B: 5.50 + 2.50×4 = $15.50. Difference = 15.50 − 13.75 = $1.75."}, {"num": 21, "q": "Jan types at an average rate of 12 pages per hour. How long will it take Jan to type 100 pages?", "choices": ["8 hr 10 min", "8 hr 15 min", "8 hr 20 min", "8 hr 30 min"], "ans": "C", "lesson": 2, "sol": "100 ÷ 12 = 8 1/3 hours. 1/3 of an hour = 20 minutes → 8 hr 20 min."}, {"num": 22, "q": "Two large sodas contain the same amount as three medium sodas. Two medium sodas contain the same as three small sodas. How many small sodas contain the same amount as eight large sodas?", "choices": ["24", "18", "16", "12"], "ans": "B", "lesson": 3, "sol": "2L = 3M, so 8L = 12M. 2M = 3S, so 12M = 18S. Eight large = 18 small."}, {"num": 23, "q": "If each digit 5 in the number 258,546 is replaced with the digit 7, by how much will the number be increased?", "choices": ["2,020", "2,200", "20,020", "20,200"], "ans": "D", "lesson": 6, "sol": "The 5s sit in the ten-thousands place and the hundreds place. Each rises by 2: 2×10,000 + 2×100 = 20,000 + 200 = 20,200."}, {"num": 24, "q": "Michael bought 2 1/4 pounds of lumber at $4.00 per pound. If a 7% sales tax was added, how much did Michael pay?", "choices": ["$9.63", "$9.98", "$10.70", "$11.77"], "ans": "A", "lesson": 10, "sol": "2 1/4 × $4 = $9.00. Tax: $9.00 × 1.07 = $9.63."}, {"num": 25, "q": "The ratio of 3 1/4 to 5 1/4 is equivalent to the ratio of", "choices": ["3 to 5", "4 to 7", "8 to 13", "13 to 21"], "ans": "D", "lesson": 3, "sol": "3 1/4 = 13/4 and 5 1/4 = 21/4. Same denominator, so the ratio is 13 to 21."}, {"num": 26, "q": "A cat is fed 3/8 of a pound of cat food every day. For how many days will 72 pounds of food feed the cat?", "choices": ["160", "172", "180", "192"], "ans": "D", "lesson": 4, "sol": "72 ÷ 3/8 = 72 × 8/3 = 192 days."}, {"num": 27, "q": "After spending 5/12 of her salary, Eva has $420 left. What is her salary?", "choices": ["$175", "$245", "$720", "$1,008"], "ans": "C", "lesson": 4, "sol": "She kept 1 − 5/12 = 7/12 of her salary, which is $420. Salary = $420 ÷ 7/12 = $420 × 12/7 = $720."}, {"num": 28, "q": "A stock decreases in value by 20%. By what percent must the stock price increase to reach its former value?", "choices": ["15%", "20%", "25%", "40%"], "ans": "C", "lesson": 7, "sol": "Start at $100 → drops to $80. To regain $20 from $80: 20 ÷ 80 = 25%."}, {"num": 29, "q": "Joan can shovel a driveway in 50 minutes. Mary can shovel the same driveway in 20 minutes. How long, to the nearest minute, if they work together?", "choices": ["12", "13", "14", "15"], "ans": "C", "lesson": 8, "sol": "Combined rate = 1/50 + 1/20 = 2/100 + 5/100 = 7/100. Time = 100/7 ≈ 14.3 → 14 minutes."}, {"num": 30, "q": "June's weekly salary is $70 less than Kelly's, which is $50 more than Eileen's. If Eileen earns $280 per week, how much does June earn per week?", "choices": ["$160", "$260", "$280", "$300"], "ans": "B", "lesson": 9, "sol": "Kelly = Eileen + $50 = $330. June = Kelly − $70 = $260."}]};
-const CATCOLOR = {
-  'Percents':'#c9772a','Rates':'#3f7c9c','Ratios':'#6f8f3a','Fractions':'#7a5aa0',
-  'Probability':'#a8431f','Number Sense':'#2e7d6b','Work & Wages':'#9a6a2e','Strategy':'#566023'
-};
-const lessons = DATA.lessons, exam = DATA.exam;
-
-document.querySelectorAll('#viewnav button').forEach(b=>{
-  b.onclick=()=>{
-    document.querySelectorAll('#viewnav button').forEach(x=>x.classList.remove('active'));
-    document.querySelectorAll('.view').forEach(x=>x.classList.remove('active'));
-    b.classList.add('active');
-    document.getElementById('view-'+b.dataset.view).classList.add('active');
-    window.scrollTo({top:document.querySelector('.viewnav').offsetTop-1,behavior:'smooth'});
-  };
-});
-function switchView(v){document.querySelector('#viewnav button[data-view="'+v+'"]').click();}
-
-/* filters + roster */
-let activeFilter='All';
-const cats=['All',...[...new Set(lessons.map(l=>l.cat))]];
-const fc=document.getElementById('filters');
-cats.forEach(c=>{
-  const b=document.createElement('button');
-  b.className='chip'+(c==='All'?' active':'');
-  b.textContent=c==='All'?'All Concepts':c;
-  b.onclick=()=>{activeFilter=c;document.querySelectorAll('.chip').forEach(x=>x.classList.remove('active'));b.classList.add('active');renderRoster();};
-  fc.appendChild(b);
-});
-function renderRoster(){
-  const r=document.getElementById('roster');r.innerHTML='';
-  lessons.filter(l=>activeFilter==='All'||l.cat===activeFilter).forEach(l=>{
-    const col=CATCOLOR[l.cat]||'#888';
-    const c=document.createElement('div');
-    c.className='card';c.style.setProperty('--cat',col);
-    c.innerHTML=`<div class="cardtop"><span class="lnum">UNIT ${String(l.num).padStart(2,'0')}</span><span class="catpill">${l.cat}</span></div>
-      <h3>${l.title}</h3>
-      <div class="formula">${l.formula}</div>
-      <span class="go">OPEN ▸</span>`;
-    c.onclick=()=>openDossier(l.num);
-    r.appendChild(c);
-  });
-}
-renderRoster();
-
-/* dossier */
-let curLesson=0;
-function openDossier(num){curLesson=lessons.findIndex(l=>l.num===num);paintDossier();document.getElementById('scrim').classList.add('open');document.body.style.overflow='hidden';}
-function paintDossier(){
-  const l=lessons[curLesson];const col=CATCOLOR[l.cat]||'#888';
-  document.getElementById('dossier').style.setProperty('--cat',col);
-  document.getElementById('dNum').textContent='UNIT '+String(l.num).padStart(2,'0')+' / 10';
-  document.getElementById('dCat').textContent=l.cat;document.getElementById('dCat').style.background=col;
-  document.getElementById('dBody').innerHTML=`
-    <h2>${l.title}</h2>
-    <div class="block"><div class="bh">The Idea</div><p>${l.idea}</p></div>
-    <div class="block formbox"><div class="flbl">Formula</div>${l.formula}</div>
-    <div class="block shortcut"><div class="mlbl">Fast Shortcut</div><div class="mtxt">${l.shortcut}</div></div>
-    <div class="block"><div class="bh">Worked Example</div>
-      <div class="worked">
-        <div class="wq">${l.example.q}</div>
-        <ol>${l.example.steps.map(s=>`<li>${s}</li>`).join('')}</ol>
-        <div class="wa"><span>Answer</span>${l.example.answer}</div>
-      </div>
-    </div>
-    <div class="block"><div class="bh">Practice — Reveal Each Solution</div>
-      ${l.practice.map((p,i)=>`
-        <div class="pracitem" id="prac-${i}">
-          <div class="pq"><span class="pn">${i+1}.</span><span>${p.q}</span></div>
-          <button class="pbtn" onclick="document.getElementById('prac-${i}').classList.add('open')">▾ Reveal solution</button>
-          <div class="pa">${p.a}</div>
-        </div>`).join('')}
-    </div>`;
-  document.getElementById('dPrev').disabled=curLesson===0;
-  document.getElementById('dNext').disabled=curLesson===lessons.length-1;
-  document.querySelector('.scrim').scrollTop=0;document.getElementById('dossier').scrollIntoView({block:'start'});
-}
-function dossierNav(d){curLesson=Math.max(0,Math.min(lessons.length-1,curLesson+d));paintDossier();}
-function closeDossier(){document.getElementById('scrim').classList.remove('open');document.body.style.overflow='';}
-document.addEventListener('keydown',e=>{
-  if(!document.getElementById('scrim').classList.contains('open'))return;
-  if(e.key==='Escape')closeDossier();
-  if(e.key==='ArrowRight'&&curLesson<lessons.length-1)dossierNav(1);
-  if(e.key==='ArrowLeft'&&curLesson>0)dossierNav(-1);
-});
-
-/* exam */
-let answers={},submitted=false;
-function renderExam(){
-  const b=document.getElementById('examBody');b.innerHTML='';
-  const letters=['A','B','C','D'];
-  exam.forEach(q=>{
-    const card=document.createElement('div');card.className='qcard';card.id='q-'+q.num;
-    card.innerHTML=`<div class="qhead"><span class="qn">${String(q.num).padStart(2,'0')}</span><span class="qtext">${q.q}</span></div>`;
-    const opts=document.createElement('div');opts.className='opts';
-    q.choices.forEach((ch,i)=>{
-      const o=document.createElement('div');o.className='opt';o.dataset.q=q.num;o.dataset.l=letters[i];
-      o.innerHTML=`<span class="ol">${letters[i]}</span><span>${ch}</span>`;
-      o.onclick=()=>{if(submitted)return;answers[q.num]=letters[i];opts.querySelectorAll('.opt').forEach(x=>x.classList.remove('selected'));o.classList.add('selected');updateSubmit();};
-      opts.appendChild(o);
-    });
-    card.appendChild(opts);
-    const sol=document.createElement('div');sol.className='qsol';sol.id='sol-'+q.num;
-    const lesson=lessons.find(l=>l.num===q.lesson);
-    sol.innerHTML=`<div class="sl"><span>Worked Solution</span><a onclick="closeAndOpen(${q.lesson})">▸ Unit ${String(q.lesson).padStart(2,'0')}: ${lesson.title}</a></div>${q.sol}`;
-    card.appendChild(sol);
-    b.appendChild(card);
-  });
-  const sb=document.createElement('button');sb.className='exam-submit';sb.id='examSubmit';sb.textContent='Submit Exam · 0 / 30 Answered';sb.disabled=true;sb.onclick=gradeExam;
-  b.appendChild(sb);
-}
-function closeAndOpen(num){switchView('lessons');setTimeout(()=>openDossier(num),120);}
-function updateSubmit(){const n=Object.keys(answers).length;const sb=document.getElementById('examSubmit');sb.textContent=`Submit Exam · ${n} / 30 Answered`;sb.disabled=n<30;}
-function gradeExam(){
-  submitted=true;let score=0;const missByCat={};
-  exam.forEach(q=>{
-    const correct=q.ans,chosen=answers[q.num];
-    if(chosen===correct)score++; else {const c=lessons.find(l=>l.num===q.lesson).cat;missByCat[c]=(missByCat[c]||0)+1;}
-    document.querySelectorAll(`.opt[data-q="${q.num}"]`).forEach(o=>{
-      o.classList.remove('selected');
-      if(o.dataset.l===correct)o.classList.add('correct');
-      else if(o.dataset.l===chosen)o.classList.add('wrong');
-    });
-    document.getElementById('sol-'+q.num).classList.add('show');
-  });
-  document.getElementById('scNum').textContent=score;
-  const pct=score/30*100;
-  const v=document.getElementById('scVerdict');
-  if(pct>=80){v.textContent='Mission Ready';v.className='verdict pass';}
-  else{v.textContent='Recommend Re-Drill';v.className='verdict review';}
-  const weak=Object.entries(missByCat).sort((a,b)=>b[1]-a[1]).slice(0,3).map(e=>e[0]);
-  document.getElementById('scWeak').innerHTML = weak.length? 'Weakest areas: '+weak.map(w=>`<b>${w}</b>`).join(' · ') : 'Clean sweep — no missed concepts.';
-  document.getElementById('scorecard').classList.add('show');
-  document.getElementById('examSubmit').style.display='none';
-  document.getElementById('scorecard').scrollIntoView({behavior:'smooth',block:'center'});
-}
-function resetExam(){answers={};submitted=false;document.getElementById('scorecard').classList.remove('show');renderExam();window.scrollTo({top:document.querySelector('.viewnav').offsetTop,behavior:'smooth'});}
-renderExam();
-
-/* study plan */
-const planData=[
-  {d:'Day 1',t:'Lessons 1–2',k:'Percents · Rates'},
-  {d:'Day 2',t:'Lessons 3–4',k:'Ratios · Fractions'},
-  {d:'Day 3',t:'Lessons 5–6',k:'Probability · Factoring'},
-  {d:'Day 4',t:'Lessons 7–8',k:'% Change · Work'},
-  {d:'Day 5',t:'Lessons 9–10',k:'Wages · Shortcuts'},
-  {d:'Day 6',t:'Practice Test',k:'All 30, no notes',test:true},
-  {d:'Day 7',t:'Review Weak Areas',k:'Re-drill misses',test:true},
-];
-const pg=document.getElementById('planGrid');
-planData.forEach(p=>{const d=document.createElement('div');d.className='day'+(p.test?' test':'');d.innerHTML=`<div class="dl">${p.d}</div><div class="dt">${p.t}</div><div class="dl" style="margin-top:6px;letter-spacing:.06em">${p.k}</div>`;pg.appendChild(d);});
-</script>
-</body>
-</html>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>ASVAB General Science — Field Manual</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Roboto+Condensed:wght@400;700&family=Roboto+Mono:wght@400;500;700&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
-<style>
-:root{
-  --od:#3a3f2a;        /* olive drab */
-  --od-deep:#23271a;   /* deep field green */
-  --od-dark:#181b12;   /* near black green */
-  --sand:#d8cdb0;      /* canvas / sand */
-  --sand-2:#c4b894;
-  --amber:#e8a02a;     /* signal amber */
-  --amber-soft:#f0c468;
-  --rust:#a8431f;      /* alert / wrong */
-  --green:#6f8f3a;     /* correct */
-  --paper:#e9e2cd;     /* manual page */
-  --paper-2:#ded5bb;
-  --ink:#22241a;
-  --line:rgba(34,36,26,.18);
-}
-*{box-sizing:border-box;margin:0;padding:0}
-html{scroll-behavior:smooth}
-body{
-  font-family:'Roboto',sans-serif;
-  background:var(--od-dark);
-  color:var(--ink);
-  line-height:1.55;
-  -webkit-font-smoothing:antialiased;
-}
-::selection{background:var(--amber);color:var(--od-dark)}
-
-/* ---------- TOP CLASSIFICATION BAR ---------- */
-.classbar{
-  background:repeating-linear-gradient(45deg,var(--od-deep) 0 14px,#2b2f1f 14px 28px);
-  color:var(--sand);
-  font-family:'Roboto Mono',monospace;
-  font-size:.62rem;letter-spacing:.32em;font-weight:700;
-  text-transform:uppercase;
-  padding:7px 16px;
-  display:flex;justify-content:space-between;align-items:center;
-  border-bottom:1px solid #000;
-}
-.classbar span{opacity:.85}
-
-.seclink{background:var(--od-dark);display:flex;gap:0;border-bottom:1px solid rgba(216,205,176,.14)}
-.seclink a{flex:1;text-align:center;text-decoration:none;padding:11px 8px;font-family:'Roboto Mono',monospace;font-size:.6rem;letter-spacing:.16em;text-transform:uppercase;color:var(--sand-2);border-right:1px solid rgba(216,205,176,.14);transition:all .15s}
-.seclink a:last-child{border-right:none}
-.seclink a:hover{color:var(--paper);background:var(--od-deep)}
-.seclink a.here{color:var(--amber);font-weight:700;box-shadow:inset 0 -3px 0 var(--amber)}
-
-/* ---------- HERO ---------- */
-.hero{
-  position:relative;
-  background:
-    linear-gradient(180deg,rgba(24,27,18,.72),rgba(24,27,18,.92)),
-    radial-gradient(circle at 22% 18%,rgba(232,160,42,.13),transparent 45%),
-    var(--od-deep);
-  color:var(--sand);
-  padding:54px 22px 60px;
-  overflow:hidden;
-  border-bottom:3px solid var(--amber);
-}
-.hero::before{
-  content:"";position:absolute;inset:0;
-  background-image:linear-gradient(rgba(216,205,176,.04) 1px,transparent 1px),
-    linear-gradient(90deg,rgba(216,205,176,.04) 1px,transparent 1px);
-  background-size:38px 38px;pointer-events:none;
-}
-.hero-inner{max-width:1080px;margin:0 auto;position:relative}
-.eyebrow{
-  font-family:'Roboto Mono',monospace;font-size:.7rem;letter-spacing:.34em;
-  color:var(--amber);text-transform:uppercase;font-weight:700;
-  display:flex;align-items:center;gap:10px;margin-bottom:18px;flex-wrap:wrap;
-}
-.eyebrow::after{content:"";height:1px;flex:1;min-width:30px;background:linear-gradient(90deg,var(--amber),transparent)}
-.hero h1{
-  font-family:'Oswald',sans-serif;font-weight:700;
-  font-size:clamp(2.5rem,8vw,5.4rem);line-height:.92;
-  text-transform:uppercase;letter-spacing:.01em;color:var(--paper);
-  text-shadow:3px 3px 0 rgba(0,0,0,.35);
-}
-.hero h1 .accent{
-  display:block;color:var(--amber);
-  font-size:clamp(1.1rem,3.4vw,2rem);letter-spacing:.18em;margin-top:8px;font-weight:600;
-}
-.hero p.lede{
-  max-width:560px;margin:22px 0 0;font-size:1.06rem;color:var(--sand-2);
-  font-family:'Roboto Condensed',sans-serif;
-}
-.specrow{
-  display:flex;gap:0;flex-wrap:wrap;margin-top:34px;
-  border:1px solid rgba(216,205,176,.28);
-  background:rgba(0,0,0,.22);
-}
-.spec{
-  flex:1;min-width:120px;padding:14px 18px;
-  border-right:1px solid rgba(216,205,176,.2);
-}
-.spec:last-child{border-right:none}
-.spec .k{font-family:'Roboto Mono',monospace;font-size:.6rem;letter-spacing:.22em;color:var(--amber);text-transform:uppercase}
-.spec .v{font-family:'Oswald',sans-serif;font-size:1.5rem;font-weight:600;color:var(--paper);margin-top:3px}
-.spec .v small{font-size:.7rem;color:var(--sand-2);font-family:'Roboto Mono',monospace;display:block;letter-spacing:.12em;font-weight:400}
-
-/* ---------- NAV / VIEW SWITCH ---------- */
-.viewnav{
-  position:sticky;top:0;z-index:40;
-  background:var(--od-dark);
-  border-bottom:1px solid rgba(216,205,176,.18);
-  display:flex;gap:0;overflow-x:auto;
-}
-.viewnav button{
-  flex:0 0 auto;
-  background:transparent;border:none;cursor:pointer;
-  color:var(--sand-2);
-  font-family:'Oswald',sans-serif;font-weight:500;font-size:.92rem;
-  letter-spacing:.12em;text-transform:uppercase;
-  padding:15px 22px;position:relative;white-space:nowrap;
-  transition:color .15s;
-}
-.viewnav button:hover{color:var(--paper)}
-.viewnav button.active{color:var(--amber)}
-.viewnav button.active::after{
-  content:"";position:absolute;left:14px;right:14px;bottom:0;height:3px;background:var(--amber);
-}
-.viewnav .count{font-family:'Roboto Mono',monospace;font-size:.62rem;opacity:.6;margin-left:6px}
-
-/* ---------- WRAP ---------- */
-.wrap{max-width:1080px;margin:0 auto;padding:38px 22px 80px}
-.view{display:none}
-.view.active{display:block;animation:fade .35s ease}
-@keyframes fade{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
-
-.sechead{display:flex;align-items:baseline;gap:14px;margin-bottom:6px;flex-wrap:wrap}
-.sechead h2{
-  font-family:'Oswald',sans-serif;font-weight:700;text-transform:uppercase;
-  font-size:1.7rem;letter-spacing:.04em;color:var(--paper);
-}
-.sechead .tag{font-family:'Roboto Mono',monospace;font-size:.62rem;letter-spacing:.2em;color:var(--amber);text-transform:uppercase}
-.secsub{color:var(--sand-2);font-family:'Roboto Condensed',sans-serif;font-size:1rem;margin-bottom:26px;max-width:640px}
-
-/* ---------- FILTER CHIPS ---------- */
-.filters{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:24px}
-.chip{
-  font-family:'Roboto Mono',monospace;font-size:.66rem;letter-spacing:.12em;text-transform:uppercase;
-  padding:7px 13px;border:1px solid rgba(216,205,176,.3);background:transparent;color:var(--sand-2);
-  cursor:pointer;transition:all .15s;border-radius:1px;
-}
-.chip:hover{border-color:var(--amber);color:var(--paper)}
-.chip.active{background:var(--amber);color:var(--od-dark);border-color:var(--amber);font-weight:700}
-
-/* ---------- ROSTER GRID ---------- */
-.roster{display:grid;grid-template-columns:repeat(auto-fill,minmax(248px,1fr));gap:14px}
-.card{
-  background:var(--paper);
-  border:1px solid var(--line);
-  border-left:5px solid var(--cat,#888);
-  padding:16px 16px 15px;cursor:pointer;position:relative;
-  transition:transform .12s,box-shadow .12s;
-  display:flex;flex-direction:column;min-height:138px;
-}
-.card:hover{transform:translateY(-3px);box-shadow:6px 8px 0 rgba(0,0,0,.32)}
-.card .cardtop{display:flex;justify-content:space-between;align-items:center;margin-bottom:9px}
-.card .lnum{
-  font-family:'Roboto Mono',monospace;font-weight:700;font-size:.66rem;letter-spacing:.14em;
-  color:#6a6750;
-}
-.card .catpill{
-  font-family:'Roboto Mono',monospace;font-size:.54rem;letter-spacing:.1em;text-transform:uppercase;
-  padding:2px 7px;color:#fff;background:var(--cat,#888);font-weight:700;border-radius:1px;
-}
-.card h3{
-  font-family:'Oswald',sans-serif;font-weight:600;font-size:1.12rem;line-height:1.12;
-  color:var(--ink);margin-bottom:8px;text-transform:uppercase;letter-spacing:.01em;
-}
-.card .ans{
-  margin-top:auto;font-family:'Roboto Condensed',sans-serif;font-size:.82rem;color:#55523f;
-  display:flex;align-items:center;gap:6px;
-}
-.card .ans b{color:var(--rust);font-weight:700}
-.card .go{
-  position:absolute;right:13px;bottom:12px;font-family:'Roboto Mono',monospace;
-  font-size:.7rem;color:var(--cat,#888);opacity:0;transition:opacity .15s;letter-spacing:.1em;
-}
-.card:hover .go{opacity:1}
-
-/* ---------- LESSON DETAIL (MODAL) ---------- */
-.scrim{
-  position:fixed;inset:0;background:rgba(10,12,7,.82);z-index:90;
-  display:none;align-items:flex-start;justify-content:center;padding:24px 14px;overflow-y:auto;
-  backdrop-filter:blur(3px);
-}
-.scrim.open{display:flex}
-.dossier{
-  background:var(--paper);max-width:720px;width:100%;margin:auto;position:relative;
-  border:1px solid #000;box-shadow:0 30px 80px rgba(0,0,0,.6);
-  animation:pop .3s cubic-bezier(.2,.9,.3,1.2);
-}
-@keyframes pop{from{opacity:0;transform:scale(.96) translateY(14px)}to{opacity:1;transform:none}}
-.dossier-band{
-  background:var(--od-deep);color:var(--sand);padding:14px 22px;
-  display:flex;justify-content:space-between;align-items:center;
-  border-bottom:3px solid var(--amber);
-}
-.dossier-band .dnum{font-family:'Roboto Mono',monospace;font-size:.66rem;letter-spacing:.2em;color:var(--amber)}
-.dossier-band .dcat{font-family:'Roboto Mono',monospace;font-size:.58rem;letter-spacing:.12em;text-transform:uppercase;padding:3px 9px;background:var(--cat,#888);color:#fff;font-weight:700}
-.closeb{
-  position:absolute;top:9px;right:12px;background:none;border:none;color:var(--sand);
-  font-size:1.5rem;cursor:pointer;line-height:1;z-index:5;width:34px;height:34px;
-}
-.closeb:hover{color:var(--amber)}
-.dossier-body{padding:24px 26px 30px}
-.dossier-body h2{
-  font-family:'Oswald',sans-serif;font-weight:700;text-transform:uppercase;
-  font-size:1.7rem;line-height:1;color:var(--ink);margin-bottom:18px;letter-spacing:.01em;
-}
-.qbox{
-  background:var(--paper-2);border:1px dashed #9a937a;padding:14px 16px;margin-bottom:6px;
-}
-.qbox .ql{font-family:'Roboto Mono',monospace;font-size:.58rem;letter-spacing:.2em;color:#7a755e;text-transform:uppercase;margin-bottom:5px}
-.qbox .qt{font-family:'Roboto Condensed',sans-serif;font-size:1.02rem;color:var(--ink);font-style:italic}
-.answer-reveal{
-  margin:14px 0 22px;border:1px solid var(--line);background:#fff;
-}
-.answer-reveal .rev-btn{
-  width:100%;background:var(--od);color:var(--sand);border:none;cursor:pointer;
-  font-family:'Oswald',sans-serif;font-weight:600;letter-spacing:.16em;text-transform:uppercase;
-  font-size:.82rem;padding:11px;transition:background .15s;
-}
-.answer-reveal .rev-btn:hover{background:var(--od-deep)}
-.answer-reveal .rev-content{display:none;padding:14px 16px;text-align:center}
-.answer-reveal.shown .rev-content{display:block}
-.answer-reveal.shown .rev-btn{display:none}
-.answer-reveal .rev-content .lbl{font-family:'Roboto Mono',monospace;font-size:.58rem;letter-spacing:.2em;color:#7a755e;text-transform:uppercase}
-.answer-reveal .rev-content .val{font-family:'Oswald',sans-serif;font-size:1.7rem;font-weight:700;color:var(--green);text-transform:uppercase;margin-top:3px}
-
-.block{margin-bottom:20px}
-.block .bh{
-  font-family:'Oswald',sans-serif;font-weight:600;text-transform:uppercase;letter-spacing:.1em;
-  font-size:.92rem;color:var(--od);display:flex;align-items:center;gap:9px;margin-bottom:8px;
-}
-.block .bh::before{content:"";width:18px;height:2px;background:var(--amber)}
-.block p{font-size:.98rem;color:#33352a}
-.memory{
-  background:linear-gradient(180deg,#fbe9c4,#f5dca0);
-  border:1px solid #d9b35e;border-left:5px solid var(--amber);
-  padding:13px 16px;font-family:'Roboto Condensed',sans-serif;
-}
-.memory .mlbl{font-family:'Roboto Mono',monospace;font-size:.56rem;letter-spacing:.2em;color:#8a6a1c;text-transform:uppercase;margin-bottom:4px;font-weight:700}
-.memory .mtxt{font-size:1.08rem;font-weight:700;color:#5e4710}
-.reword-list{list-style:none}
-.reword-list li{
-  font-family:'Roboto Condensed',sans-serif;font-size:.95rem;color:#3a3c30;
-  padding:6px 0 6px 22px;position:relative;border-bottom:1px dotted var(--line);
-}
-.reword-list li::before{content:"▸";position:absolute;left:2px;color:var(--amber);font-size:.8rem;top:7px}
-.mini{background:var(--od-deep);color:var(--sand);padding:16px 18px}
-.mini .mh{font-family:'Oswald',sans-serif;font-weight:600;text-transform:uppercase;letter-spacing:.12em;font-size:.92rem;color:var(--amber);margin-bottom:9px}
-.mini ol{margin-left:18px}
-.mini li{font-family:'Roboto Condensed',sans-serif;font-size:.96rem;margin-bottom:6px;color:var(--sand)}
-.mini .note{font-family:'Roboto Mono',monospace;font-size:.62rem;color:#9a9577;margin-top:8px;letter-spacing:.06em}
-
-.dossier-nav{display:flex;justify-content:space-between;border-top:1px solid var(--line);padding:14px 26px;background:var(--paper-2)}
-.dossier-nav button{
-  background:none;border:1px solid var(--od);color:var(--od);cursor:pointer;
-  font-family:'Roboto Mono',monospace;font-size:.66rem;letter-spacing:.12em;text-transform:uppercase;
-  padding:8px 14px;transition:all .15s;
-}
-.dossier-nav button:hover:not(:disabled){background:var(--od);color:var(--sand)}
-.dossier-nav button:disabled{opacity:.3;cursor:default}
-
-/* ---------- FLASHCARDS ---------- */
-.flash-stage{max-width:540px;margin:0 auto}
-.flash-progress{font-family:'Roboto Mono',monospace;font-size:.7rem;letter-spacing:.18em;color:var(--sand-2);text-align:center;margin-bottom:14px}
-.flash-progress b{color:var(--amber)}
-.flashcard{
-  perspective:1600px;height:340px;cursor:pointer;margin-bottom:20px;
-}
-.flash-inner{position:relative;width:100%;height:100%;transition:transform .55s;transform-style:preserve-3d}
-.flashcard.flipped .flash-inner{transform:rotateY(180deg)}
-.flash-face{
-  position:absolute;inset:0;backface-visibility:hidden;
-  display:flex;flex-direction:column;justify-content:center;align-items:center;
-  padding:30px;text-align:center;border:1px solid #000;
-}
-.flash-front{background:var(--paper);border-left:6px solid var(--cat,#888)}
-.flash-front .fcat{position:absolute;top:14px;left:18px;font-family:'Roboto Mono',monospace;font-size:.56rem;letter-spacing:.14em;text-transform:uppercase;color:#fff;background:var(--cat,#888);padding:3px 9px;font-weight:700}
-.flash-front .fnum{position:absolute;top:14px;right:18px;font-family:'Roboto Mono',monospace;font-size:.62rem;color:#7a755e;letter-spacing:.1em}
-.flash-front .fq{font-family:'Roboto Condensed',sans-serif;font-size:1.22rem;color:var(--ink);font-style:italic;line-height:1.35}
-.flash-front .ftap{position:absolute;bottom:16px;font-family:'Roboto Mono',monospace;font-size:.58rem;letter-spacing:.18em;color:#9a937a;text-transform:uppercase}
-.flash-back{background:var(--od-deep);color:var(--sand);transform:rotateY(180deg);border-left:6px solid var(--amber)}
-.flash-back .balbl{font-family:'Roboto Mono',monospace;font-size:.58rem;letter-spacing:.22em;color:var(--amber);text-transform:uppercase;margin-bottom:6px}
-.flash-back .baval{font-family:'Oswald',sans-serif;font-size:2rem;font-weight:700;color:var(--paper);text-transform:uppercase;line-height:1.05;margin-bottom:16px}
-.flash-back .bmem{font-family:'Roboto Condensed',sans-serif;font-size:1rem;color:var(--amber-soft);border-top:1px solid rgba(216,205,176,.25);padding-top:14px;max-width:90%}
-.flash-controls{display:flex;gap:10px;justify-content:center}
-.flash-controls button{
-  background:var(--od);color:var(--sand);border:none;cursor:pointer;
-  font-family:'Oswald',sans-serif;font-weight:500;letter-spacing:.1em;text-transform:uppercase;
-  font-size:.82rem;padding:11px 20px;transition:background .15s;
-}
-.flash-controls button:hover:not(:disabled){background:var(--amber);color:var(--od-dark)}
-.flash-controls button:disabled{opacity:.3;cursor:default}
-
-/* ---------- EXAM ---------- */
-.exam-intro{background:var(--paper);border:1px solid var(--line);border-left:5px solid var(--amber);padding:20px 22px;margin-bottom:24px}
-.exam-intro p{font-family:'Roboto Condensed',sans-serif;color:#33352a;font-size:1rem}
-.exam-start{background:var(--amber);color:var(--od-dark);border:none;cursor:pointer;font-family:'Oswald',sans-serif;font-weight:700;letter-spacing:.14em;text-transform:uppercase;font-size:.92rem;padding:13px 26px;margin-top:14px}
-.exam-start:hover{background:var(--amber-soft)}
-.qcard{
-  background:var(--paper);border:1px solid var(--line);padding:18px 20px;margin-bottom:14px;
-}
-.qcard .qhead{display:flex;gap:10px;margin-bottom:13px}
-.qcard .qn{font-family:'Roboto Mono',monospace;font-weight:700;color:var(--amber);background:var(--od-deep);padding:2px 9px;font-size:.78rem;height:fit-content;letter-spacing:.05em}
-.qcard .qtext{font-family:'Roboto Condensed',sans-serif;font-size:1.05rem;color:var(--ink);font-weight:700;flex:1}
-.opts{display:grid;gap:8px}
-.opt{
-  display:flex;align-items:center;gap:11px;padding:10px 14px;border:1px solid var(--line);
-  background:#fff;cursor:pointer;transition:all .12s;font-family:'Roboto Condensed',sans-serif;font-size:.98rem;
-}
-.opt:hover{border-color:var(--od);background:#fbf8ef}
-.opt .ol{font-family:'Roboto Mono',monospace;font-weight:700;font-size:.78rem;color:var(--od);width:18px;flex:0 0 auto}
-.opt.selected{border-color:var(--od);background:#efe9d6;box-shadow:inset 3px 0 0 var(--od)}
-.opt.correct{border-color:var(--green);background:#e7eed3;box-shadow:inset 3px 0 0 var(--green)}
-.opt.wrong{border-color:var(--rust);background:#f1ddd2;box-shadow:inset 3px 0 0 var(--rust)}
-.opt.correct .ol{color:var(--green)}
-.opt.wrong .ol{color:var(--rust)}
-.exam-submit{background:var(--green);color:#fff;border:none;cursor:pointer;font-family:'Oswald',sans-serif;font-weight:700;letter-spacing:.14em;text-transform:uppercase;font-size:.92rem;padding:14px 30px;margin-top:8px;width:100%}
-.exam-submit:hover{background:#5e7a31}
-.exam-submit:disabled{opacity:.4;cursor:default}
-
-.scorecard{
-  background:var(--od-deep);color:var(--sand);border:3px solid var(--amber);padding:28px 24px;text-align:center;margin-bottom:26px;
-  display:none;
-}
-.scorecard.show{display:block;animation:fade .4s}
-.scorecard .stamp{font-family:'Roboto Mono',monospace;font-size:.62rem;letter-spacing:.26em;color:var(--amber);text-transform:uppercase}
-.scorecard .big{font-family:'Oswald',sans-serif;font-size:4.2rem;font-weight:700;color:var(--paper);line-height:1}
-.scorecard .big small{font-size:1.4rem;color:var(--sand-2)}
-.scorecard .verdict{font-family:'Oswald',sans-serif;font-size:1.3rem;text-transform:uppercase;letter-spacing:.1em;margin-top:6px}
-.scorecard .verdict.pass{color:var(--green)}
-.scorecard .verdict.review{color:var(--amber)}
-.scorecard .retake{background:none;border:1px solid var(--sand);color:var(--sand);cursor:pointer;font-family:'Roboto Mono',monospace;font-size:.66rem;letter-spacing:.14em;text-transform:uppercase;padding:9px 18px;margin-top:16px}
-.scorecard .retake:hover{background:var(--sand);color:var(--od-deep)}
-
-/* ---------- FOOTER ---------- */
-.foot{
-  background:var(--od-dark);color:var(--sand-2);border-top:1px solid rgba(216,205,176,.15);
-  padding:26px 22px;text-align:center;font-family:'Roboto Mono',monospace;font-size:.66rem;letter-spacing:.12em;
-}
-.foot b{color:var(--amber)}
-
-@media(max-width:600px){
-  .hero{padding:40px 18px 46px}
-  .spec{min-width:50%;border-bottom:1px solid rgba(216,205,176,.2)}
-  .spec:nth-child(odd){border-right:1px solid rgba(216,205,176,.2)}
-  .spec:nth-child(even){border-right:none}
-  .flashcard{height:300px}
-  .dossier-body{padding:20px 18px 24px}
-}
-</style>
-</head>
-<body>
+body{margin:0;font-family:Arial,sans-serif;background:#111}
+#tabs{display:flex;position:sticky;top:0;background:#222;z-index:10}
+#tabs button{flex:1;padding:16px;border:none;background:#222;color:#fff;cursor:pointer;font-size:16px}
+#tabs button.active{background:#d69b1f;color:#111;font-weight:bold}
+.panel{display:none}
+.panel.active{display:block}
+</style></head><body>
+<div id="tabs">
+<button class="active" onclick="showTab(0,this)">General Science</button><button class="" onclick="showTab(1,this)">Arithmetic Reasoning</button><button class="" onclick="showTab(2,this)">Word Knowledge</button></div><div class="panel active" id="p0">
 <div class="classbar">
-  <span>// ASVAB · ARMED SERVICES VOCATIONAL APTITUDE BATTERY</span>
-  <span>PART 1 · GS</span>
+<span>// ASVAB · ARMED SERVICES VOCATIONAL APTITUDE BATTERY</span>
+<span>PART 1 · GS</span>
 </div>
 <nav class="seclink">
-  <a class="here">Part 1 · General Science</a>
-  <a href="asvab-arithmetic-reasoning.html">Part 2 · Arithmetic Reasoning</a>
-  <a href="asvab-word-knowledge.html">Part 3 · Word Knowledge</a>
+<a class="here">Part 1 · General Science</a>
+<a href="asvab-arithmetic-reasoning.html">Part 2 · Arithmetic Reasoning</a>
+<a href="asvab-word-knowledge.html">Part 3 · Word Knowledge</a>
 </nav>
-
 <header class="hero">
-  <div class="hero-inner">
-    <div class="eyebrow">Diagnostic Test · Part 1 · General Science</div>
-    <h1>General<br>Science
+<div class="hero-inner">
+<div class="eyebrow">Diagnostic Test · Part 1 · General Science</div>
+<h1>General<br/>Science
       <span class="accent">Field Manual &amp; Study Drills</span>
-    </h1>
-    <p class="lede">Twenty-five concepts pulled straight from the GS diagnostic. Learn the idea behind each question so you score it even when the wording changes on test day.</p>
-    <div class="specrow">
-      <div class="spec"><div class="k">Time Limit</div><div class="v">11<small>Minutes</small></div></div>
-      <div class="spec"><div class="k">Questions</div><div class="v">25<small>Multiple Choice</small></div></div>
-      <div class="spec"><div class="k">Pace</div><div class="v">~26<small>Sec / Item</small></div></div>
-      <div class="spec"><div class="k">Domains</div><div class="v">4<small>Bio · Chem · Phys · Earth</small></div></div>
-    </div>
-  </div>
-</header>
-
-<nav class="viewnav" id="viewnav">
-  <button class="active" data-view="lessons">Lesson Roster<span class="count">25</span></button>
-  <button data-view="flash">Flashcard Drills</button>
-  <button data-view="exam">Practice Exam<span class="count">25</span></button>
-</nav>
-
-<main class="wrap">
-
-  <!-- LESSONS -->
-  <section class="view active" id="view-lessons">
-    <div class="sechead"><h2>Lesson Roster</h2><span class="tag">Tap any unit to open the dossier</span></div>
-    <p class="secsub">Each lesson breaks one diagnostic question down to its core concept, a memory trick, the ways the ASVAB may reword it, and a self-check.</p>
-    <div class="filters" id="filters"></div>
-    <div class="roster" id="roster"></div>
-  </section>
-
-  <!-- FLASHCARDS -->
-  <section class="view" id="view-flash">
-    <div class="sechead"><h2>Flashcard Drills</h2><span class="tag">Tap card to flip</span></div>
-    <p class="secsub">Front shows the prompt, back shows the answer and its memory trick. Run the deck until every answer is automatic.</p>
-    <div class="flash-stage">
-      <div class="flash-progress">CARD <b id="fIdx">1</b> / <span id="fTot">25</span> &nbsp;·&nbsp; <span id="fCat"></span></div>
-      <div class="flashcard" id="flashcard" onclick="flipCard()">
-        <div class="flash-inner">
-          <div class="flash-face flash-front">
-            <span class="fcat" id="ffCat"></span>
-            <span class="fnum" id="ffNum"></span>
-            <div class="fq" id="ffQ"></div>
-            <span class="ftap">Tap to reveal</span>
-          </div>
-          <div class="flash-face flash-back">
-            <div class="balbl">Answer</div>
-            <div class="baval" id="fbA"></div>
-            <div class="bmem" id="fbM"></div>
-          </div>
-        </div>
-      </div>
-      <div class="flash-controls">
-        <button id="fPrev" onclick="flashNav(-1)">◀ Prev</button>
-        <button onclick="shuffleDeck()">⤮ Shuffle</button>
-        <button id="fNext" onclick="flashNav(1)">Next ▶</button>
-      </div>
-    </div>
-  </section>
-
-  <!-- EXAM -->
-  <section class="view" id="view-exam">
-    <div class="sechead"><h2>Practice Exam</h2><span class="tag">Same 25 concepts</span></div>
-    <p class="secsub">Answer without the lessons in front of you. Submit to score and see every correct answer marked.</p>
-    <div class="scorecard" id="scorecard">
-      <div class="stamp">// Results Logged</div>
-      <div class="big"><span id="scNum">0</span><small>/25</small></div>
-      <div class="verdict" id="scVerdict"></div>
-      <button class="retake" onclick="resetExam()">↻ Retake Exam</button>
-    </div>
-    <div id="examBody"></div>
-  </section>
-
-</main>
-
-<!-- DOSSIER MODAL -->
-<div class="scrim" id="scrim" onclick="if(event.target===this)closeDossier()">
-  <div class="dossier" id="dossier">
-    <button class="closeb" onclick="closeDossier()">✕</button>
-    <div class="dossier-band">
-      <span class="dnum" id="dNum"></span>
-      <span class="dcat" id="dCat"></span>
-    </div>
-    <div class="dossier-body" id="dBody"></div>
-    <div class="dossier-nav">
-      <button id="dPrev" onclick="dossierNav(-1)">◀ Previous</button>
-      <button id="dNext" onclick="dossierNav(1)">Next ▶</button>
-    </div>
-  </div>
+</h1>
+<p class="lede">Twenty-five concepts pulled straight from the GS diagnostic. Learn the idea behind each question so you score it even when the wording changes on test day.</p>
+<div class="specrow">
+<div class="spec"><div class="k">Time Limit</div><div class="v">11<small>Minutes</small></div></div>
+<div class="spec"><div class="k">Questions</div><div class="v">25<small>Multiple Choice</small></div></div>
+<div class="spec"><div class="k">Pace</div><div class="v">~26<small>Sec / Item</small></div></div>
+<div class="spec"><div class="k">Domains</div><div class="v">4<small>Bio · Chem · Phys · Earth</small></div></div>
 </div>
-
+</div>
+</header>
+<nav class="viewnav" id="viewnav">
+<button class="active" data-view="lessons">Lesson Roster<span class="count">25</span></button>
+<button data-view="flash">Flashcard Drills</button>
+<button data-view="exam">Practice Exam<span class="count">25</span></button>
+</nav>
+<main class="wrap">
+<!-- LESSONS -->
+<section class="view active" id="view-lessons">
+<div class="sechead"><h2>Lesson Roster</h2><span class="tag">Tap any unit to open the dossier</span></div>
+<p class="secsub">Each lesson breaks one diagnostic question down to its core concept, a memory trick, the ways the ASVAB may reword it, and a self-check.</p>
+<div class="filters" id="filters"></div>
+<div class="roster" id="roster"></div>
+</section>
+<!-- FLASHCARDS -->
+<section class="view" id="view-flash">
+<div class="sechead"><h2>Flashcard Drills</h2><span class="tag">Tap card to flip</span></div>
+<p class="secsub">Front shows the prompt, back shows the answer and its memory trick. Run the deck until every answer is automatic.</p>
+<div class="flash-stage">
+<div class="flash-progress">CARD <b id="fIdx">1</b> / <span id="fTot">25</span>  ·  <span id="fCat"></span></div>
+<div class="flashcard" id="flashcard" onclick="flipCard()">
+<div class="flash-inner">
+<div class="flash-face flash-front">
+<span class="fcat" id="ffCat"></span>
+<span class="fnum" id="ffNum"></span>
+<div class="fq" id="ffQ"></div>
+<span class="ftap">Tap to reveal</span>
+</div>
+<div class="flash-face flash-back">
+<div class="balbl">Answer</div>
+<div class="baval" id="fbA"></div>
+<div class="bmem" id="fbM"></div>
+</div>
+</div>
+</div>
+<div class="flash-controls">
+<button id="fPrev" onclick="flashNav(-1)">◀ Prev</button>
+<button onclick="shuffleDeck()">⤮ Shuffle</button>
+<button id="fNext" onclick="flashNav(1)">Next ▶</button>
+</div>
+</div>
+</section>
+<!-- EXAM -->
+<section class="view" id="view-exam">
+<div class="sechead"><h2>Practice Exam</h2><span class="tag">Same 25 concepts</span></div>
+<p class="secsub">Answer without the lessons in front of you. Submit to score and see every correct answer marked.</p>
+<div class="scorecard" id="scorecard">
+<div class="stamp">// Results Logged</div>
+<div class="big"><span id="scNum">0</span><small>/25</small></div>
+<div class="verdict" id="scVerdict"></div>
+<button class="retake" onclick="resetExam()">↻ Retake Exam</button>
+</div>
+<div id="examBody"></div>
+</section>
+</main>
+ DOSSIER MODAL 
+<div class="scrim" id="scrim" onclick="if(event.target===this)closeDossier()">
+<div class="dossier" id="dossier">
+<button class="closeb" onclick="closeDossier()">✕</button>
+<div class="dossier-band">
+<span class="dnum" id="dNum"></span>
+<span class="dcat" id="dCat"></span>
+</div>
+<div class="dossier-body" id="dBody"></div>
+<div class="dossier-nav">
+<button id="dPrev" onclick="dossierNav(-1)">◀ Previous</button>
+<button id="dNext" onclick="dossierNav(1)">Next ▶</button>
+</div>
+</div>
+</div>
 <footer class="foot">
   ASVAB GENERAL SCIENCE · FIELD MANUAL · <b>25 UNITS</b> · STUDY · DRILL · DEPLOY
 </footer>
-
 <script>
 const DATA = {"lessons": [{"num": 1, "title": "Proteins: Growth, Maintenance, and Repair", "question": "_____ are necessary for the body’s maintenance, growth, and repair.", "answer": "Proteins", "concept": "Proteins are nutrients your body uses to build and repair tissue. Muscles, skin, hair, enzymes, hormones, and many body structures depend on protein. On ASVAB-style questions, words like growth, repair, tissue building, and maintenance point to protein.", "memory": "Protein = Repair. If the question says repair or growth, choose protein.", "reword": ["Which nutrient repairs body tissue?", "What nutrient is needed for growth?"], "mini": ["Which nutrient is most connected to muscle repair?", "If a question says “main energy source,” would the answer still be protein?"], "cat": "Biology"}, {"num": 2, "title": "Boiling Point of Water in Fahrenheit", "question": "On a Fahrenheit thermometer, the boiling point of water at sea level is _____.", "answer": "212°F", "concept": "At sea level, pure water boils at 212°F or 100°C. Water freezes at 32°F or 0°C. ASVAB questions often test these basic temperature facts.", "memory": "32 freezes. 212 boils.", "reword": ["Water boils at what Fahrenheit temperature?", "What temperature is 100°C in Fahrenheit for boiling water?"], "mini": ["What is water’s boiling point in Celsius?", "What happens to water at 32°F?"], "cat": "Chemistry"}, {"num": 3, "title": "Cellular Respiration", "question": "The process by which the body’s cells use oxygen and glucose to produce energy is known as _____.", "answer": "Respiration", "concept": "Cellular respiration is how cells make usable energy. Cells take in glucose and oxygen, then release energy, carbon dioxide, and water. This is different from photosynthesis, where plants use sunlight to make glucose.", "memory": "People respire to release energy. Plants photosynthesize to make food.", "reword": ["What process releases energy from glucose?", "Cells use oxygen and sugar to make energy. What is this called?"], "mini": ["What two ingredients do cells use in respiration?", "Which process is mostly associated with plants making food?"], "cat": "Biology"}, {"num": 4, "title": "Veins Carry Blood Back", "question": "_____ carry blood back to the heart from the capillaries.", "answer": "Veins", "concept": "Arteries carry blood away from the heart. Veins carry blood back to the heart. Capillaries are tiny vessels where oxygen, nutrients, and wastes are exchanged with body tissues.", "memory": "Arteries = Away. Veins = Visit the heart.", "reword": ["Which vessels return blood to the heart?", "Blood travels from capillaries back to the heart through what?"], "mini": ["Which vessels carry blood away from the heart?", "What are capillaries mainly used for?"], "cat": "Biology"}, {"num": 5, "title": "Chemical vs Physical Change", "question": "Which of the following is an example of a chemical process?", "answer": "Iron forms rust", "concept": "A chemical change creates a new substance. Rust is a new substance that forms when iron reacts with oxygen. Physical changes change form or state but do not make a new substance.", "memory": "New substance = chemical change. Same substance = physical change.", "reword": ["Which change makes a new substance?", "Rusting is an example of what kind of change?"], "mini": ["Is burning wood chemical or physical?", "Is freezing water chemical or physical?"], "cat": "Chemistry"}, {"num": 6, "title": "Universal Donor Blood Type", "question": "A universal donor is a person with which blood type?", "answer": "O negative", "concept": "For red blood cell donation, O negative is known as the universal donor because it lacks A, B, and Rh markers that commonly trigger immune reactions. AB positive is often called the universal recipient.", "memory": "O negative gives out. AB positive receives all.", "reword": ["Which blood type can donate red blood cells to most people?", "Universal donor blood type is what?"], "mini": ["Which blood type is commonly called universal recipient?", "What does the negative refer to?"], "cat": "Biology"}, {"num": 7, "title": "Blood Entering the Right Atrium", "question": "Blood enters the right atrium of the heart from the _____.", "answer": "Vena cava", "concept": "The right atrium receives oxygen-poor blood returning from the body. That blood enters through the superior and inferior vena cava. Then it moves to the right ventricle and goes to the lungs.", "memory": "Vena cava returns body blood to the right atrium.", "reword": ["What vessel brings blood to the right atrium?", "Oxygen-poor blood returns to the heart through what vessel?"], "mini": ["Which vessel leaves the left ventricle?", "Do pulmonary veins go to the right atrium or left atrium?"], "cat": "Biology"}, {"num": 8, "title": "pH Scale: Acids and Bases", "question": "Which substance has the highest pH?", "answer": "Ammonia", "concept": "The pH scale measures how acidic or basic a substance is. Low pH means acidic. High pH means basic or alkaline. Battery acid is very acidic, water is neutral around 7, and ammonia is basic, so it has the highest pH in this list.", "memory": "High pH = base. Ammonia is a base.", "reword": ["Which is most basic?", "Which has the highest pH?"], "mini": ["Is battery acid high pH or low pH?", "What pH is neutral water near?"], "cat": "Chemistry"}, {"num": 9, "title": "Small Intestine and Enzymes", "question": "Which organ does the most work to break down food using enzymes?", "answer": "Small intestine", "concept": "Most chemical digestion happens in the small intestine. Enzymes from the pancreas and small intestine break down carbohydrates, proteins, and fats. The stomach starts protein digestion, but the small intestine does most absorption and much of the enzyme work.", "memory": "Small intestine = big job in digestion.", "reword": ["Where does most chemical digestion occur?", "Where do enzymes do most food breakdown?"], "mini": ["Which organ produces many digestive enzymes?", "Which intestine absorbs most nutrients?"], "cat": "Biology"}, {"num": 10, "title": "Female Reproductive System", "question": "Which of the following is NOT part of the female reproductive system?", "answer": "Testes", "concept": "Ovaries, uterus, and oviducts/fallopian tubes are parts of the female reproductive system. Testes are male reproductive organs that produce sperm and testosterone.", "memory": "Testes = male. Ovary, uterus, oviduct = female.", "reword": ["Which organ belongs to the male reproductive system?", "Which is not female: uterus, ovary, oviduct, testes?"], "mini": ["What organ produces eggs?", "What is another name for the oviduct?"], "cat": "Biology"}, {"num": 11, "title": "Gene: Basic Unit of Inheritance", "question": "The most basic unit of inheritance is known as a _____.", "answer": "Gene", "concept": "A gene is a section of DNA that carries instructions for a trait or protein. Chromosomes are larger structures made of DNA and many genes. Genotype is genetic makeup; phenotype is the visible trait.", "memory": "Genes give instructions. Chromosomes carry many genes.", "reword": ["What is the smallest unit of heredity?", "What DNA segment controls a trait?"], "mini": ["What is a visible trait called?", "Which is larger: a gene or a chromosome?"], "cat": "Biology"}, {"num": 12, "title": "Sedimentary Rock: Shale", "question": "Which of the following is a sedimentary rock?", "answer": "Shale", "concept": "Sedimentary rocks form when sediments are compacted and cemented over time. Shale forms from clay and mud sediments. Granite and obsidian are igneous; marble and slate are metamorphic.", "memory": "Sediments settle and become sedimentary. Shale is sedimentary.", "reword": ["Which rock forms from compacted sediment?", "Shale is what type of rock?"], "mini": ["What rock type forms from magma?", "What rock type forms from heat and pressure?"], "cat": "Earth & Space"}, {"num": 13, "title": "Producer = Autotroph", "question": "A producer is also known as a(n) _____.", "answer": "Autotroph", "concept": "A producer makes its own food, usually through photosynthesis. The science word for a producer is autotroph. Consumers are heterotrophs because they must eat other organisms.", "memory": "Auto = self. Autotroph = self-feeder.", "reword": ["What is another word for producer?", "An organism that makes its own food is called what?"], "mini": ["Are plants usually autotrophs or heterotrophs?", "What is a consumer called?"], "cat": "Biology"}, {"num": 14, "title": "Vulture = Scavenger", "question": "A vulture would be considered a _____.", "answer": "Scavenger", "concept": "A scavenger eats dead animals. Vultures are classic scavengers because they feed on carrion. They are not producers because they do not make their own food, and they are not parasites because they do not live in or on a host.", "memory": "Vultures scavenge carrion.", "reword": ["What animal eats carrion?", "What type of consumer is a vulture?"], "mini": ["Is a mushroom more like a decomposer or scavenger?", "What does a parasite need?"], "cat": "Biology"}, {"num": 15, "title": "Obsidian = Igneous Rock", "question": "What type of rock is obsidian?", "answer": "Igneous", "concept": "Obsidian is volcanic glass. It forms when lava cools very quickly, so it is an igneous rock. Igneous rocks form from molten material: magma underground or lava at the surface.", "memory": "Obsidian comes from lava, so it is igneous.", "reword": ["Volcanic glass is what rock type?", "Obsidian forms from cooled lava, so it is what?"], "mini": ["What rock type is formed by heat and pressure?", "Is lava connected to igneous or sedimentary rocks?"], "cat": "Earth & Space"}, {"num": 16, "title": "Lunar Eclipse", "question": "During a lunar eclipse _____.", "answer": "The Earth lies between the Moon and Sun", "concept": "A lunar eclipse happens when Earth blocks sunlight from reaching the Moon. The order is Sun - Earth - Moon. The Moon moves into Earth’s shadow.", "memory": "Lunar = Moon gets dark because Earth is in the middle.", "reword": ["What is between the Sun and Moon during a lunar eclipse?", "Whose shadow falls on the Moon?"], "mini": ["What object is in the middle during a solar eclipse?", "Whose shadow covers the Moon in a lunar eclipse?"], "cat": "Earth & Space"}, {"num": 17, "title": "Centimeter Meaning", "question": "A centimeter is _____.", "answer": "One hundredth of a meter", "concept": "The metric prefix centi- means one hundredth. Therefore, 1 centimeter is 1/100 of a meter. There are 100 centimeters in 1 meter.", "memory": "Century = 100 years. Centimeter = 1/100 meter.", "reword": ["What does centi- mean?", "How much of a meter is a centimeter?"], "mini": ["How many centimeters are in 1 meter?", "What does milli- mean?"], "cat": "Physics"}, {"num": 18, "title": "Momentum", "question": "Momentum is _____.", "answer": "The tendency of an object to continue moving in the same direction", "concept": "In physics, momentum is mass times velocity. More mass or more speed means more momentum. In basic wording, momentum describes how much motion an object has and its tendency to keep moving.", "memory": "Heavy and fast = lots of momentum.", "reword": ["What is mass times velocity?", "What describes how hard a moving object is to stop?"], "mini": ["Which has more momentum: a slow bicycle or a fast truck?", "What is a push or pull called?"], "cat": "Physics"}, {"num": 19, "title": "Visible Light Frequency", "question": "Which color’s light waves have the highest frequency?", "answer": "Violet", "concept": "In visible light, red has the longest wavelength and lowest frequency. Violet has the shortest wavelength and highest frequency. Frequency and wavelength move opposite directions: when wavelength gets shorter, frequency gets higher.", "memory": "ROYGBIV: frequency increases toward violet.", "reword": ["Which visible color has the shortest wavelength?", "Which color has the highest frequency?"], "mini": ["Which color has the longest wavelength?", "Does shorter wavelength mean higher or lower frequency?"], "cat": "Physics"}, {"num": 20, "title": "Atomic Mass: Protons and Neutrons", "question": "The major portion of an atom’s mass consists of _____.", "answer": "Neutrons and protons", "concept": "Almost all atomic mass is in the nucleus. The nucleus contains protons and neutrons. Electrons have very little mass compared with protons and neutrons.", "memory": "Mass is in the nucleus: protons + neutrons.", "reword": ["Where is most atomic mass located?", "Which particles make up most atomic mass?"], "mini": ["Where are electrons found?", "Which particles are in the nucleus?"], "cat": "Chemistry"}, {"num": 21, "title": "Arthropods vs Echinoderms", "question": "Which of the following is NOT an example of an arthropod?", "answer": "Sea urchin", "concept": "Arthropods have jointed legs and exoskeletons. Crabs, spiders, and centipedes are arthropods. Sea urchins are echinoderms, related to sea stars.", "memory": "Arthro = joint. Arthropods have jointed legs.", "reword": ["Which animal is not a joint-legged arthropod?", "Sea urchins belong to what group instead of arthropods?"], "mini": ["Is an insect an arthropod?", "What group includes sea stars and sea urchins?"], "cat": "Biology"}, {"num": 22, "title": "Table Salt = Ionic Compound", "question": "Table salt is considered a(n) _____.", "answer": "Ionic compound", "concept": "Table salt is sodium chloride, NaCl. Sodium is a metal and chlorine is a nonmetal. They form ions and attract each other, creating an ionic compound.", "memory": "Metal + nonmetal often means ionic. Table salt is ionic.", "reword": ["What type of compound is NaCl?", "Metal plus nonmetal usually forms what type of compound?"], "mini": ["What is the chemical formula for table salt?", "Do covalent compounds share or transfer electrons?"], "cat": "Chemistry"}, {"num": 23, "title": "Earth Rotation in 24 Hours", "question": "Over the course of 24 hours _____.", "answer": "The Earth rotates 360° about its axis", "concept": "One day is caused by Earth rotating once about its axis. A full rotation is 360 degrees and takes about 24 hours. Earth orbiting the Sun takes about one year.", "memory": "Rotation = day. Revolution = year.", "reword": ["What motion causes a day?", "Earth spins 360 degrees about what?"], "mini": ["What causes day and night?", "What motion causes one year?"], "cat": "Earth & Space"}, {"num": 24, "title": "Monera and Prokaryotes", "question": "Which kingdom is composed of prokaryotic life forms such as bacteria?", "answer": "Monera", "concept": "In older classification systems used by many test-prep books, Monera includes bacteria and other prokaryotes. Prokaryotic cells do not have a nucleus. Plants, animals, fungi, and protists are eukaryotic.", "memory": "Monera = no nucleus bacteria.", "reword": ["Which group includes bacteria in older taxonomy?", "What kingdom contains prokaryotic life forms?"], "mini": ["Do prokaryotes have a nucleus?", "Are plants prokaryotic or eukaryotic?"], "cat": "Biology"}, {"num": 25, "title": "Human Phylum = Chordata", "question": "Human beings belong to the phylum _____.", "answer": "Chordata", "concept": "Taxonomy organizes life into groups. Humans are in kingdom Animalia, phylum Chordata, class Mammalia, and order Primates. The question asks for phylum, so the answer is Chordata.", "memory": "Kingdom Animalia, Phylum Chordata, Class Mammalia, Order Primates.", "reword": ["What is the human phylum?", "Animalia, Chordata, Mammalia, Primata: which is phylum?"], "mini": ["What class are humans in?", "Why is Animalia not the answer when the question asks for phylum?"], "cat": "Biology"}], "practice": [{"num": 1, "q": "_____ are necessary for the body’s maintenance, growth, and repair.", "choices": ["Proteins", "Carbohydrates", "Fats", "Vitamins"], "answer": {"letter": "A", "text": "Proteins"}}, {"num": 2, "q": "On a Fahrenheit thermometer, the boiling point of water at sea level is _____.", "choices": ["100°", "180°", "212°", "373°"], "answer": {"letter": "C", "text": "212°F"}}, {"num": 3, "q": "The process by which the body’s cells use oxygen and glucose to produce energy is known as _____.", "choices": ["Decomposition", "Photosynthesis", "Oxidation", "Respiration"], "answer": {"letter": "D", "text": "Respiration"}}, {"num": 4, "q": "_____ carry blood back to the heart from the capillaries.", "choices": ["Arteries", "Veins", "Ventricles", "Red blood cells"], "answer": {"letter": "B", "text": "Veins"}}, {"num": 5, "q": "Which of the following is an example of a chemical process?", "choices": ["Helium mixes with neon", "Iron forms rust", "Sugar dissolves", "Ice melts"], "answer": {"letter": "B", "text": "Iron forms rust"}}, {"num": 6, "q": "A universal donor is a person with which blood type?", "choices": ["O negative", "A positive", "AB positive", "B negative"], "answer": {"letter": "A", "text": "O negative"}}, {"num": 7, "q": "Blood enters the right atrium of the heart from the _____.", "choices": ["Aorta", "Left ventricle", "Pulmonary vein", "Vena cava"], "answer": {"letter": "D", "text": "Vena cava"}}, {"num": 8, "q": "Which substance has the highest pH?", "choices": ["Ammonia", "Battery acid", "Isopropyl alcohol", "Water"], "answer": {"letter": "A", "text": "Ammonia"}}, {"num": 9, "q": "Which organ does the most work to break down food using enzymes?", "choices": ["Pancreas", "Stomach", "Small intestine", "Large intestine"], "answer": {"letter": "C", "text": "Small intestine"}}, {"num": 10, "q": "Which of the following is NOT part of the female reproductive system?", "choices": ["Oviduct", "Uterus", "Ovary", "Testes"], "answer": {"letter": "D", "text": "Testes"}}, {"num": 11, "q": "The most basic unit of inheritance is known as a _____.", "choices": ["Phenotype", "Genotype", "Chromosome", "Gene"], "answer": {"letter": "D", "text": "Gene"}}, {"num": 12, "q": "Which of the following is a sedimentary rock?", "choices": ["Granite", "Marble", "Shale", "Slate"], "answer": {"letter": "C", "text": "Shale"}}, {"num": 13, "q": "A producer is also known as a(n) _____.", "choices": ["Heterotroph", "Saprotroph", "Autotroph", "Scavenger"], "answer": {"letter": "C", "text": "Autotroph"}}, {"num": 14, "q": "A vulture would be considered a _____.", "choices": ["Producer", "Decomposer", "Scavenger", "Parasite"], "answer": {"letter": "C", "text": "Scavenger"}}, {"num": 15, "q": "What type of rock is obsidian?", "choices": ["Sedimentary", "Igneous", "Metamorphic", "Sandstone"], "answer": {"letter": "B", "text": "Igneous"}}, {"num": 16, "q": "During a lunar eclipse _____.", "choices": ["Moon between Earth and Sun", "Sun between Moon and Earth", "Earth between Moon and Sun", "Sun outside Moon’s umbra"], "answer": {"letter": "C", "text": "The Earth lies between the Moon and Sun"}}, {"num": 17, "q": "A centimeter is _____.", "choices": ["One hundredth of a meter", "One tenth of a meter", "Ten meters", "One hundred meters"], "answer": {"letter": "A", "text": "One hundredth of a meter"}}, {"num": 18, "q": "Momentum is _____.", "choices": ["Push or pull", "Rate of change of velocity", "Rate of position change", "Tendency of object to continue moving"], "answer": {"letter": "D", "text": "The tendency of an object to continue moving in the same direction"}}, {"num": 19, "q": "Which color’s light waves have the highest frequency?", "choices": ["Yellow", "Green", "Red", "Violet"], "answer": {"letter": "D", "text": "Violet"}}, {"num": 20, "q": "The major portion of an atom’s mass consists of _____.", "choices": ["Neutrons and protons", "Electrons and protons", "Electrons and neutrons", "Neutrons and positrons"], "answer": {"letter": "A", "text": "Neutrons and protons"}}, {"num": 21, "q": "Which of the following is NOT an example of an arthropod?", "choices": ["Crab", "Centipede", "Sea urchin", "Spider"], "answer": {"letter": "C", "text": "Sea urchin"}}, {"num": 22, "q": "Table salt is considered a(n) _____.", "choices": ["Ionic compound", "Semi-ionic compound", "Covalent compound", "Element"], "answer": {"letter": "A", "text": "Ionic compound"}}, {"num": 23, "q": "Over the course of 24 hours _____.", "choices": ["Earth rotates around Sun", "Moon rotates around Earth", "Earth rotates about its axis", "Moon rotates about its axis"], "answer": {"letter": "C", "text": "The Earth rotates 360° about its axis"}}, {"num": 24, "q": "Which kingdom is composed of prokaryotic life forms such as bacteria?", "choices": ["Fungi", "Protista", "Monera", "Plantae"], "answer": {"letter": "C", "text": "Monera"}}, {"num": 25, "q": "Human beings belong to the phylum _____.", "choices": ["Animalia", "Chordata", "Mammalia", "Primata"], "answer": {"letter": "B", "text": "Chordata"}}]};
 const CATCOLOR = {
@@ -1068,5 +284,500 @@ function gradeExam(){
 function resetExam(){answers={};submitted=false;document.getElementById('scorecard').classList.remove('show');renderExam();window.scrollTo({top:document.querySelector('.viewnav').offsetTop,behavior:'smooth'});}
 renderExam();
 </script>
-</body>
-</html>
+</div><div class="panel " id="p1">
+<div class="classbar"><span>// ASVAB · ARMED SERVICES VOCATIONAL APTITUDE BATTERY</span><span>PART 2 · AR</span></div>
+<nav class="seclink">
+<a href="asvab-general-science.html">Part 1 · General Science</a>
+<a class="here">Part 2 · Arithmetic Reasoning</a>
+<a href="asvab-word-knowledge.html">Part 3 · Word Knowledge</a>
+</nav>
+<header class="hero">
+<div class="hero-inner">
+<div class="eyebrow">Diagnostic Test · Part 2 · Arithmetic Reasoning</div>
+<h1>Arithmetic<br/>Reasoning
+      <span class="accent">Field Manual &amp; Solved Drills</span>
+</h1>
+<p class="lede">Ten core concepts and all thirty diagnostic word problems, each one fully worked. Learn the method behind each question so you can run the math fast and clean on test day.</p>
+<div class="specrow">
+<div class="spec"><div class="k">Time Limit</div><div class="v">36<small>Minutes</small></div></div>
+<div class="spec"><div class="k">Questions</div><div class="v">30<small>Word Problems</small></div></div>
+<div class="spec"><div class="k">Pace</div><div class="v">~72<small>Sec / Item</small></div></div>
+<div class="spec"><div class="k">Concepts</div><div class="v">10<small>Lesson Units</small></div></div>
+</div>
+</div>
+</header>
+<nav class="viewnav" id="viewnav">
+<button class="active" data-view="lessons">Concept Lessons<span class="count">10</span></button>
+<button data-view="exam">Solved Exam<span class="count">30</span></button>
+<button data-view="plan">Study Plan</button>
+</nav>
+<main class="wrap">
+<section class="view active" id="view-lessons">
+<div class="sechead"><h2>Concept Lessons</h2><span class="tag">Tap any unit to open</span></div>
+<p class="secsub">Each unit gives the core idea, the formula, a fast shortcut, one fully worked example, and three practice problems with reveal-able solutions.</p>
+<div class="filters" id="filters"></div>
+<div class="roster" id="roster"></div>
+</section>
+<section class="view" id="view-exam">
+<div class="sechead"><h2>Solved Exam</h2><span class="tag">All 30 diagnostic questions</span></div>
+<p class="secsub">Answer each item, then submit to score. Every question reveals a full worked solution and links back to the concept lesson it tests.</p>
+<div class="exam-meta">
+<div class="m"><div class="mk">Section</div><div class="mv">AR · Part 2</div></div>
+<div class="m"><div class="mk">Items</div><div class="mv">30</div></div>
+<div class="m"><div class="mk">Time On Test</div><div class="mv">36 min</div></div>
+<div class="m"><div class="mk">Passing Target</div><div class="mv">80%+</div></div>
+</div>
+<div class="scorecard" id="scorecard">
+<div class="stamp">// Results Logged</div>
+<div class="big"><span id="scNum">0</span><small>/30</small></div>
+<div class="verdict" id="scVerdict"></div>
+<div class="weak" id="scWeak"></div>
+<button class="retake" onclick="resetExam()">↻ Retake Exam</button>
+</div>
+<div id="examBody"></div>
+</section>
+<section class="view" id="view-plan">
+<div class="sechead"><h2>7-Day Study Plan</h2><span class="tag">From the master course</span></div>
+<p class="secsub">A week-long rotation: two concepts a day, then the full practice test, then targeted review of whatever you missed.</p>
+<div class="plan" id="planGrid"></div>
+<p class="secsub" style="max-width:680px">Tip: after the Day 6 practice test, the scorecard flags your weakest concepts. Spend Day 7 reopening those specific lesson units and re-solving their practice problems until the method is automatic.</p>
+</section>
+</main>
+<div class="scrim" id="scrim" onclick="if(event.target===this)closeDossier()">
+<div class="dossier" id="dossier">
+<button class="closeb" onclick="closeDossier()">✕</button>
+<div class="dossier-band"><span class="dnum" id="dNum"></span><span class="dcat" id="dCat"></span></div>
+<div class="dossier-body" id="dBody"></div>
+<div class="dossier-nav">
+<button id="dPrev" onclick="dossierNav(-1)">◀ Previous</button>
+<button id="dNext" onclick="dossierNav(1)">Next ▶</button>
+</div>
+</div>
+</div>
+<footer class="foot">ASVAB ARITHMETIC REASONING · FIELD MANUAL · <b>10 CONCEPTS · 30 SOLVED</b> · STUDY · DRILL · DEPLOY</footer>
+<script>
+const DATA = {"lessons": [{"num": 1, "title": "Percent Discounts", "cat": "Percents", "idea": "A percent means 'per hundred,' so 20% = 20/100 = 0.20. To take a discount off a price, you can find the discount and subtract it, or multiply by what's left after the discount.", "formula": "Sale Price = Original × (1 − discount)", "shortcut": "Find 10% by moving the decimal one place left ($160 → $16). Build other percents from that: 20% is two 10%s, 5% is half of 10%.", "example": {"q": "A camera normally costs $160. It is reduced 20% during a sale. What is the sale price?", "steps": ["20% off means you still pay 80% (100% − 20%).", "Convert: 80% = 0.80.", "Multiply: $160 × 0.80 = $128.", "Check: 10% of $160 = $16, so 20% = $32 off. $160 − $32 = $128. ✓"], "answer": "$128"}, "practice": [{"q": "A $90 jacket is marked 30% off. What is the sale price?", "a": "$90 × 0.70 = $63"}, {"q": "A $250 tire is on sale for 15% off. What do you pay?", "a": "$250 × 0.85 = $212.50"}, {"q": "Shoes cost $48 after a 20% discount. What was the original price?", "a": "$48 ÷ 0.80 = $60 (the $48 is 80% of the original)"}]}, {"num": 2, "title": "Rates, Time & Distance", "cat": "Rates", "idea": "A rate connects two quantities, like miles per hour or stations per minute. If you know any two of distance, rate, and time, you can find the third. The key skill is keeping your units consistent.", "formula": "Distance = Rate × Time   •   Rate = Distance ÷ Time   •   Time = Distance ÷ Rate", "shortcut": "To scale a rate to a new time, multiply by how many of those time blocks fit. 3 stations per 10 minutes × 6 ten-minute blocks in an hour = 18 stations.", "example": {"q": "A subway car passes 3 stations every 10 minutes. At this rate, how many stations will it pass in one hour?", "steps": ["One hour = 60 minutes.", "How many 10-minute blocks in 60 minutes? 60 ÷ 10 = 6.", "Each block = 3 stations, so 3 × 6 = 18 stations.", "Check: 3 stations/10 min is the same as 18 stations/60 min. ✓"], "answer": "18 stations"}, "practice": [{"q": "A car travels 1/100 of a kilometer each second. How far in one hour?", "a": "3600 seconds × 1/100 km = 36 km"}, {"q": "A printer makes 9 copies every 15 seconds. How many per minute?", "a": "60 ÷ 15 = 4 blocks; 9 × 4 = 36 copies"}, {"q": "A runner covers 2 miles in 16 minutes. What is the pace per mile?", "a": "16 ÷ 2 = 8 minutes per mile"}]}, {"num": 3, "title": "Ratios & Proportions", "cat": "Ratios", "idea": "A ratio compares amounts (2 baseballs to 3 golf balls = 2:3). A proportion sets two ratios equal. Solve proportions by cross-multiplying, and simplify ratios by dividing both sides by the same number.", "formula": "If a/b = c/d, then a×d = b×c (cross multiply)", "shortcut": "Find the 'one unit' value first. If 2:3 and there are 30 of the '2' part, each ratio unit = 15, so the '3' part = 45.", "example": {"q": "On a map, 3/4 inch represents 1 mile. What distance, in miles, is shown by 1 3/4 inches?", "steps": ["Set up a proportion: (3/4 inch)/(1 mile) = (1 3/4 inch)/(x miles).", "Write 1 3/4 as 7/4.", "Cross multiply: (3/4)×x = (7/4)×1.", "Solve: x = (7/4) ÷ (3/4) = 7/3 = 2 1/3 miles. ✓"], "answer": "2 1/3 miles"}, "practice": [{"q": "Baseballs to golf balls is 2:3. If there are 30 baseballs, how many golf balls?", "a": "30 ÷ 2 = 15 per unit; 3 × 15 = 45 golf balls"}, {"q": "The ratio 3 1/4 to 5 1/4 equals what whole-number ratio?", "a": "13/4 to 21/4 = 13 to 21"}, {"q": "A recipe uses 2 cups flour per 3 eggs. How much flour for 9 eggs?", "a": "9 ÷ 3 = 3 units; 2 × 3 = 6 cups"}]}, {"num": 4, "title": "Fractions", "cat": "Fractions", "idea": "Fractions show parts of a whole. Convert mixed numbers to improper fractions before multiplying or dividing. To divide by a fraction, multiply by its reciprocal (flip it). 'Of' usually means multiply.", "formula": "a/b × c/d = (a×c)/(b×d)   •   a/b ÷ c/d = a/b × d/c", "shortcut": "Dividing a total by a fractional amount tells you 'how many fit.' 72 ÷ 3/8 = 72 × 8/3 = 192.", "example": {"q": "A cat is fed 3/8 of a pound of food per day. For how many days will 72 pounds last?", "steps": ["You want how many 3/8-pound servings fit in 72 pounds: 72 ÷ 3/8.", "Dividing by a fraction = multiply by its reciprocal: 72 × 8/3.", "72 × 8 = 576; 576 ÷ 3 = 192.", "Check: 192 days × 3/8 lb = 72 lb. ✓"], "answer": "192 days"}, "practice": [{"q": "After spending 5/12 of her salary, Eva has $420 left. What is her salary?", "a": "Left = 7/12 of salary. $420 ÷ 7/12 = $420 × 12/7 = $720"}, {"q": "What is 2 1/4 × 4?", "a": "9/4 × 4 = 9"}, {"q": "How many 1/2-cup scoops are in 6 cups?", "a": "6 ÷ 1/2 = 12 scoops"}]}, {"num": 5, "title": "Probability", "cat": "Probability", "idea": "Probability measures how likely an outcome is, from 0 (never) to 1 (always). Count the outcomes you want, divide by the total number of equally likely outcomes. For 'either/or' with separate groups, add the favorable counts first.", "formula": "Probability = Favorable Outcomes ÷ Total Outcomes", "shortcut": "For 'red or black,' add red + black, then divide by the total. Always simplify the final fraction.", "example": {"q": "Marty has 5 blue pens, 6 black pens, and 4 red pens. He pulls one at random. What is the probability it is red or black?", "steps": ["Total pens: 5 + 6 + 4 = 15.", "Favorable (red or black): 4 + 6 = 10.", "Probability = 10/15.", "Simplify: divide top and bottom by 5 → 2/3. ✓"], "answer": "2/3"}, "practice": [{"q": "A bag has 3 white and 7 green marbles. P(white)?", "a": "3/(3+7) = 3/10"}, {"q": "A die is rolled. P(rolling a 5 or 6)?", "a": "2/6 = 1/3"}, {"q": "8 red, 4 blue, 8 yellow cards. P(red or yellow)?", "a": "(8+8)/20 = 16/20 = 4/5"}]}, {"num": 6, "title": "Prime Factorization", "cat": "Number Sense", "idea": "Every whole number is a product of prime numbers (2, 3, 5, 7, 11…). Build a factor tree: split the number into any two factors, then keep splitting until everything is prime. The order doesn't matter, but each prime must appear the right number of times.", "formula": "Prime factorization = the unique set of primes whose product is the number", "shortcut": "Start by pulling out small primes: keep dividing by 2 while even, then try 3, then 5, then 7.", "example": {"q": "What is the prime factorization of 140?", "steps": ["140 is even: 140 = 2 × 70.", "70 is even: 70 = 2 × 35.", "35 = 5 × 7, both prime.", "So 140 = 2 × 2 × 5 × 7. ✓"], "answer": "2 × 2 × 5 × 7"}, "practice": [{"q": "Prime factorization of 60?", "a": "2 × 2 × 3 × 5"}, {"q": "Prime factorization of 4! (which is 24)?", "a": "24 = 2 × 2 × 2 × 3"}, {"q": "What is 4! ?", "a": "4 × 3 × 2 × 1 = 24"}]}, {"num": 7, "title": "Percent Increase & Decrease", "cat": "Percents", "idea": "Percent change is always measured against the starting value. A decrease then an increase do NOT cancel out, because the second percent is taken from a different base. To stack changes, multiply the factors.", "formula": "New = Old × (1 ± percent)   •   Percent change = (change ÷ original) × 100", "shortcut": "To reverse a 20% drop you need MORE than 20% back: the drop was off the big number, the recovery is off the smaller number.", "example": {"q": "A stock drops 20%. By what percent must it rise to return to its original value?", "steps": ["Say it started at $100. After −20%: $100 × 0.80 = $80.", "It must climb from $80 back to $100, a gain of $20.", "Percent increase = change ÷ new base = 20 ÷ 80 = 0.25.", "0.25 = 25%. ✓"], "answer": "25%"}, "practice": [{"q": "Population rises 100% then 50%. Total increase?", "a": "×2 then ×1.5 = ×3 → 200% increase"}, {"q": "A $50 item rises 10% then falls 10%. Final price?", "a": "50 × 1.1 × 0.9 = $49.50 (not $50)"}, {"q": "A price falls 25%. What rise restores it?", "a": "0.25 ÷ 0.75 = 33 1/3%"}]}, {"num": 8, "title": "Work Problems", "cat": "Work & Wages", "idea": "When people work together, their RATES add, not their times. If someone finishes in T minutes, their rate is 1/T of the job per minute. Add the rates to find the combined rate, then flip it to get the combined time.", "formula": "1/T = 1/A + 1/B   (then T = combined time)", "shortcut": "Working together is always FASTER than the fastest single worker — use that to rule out answer choices.", "example": {"q": "Joan shovels a driveway in 50 minutes; Mary in 20 minutes. How long together (nearest minute)?", "steps": ["Joan's rate = 1/50 per minute; Mary's = 1/20 per minute.", "Add rates: 1/50 + 1/20. Common denominator 100 → 2/100 + 5/100 = 7/100.", "Combined time = flip the rate = 100/7 ≈ 14.3 minutes.", "Nearest minute = 14. (Faster than Mary's 20 alone. ✓)"], "answer": "14 minutes"}, "practice": [{"q": "A pipe fills a tank in 6 hr, another in 3 hr. Together?", "a": "1/6 + 1/3 = 1/6 + 2/6 = 3/6 = 1/2 → 2 hours"}, {"q": "Worker A: 4 hr, Worker B: 4 hr. Together?", "a": "1/4 + 1/4 = 1/2 → 2 hours"}, {"q": "Why can't two workers each taking 30 min finish in 40 min together?", "a": "Together must be faster than 30 min, so 40 is impossible"}]}, {"num": 9, "title": "Salary & Wage Problems", "cat": "Work & Wages", "idea": "These problems turn sentences into equations. Find the hourly rate first. Overtime is usually 'time and a half' (1.5 × regular rate) for hours beyond 40. Read carefully for 'more than' and 'less than' chains.", "formula": "Pay = Regular hours × rate + Overtime hours × (1.5 × rate)", "shortcut": "For 'A is $70 less than B, B is $50 more than C,' work from the known person outward, one step at a time.", "example": {"q": "A worker earns $200 for the first 40 hours, then 1.5× the regular rate after that. How many hours to earn $230?", "steps": ["Regular rate = $200 ÷ 40 = $5/hour.", "Overtime rate = 1.5 × $5 = $7.50/hour.", "Needs $230 − $200 = $30 more from overtime.", "$30 ÷ $7.50 = 4 overtime hours → 40 + 4 = 44 hours total. ✓"], "answer": "44 hours"}, "practice": [{"q": "June earns $70 less than Kelly; Kelly earns $50 more than Eileen; Eileen earns $280. June's pay?", "a": "Kelly = 280 + 50 = 330; June = 330 − 70 = $260"}, {"q": "A painter at $12/hr and son at $6/hr work the same time; combined charge $108. Hours each?", "a": "(12 + 6) × t = 108 → t = 6 hours"}, {"q": "Regular rate $8/hr. What is the overtime rate at time-and-a-half?", "a": "1.5 × 8 = $12/hour"}]}, {"num": 10, "title": "Mental Math & ASVAB Shortcuts", "cat": "Strategy", "idea": "The AR section is timed (about 72 seconds per question), so speed matters. Estimate to eliminate impossible choices, round to friendly numbers, and watch for answer choices that are 'traps' built from a common mistake.", "formula": "Estimate first → eliminate → compute only what's left", "shortcut": "10% tricks, doubling/halving, and 'does this answer even make sense?' checks save more points than raw calculation. If two workers team up, the answer must be smaller than either alone.", "example": {"q": "Four people share a $36 taxi fare plus a 25% tip, split evenly. How much does each pay?", "steps": ["Tip = 25% of $36 = $9. Total = $36 + $9 = $45.", "Split four ways: $45 ÷ 4 = $11.25.", "Estimate check: $45/4 is a bit over $11, so $11.25 fits.", "Trap: $9.00 (forgetting the tip, 36÷4) is a wrong choice. ✓"], "answer": "$11.25"}, "practice": [{"q": "Quickly estimate 19% of $200.", "a": "≈ 20% = $40 (slightly less)"}, {"q": "2 1/4 lb of lumber at $4.00/lb plus 7% tax. Total?", "a": "2.25 × 4 = $9.00; ×1.07 = $9.63"}, {"q": "Garage A: $8.75 first hour + $1.25 each more. Cost for 5 hours?", "a": "8.75 + 1.25×4 = $13.75"}]}], "exam": [{"num": 1, "q": "John bought a camera on sale that normally costs $160. If the price was reduced 20% during the sale, what was the sale price of the camera?", "choices": ["$120", "$124", "$128", "$140"], "ans": "C", "lesson": 1, "sol": "You still pay 100% − 20% = 80%. $160 × 0.80 = $128. (10% of 160 is $16, so 20% off is $32; 160 − 32 = 128.)"}, {"num": 2, "q": "A subway car passes 3 stations every 10 minutes. At this rate, how many stations will it pass in one hour?", "choices": ["15", "18", "20", "30"], "ans": "B", "lesson": 2, "sol": "One hour has six 10-minute blocks (60 ÷ 10 = 6). 3 stations per block × 6 = 18 stations."}, {"num": 3, "q": "On a certain map, 3/4 inch represents one mile. What distance, in miles, is represented by 1 3/4 inches?", "choices": ["1 1/2", "2 1/3", "2 1/2", "5 1/4"], "ans": "B", "lesson": 3, "sol": "1 3/4 = 7/4. Divide map inches by the per-mile inches: (7/4) ÷ (3/4) = 7/3 = 2 1/3 miles."}, {"num": 4, "q": "A box contains baseballs and golf balls. If the ratio of baseballs to golf balls is 2:3 and there are 30 baseballs, how many golf balls are there?", "choices": ["18", "20", "36", "45"], "ans": "D", "lesson": 3, "sol": "30 baseballs ÷ 2 = 15 per ratio unit. Golf balls = 3 units × 15 = 45."}, {"num": 5, "q": "Four people shared a taxi. The fare was $36.00, and they gave a tip equal to 25% of the fare. If they equally shared the cost of fare and tip, how much did each person pay?", "choices": ["$9.75", "$10.25", "$10.75", "$11.25"], "ans": "D", "lesson": 10, "sol": "Tip = 25% of $36 = $9. Total = $45. Split four ways: $45 ÷ 4 = $11.25."}, {"num": 6, "q": "If a car travels 1/100 of a kilometer each second, how many kilometers does it travel in an hour?", "choices": ["36", "60", "72", "100"], "ans": "A", "lesson": 2, "sol": "One hour = 3600 seconds. 3600 × 1/100 = 36 km."}, {"num": 7, "q": "20 − (−5) =", "choices": ["−25", "25", "15", "−15"], "ans": "B", "lesson": 6, "sol": "Subtracting a negative is adding: 20 − (−5) = 20 + 5 = 25."}, {"num": 8, "q": "Ms. Smith drove 700 miles. Her car averaged 35 miles per gallon and gasoline cost $1.25 per gallon. What was the cost of the gasoline for the trip?", "choices": ["$20.00", "$24.00", "$25.00", "$40.00"], "ans": "C", "lesson": 2, "sol": "Gallons used = 700 ÷ 35 = 20. Cost = 20 × $1.25 = $25.00."}, {"num": 9, "q": "After eating 25% of the jelly beans, Brett had 72 left. How many jelly beans did Brett have originally?", "choices": ["90", "94", "95", "96"], "ans": "D", "lesson": 1, "sol": "If 25% is eaten, 75% remains. 72 is 75% of the original: 72 ÷ 0.75 = 96."}, {"num": 10, "q": "A student finishes the first half of an exam in 2/3 the time it takes to finish the second half. If the entire exam takes one hour, how many minutes does he spend on the first half?", "choices": ["20", "24", "27", "36"], "ans": "B", "lesson": 4, "sol": "Let second half = t. First half = (2/3)t. Together: (2/3)t + t = 60 → (5/3)t = 60 → t = 36. First half = (2/3)(36) = 24 minutes."}, {"num": 11, "q": "A 25-ounce solution is 20% alcohol. If 50 ounces of water are added, what percent of the new solution is alcohol?", "choices": ["6 2/3%", "7 1/2%", "10%", "13 1/3%"], "ans": "A", "lesson": 7, "sol": "Alcohol amount = 20% of 25 = 5 oz (unchanged). New total = 25 + 50 = 75 oz. 5 ÷ 75 = 1/15 = 6 2/3%."}, {"num": 12, "q": "Marty has 5 blue pens, 6 black pens, and 4 red pens. If he pulls one at random, what is the probability the pen is either red or black?", "choices": ["2/3", "3/5", "2/5", "1/3"], "ans": "A", "lesson": 5, "sol": "Total = 15. Red or black = 4 + 6 = 10. 10/15 = 2/3."}, {"num": 13, "q": "From 1980 to 1990 the population of Country X increased 100%. From 1990 to 2000 it increased 50%. What was the combined increase for 1980–2000?", "choices": ["150%", "166 2/3%", "175%", "200%"], "ans": "D", "lesson": 7, "sol": "Multiply the growth factors: ×2.0 then ×1.5 = ×3.0. Tripling is a 200% increase."}, {"num": 14, "q": "A worker earns $200 for the first 40 hours, then is paid one-and-one-half times her regular rate for additional hours. How many hours must she work to make $230 in a week?", "choices": ["43", "44", "45", "46"], "ans": "B", "lesson": 9, "sol": "Regular rate = 200 ÷ 40 = $5/hr. Overtime = 1.5 × 5 = $7.50/hr. Need $30 more: 30 ÷ 7.50 = 4 OT hours. Total = 44 hours."}, {"num": 15, "q": "If 50% of x is 150, what is 75% of x?", "choices": ["225", "250", "275", "300"], "ans": "A", "lesson": 1, "sol": "50% of x = 150 means x = 300. 75% of 300 = 225."}, {"num": 16, "q": "The total fare for two adults and three children on an excursion boat is $14. If each child's fare is half of each adult's fare, what is the adult fare?", "choices": ["$2.00", "$3.00", "$3.50", "$4.00"], "ans": "D", "lesson": 9, "sol": "Let adult = a, child = a/2. 2a + 3(a/2) = 14 → 2a + 1.5a = 14 → 3.5a = 14 → a = $4.00."}, {"num": 17, "q": "What is the prime factorization of 140?", "choices": ["2 × 70", "2 × 3 × 5 × 7", "2 × 2 × 5 × 7", "2 × 2 × 2 × 5 × 7"], "ans": "C", "lesson": 6, "sol": "140 = 2 × 70 = 2 × 2 × 35 = 2 × 2 × 5 × 7. (2×70 isn't all primes; the product 2×2×2×5×7 = 280, too big.)"}, {"num": 18, "q": "A painter charges $12 an hour while his son charges $6 an hour. If father and son worked the same amount of time together and the combined charge was $108, how many hours did each work?", "choices": ["6", "9", "12", "18"], "ans": "A", "lesson": 9, "sol": "Together they charge $12 + $6 = $18 per hour. $108 ÷ $18 = 6 hours each."}, {"num": 19, "q": "4! =", "choices": ["4", "16", "24", "256"], "ans": "C", "lesson": 6, "sol": "The factorial 4! means 4 × 3 × 2 × 1 = 24."}, {"num": 20, "q": "At garage A it costs $8.75 for the first hour and $1.25 for each additional hour. At garage B it costs $5.50 for the first hour and $2.50 for each additional hour. What is the difference in cost to park for 5 hours?", "choices": ["$2.25", "$1.75", "$1.50", "$1.25"], "ans": "B", "lesson": 10, "sol": "Garage A: 8.75 + 1.25×4 = $13.75. Garage B: 5.50 + 2.50×4 = $15.50. Difference = 15.50 − 13.75 = $1.75."}, {"num": 21, "q": "Jan types at an average rate of 12 pages per hour. How long will it take Jan to type 100 pages?", "choices": ["8 hr 10 min", "8 hr 15 min", "8 hr 20 min", "8 hr 30 min"], "ans": "C", "lesson": 2, "sol": "100 ÷ 12 = 8 1/3 hours. 1/3 of an hour = 20 minutes → 8 hr 20 min."}, {"num": 22, "q": "Two large sodas contain the same amount as three medium sodas. Two medium sodas contain the same as three small sodas. How many small sodas contain the same amount as eight large sodas?", "choices": ["24", "18", "16", "12"], "ans": "B", "lesson": 3, "sol": "2L = 3M, so 8L = 12M. 2M = 3S, so 12M = 18S. Eight large = 18 small."}, {"num": 23, "q": "If each digit 5 in the number 258,546 is replaced with the digit 7, by how much will the number be increased?", "choices": ["2,020", "2,200", "20,020", "20,200"], "ans": "D", "lesson": 6, "sol": "The 5s sit in the ten-thousands place and the hundreds place. Each rises by 2: 2×10,000 + 2×100 = 20,000 + 200 = 20,200."}, {"num": 24, "q": "Michael bought 2 1/4 pounds of lumber at $4.00 per pound. If a 7% sales tax was added, how much did Michael pay?", "choices": ["$9.63", "$9.98", "$10.70", "$11.77"], "ans": "A", "lesson": 10, "sol": "2 1/4 × $4 = $9.00. Tax: $9.00 × 1.07 = $9.63."}, {"num": 25, "q": "The ratio of 3 1/4 to 5 1/4 is equivalent to the ratio of", "choices": ["3 to 5", "4 to 7", "8 to 13", "13 to 21"], "ans": "D", "lesson": 3, "sol": "3 1/4 = 13/4 and 5 1/4 = 21/4. Same denominator, so the ratio is 13 to 21."}, {"num": 26, "q": "A cat is fed 3/8 of a pound of cat food every day. For how many days will 72 pounds of food feed the cat?", "choices": ["160", "172", "180", "192"], "ans": "D", "lesson": 4, "sol": "72 ÷ 3/8 = 72 × 8/3 = 192 days."}, {"num": 27, "q": "After spending 5/12 of her salary, Eva has $420 left. What is her salary?", "choices": ["$175", "$245", "$720", "$1,008"], "ans": "C", "lesson": 4, "sol": "She kept 1 − 5/12 = 7/12 of her salary, which is $420. Salary = $420 ÷ 7/12 = $420 × 12/7 = $720."}, {"num": 28, "q": "A stock decreases in value by 20%. By what percent must the stock price increase to reach its former value?", "choices": ["15%", "20%", "25%", "40%"], "ans": "C", "lesson": 7, "sol": "Start at $100 → drops to $80. To regain $20 from $80: 20 ÷ 80 = 25%."}, {"num": 29, "q": "Joan can shovel a driveway in 50 minutes. Mary can shovel the same driveway in 20 minutes. How long, to the nearest minute, if they work together?", "choices": ["12", "13", "14", "15"], "ans": "C", "lesson": 8, "sol": "Combined rate = 1/50 + 1/20 = 2/100 + 5/100 = 7/100. Time = 100/7 ≈ 14.3 → 14 minutes."}, {"num": 30, "q": "June's weekly salary is $70 less than Kelly's, which is $50 more than Eileen's. If Eileen earns $280 per week, how much does June earn per week?", "choices": ["$160", "$260", "$280", "$300"], "ans": "B", "lesson": 9, "sol": "Kelly = Eileen + $50 = $330. June = Kelly − $70 = $260."}]};
+const CATCOLOR = {
+  'Percents':'#c9772a','Rates':'#3f7c9c','Ratios':'#6f8f3a','Fractions':'#7a5aa0',
+  'Probability':'#a8431f','Number Sense':'#2e7d6b','Work & Wages':'#9a6a2e','Strategy':'#566023'
+};
+const lessons = DATA.lessons, exam = DATA.exam;
+
+document.querySelectorAll('#viewnav button').forEach(b=>{
+  b.onclick=()=>{
+    document.querySelectorAll('#viewnav button').forEach(x=>x.classList.remove('active'));
+    document.querySelectorAll('.view').forEach(x=>x.classList.remove('active'));
+    b.classList.add('active');
+    document.getElementById('view-'+b.dataset.view).classList.add('active');
+    window.scrollTo({top:document.querySelector('.viewnav').offsetTop-1,behavior:'smooth'});
+  };
+});
+function switchView(v){document.querySelector('#viewnav button[data-view="'+v+'"]').click();}
+
+/* filters + roster */
+let activeFilter='All';
+const cats=['All',...[...new Set(lessons.map(l=>l.cat))]];
+const fc=document.getElementById('filters');
+cats.forEach(c=>{
+  const b=document.createElement('button');
+  b.className='chip'+(c==='All'?' active':'');
+  b.textContent=c==='All'?'All Concepts':c;
+  b.onclick=()=>{activeFilter=c;document.querySelectorAll('.chip').forEach(x=>x.classList.remove('active'));b.classList.add('active');renderRoster();};
+  fc.appendChild(b);
+});
+function renderRoster(){
+  const r=document.getElementById('roster');r.innerHTML='';
+  lessons.filter(l=>activeFilter==='All'||l.cat===activeFilter).forEach(l=>{
+    const col=CATCOLOR[l.cat]||'#888';
+    const c=document.createElement('div');
+    c.className='card';c.style.setProperty('--cat',col);
+    c.innerHTML=`<div class="cardtop"><span class="lnum">UNIT ${String(l.num).padStart(2,'0')}</span><span class="catpill">${l.cat}</span></div>
+      <h3>${l.title}</h3>
+      <div class="formula">${l.formula}</div>
+      <span class="go">OPEN ▸</span>`;
+    c.onclick=()=>openDossier(l.num);
+    r.appendChild(c);
+  });
+}
+renderRoster();
+
+/* dossier */
+let curLesson=0;
+function openDossier(num){curLesson=lessons.findIndex(l=>l.num===num);paintDossier();document.getElementById('scrim').classList.add('open');document.body.style.overflow='hidden';}
+function paintDossier(){
+  const l=lessons[curLesson];const col=CATCOLOR[l.cat]||'#888';
+  document.getElementById('dossier').style.setProperty('--cat',col);
+  document.getElementById('dNum').textContent='UNIT '+String(l.num).padStart(2,'0')+' / 10';
+  document.getElementById('dCat').textContent=l.cat;document.getElementById('dCat').style.background=col;
+  document.getElementById('dBody').innerHTML=`
+    <h2>${l.title}</h2>
+    <div class="block"><div class="bh">The Idea</div><p>${l.idea}</p></div>
+    <div class="block formbox"><div class="flbl">Formula</div>${l.formula}</div>
+    <div class="block shortcut"><div class="mlbl">Fast Shortcut</div><div class="mtxt">${l.shortcut}</div></div>
+    <div class="block"><div class="bh">Worked Example</div>
+      <div class="worked">
+        <div class="wq">${l.example.q}</div>
+        <ol>${l.example.steps.map(s=>`<li>${s}</li>`).join('')}</ol>
+        <div class="wa"><span>Answer</span>${l.example.answer}</div>
+      </div>
+    </div>
+    <div class="block"><div class="bh">Practice — Reveal Each Solution</div>
+      ${l.practice.map((p,i)=>`
+        <div class="pracitem" id="prac-${i}">
+          <div class="pq"><span class="pn">${i+1}.</span><span>${p.q}</span></div>
+          <button class="pbtn" onclick="document.getElementById('prac-${i}').classList.add('open')">▾ Reveal solution</button>
+          <div class="pa">${p.a}</div>
+        </div>`).join('')}
+    </div>`;
+  document.getElementById('dPrev').disabled=curLesson===0;
+  document.getElementById('dNext').disabled=curLesson===lessons.length-1;
+  document.querySelector('.scrim').scrollTop=0;document.getElementById('dossier').scrollIntoView({block:'start'});
+}
+function dossierNav(d){curLesson=Math.max(0,Math.min(lessons.length-1,curLesson+d));paintDossier();}
+function closeDossier(){document.getElementById('scrim').classList.remove('open');document.body.style.overflow='';}
+document.addEventListener('keydown',e=>{
+  if(!document.getElementById('scrim').classList.contains('open'))return;
+  if(e.key==='Escape')closeDossier();
+  if(e.key==='ArrowRight'&&curLesson<lessons.length-1)dossierNav(1);
+  if(e.key==='ArrowLeft'&&curLesson>0)dossierNav(-1);
+});
+
+/* exam */
+let answers={},submitted=false;
+function renderExam(){
+  const b=document.getElementById('examBody');b.innerHTML='';
+  const letters=['A','B','C','D'];
+  exam.forEach(q=>{
+    const card=document.createElement('div');card.className='qcard';card.id='q-'+q.num;
+    card.innerHTML=`<div class="qhead"><span class="qn">${String(q.num).padStart(2,'0')}</span><span class="qtext">${q.q}</span></div>`;
+    const opts=document.createElement('div');opts.className='opts';
+    q.choices.forEach((ch,i)=>{
+      const o=document.createElement('div');o.className='opt';o.dataset.q=q.num;o.dataset.l=letters[i];
+      o.innerHTML=`<span class="ol">${letters[i]}</span><span>${ch}</span>`;
+      o.onclick=()=>{if(submitted)return;answers[q.num]=letters[i];opts.querySelectorAll('.opt').forEach(x=>x.classList.remove('selected'));o.classList.add('selected');updateSubmit();};
+      opts.appendChild(o);
+    });
+    card.appendChild(opts);
+    const sol=document.createElement('div');sol.className='qsol';sol.id='sol-'+q.num;
+    const lesson=lessons.find(l=>l.num===q.lesson);
+    sol.innerHTML=`<div class="sl"><span>Worked Solution</span><a onclick="closeAndOpen(${q.lesson})">▸ Unit ${String(q.lesson).padStart(2,'0')}: ${lesson.title}</a></div>${q.sol}`;
+    card.appendChild(sol);
+    b.appendChild(card);
+  });
+  const sb=document.createElement('button');sb.className='exam-submit';sb.id='examSubmit';sb.textContent='Submit Exam · 0 / 30 Answered';sb.disabled=true;sb.onclick=gradeExam;
+  b.appendChild(sb);
+}
+function closeAndOpen(num){switchView('lessons');setTimeout(()=>openDossier(num),120);}
+function updateSubmit(){const n=Object.keys(answers).length;const sb=document.getElementById('examSubmit');sb.textContent=`Submit Exam · ${n} / 30 Answered`;sb.disabled=n<30;}
+function gradeExam(){
+  submitted=true;let score=0;const missByCat={};
+  exam.forEach(q=>{
+    const correct=q.ans,chosen=answers[q.num];
+    if(chosen===correct)score++; else {const c=lessons.find(l=>l.num===q.lesson).cat;missByCat[c]=(missByCat[c]||0)+1;}
+    document.querySelectorAll(`.opt[data-q="${q.num}"]`).forEach(o=>{
+      o.classList.remove('selected');
+      if(o.dataset.l===correct)o.classList.add('correct');
+      else if(o.dataset.l===chosen)o.classList.add('wrong');
+    });
+    document.getElementById('sol-'+q.num).classList.add('show');
+  });
+  document.getElementById('scNum').textContent=score;
+  const pct=score/30*100;
+  const v=document.getElementById('scVerdict');
+  if(pct>=80){v.textContent='Mission Ready';v.className='verdict pass';}
+  else{v.textContent='Recommend Re-Drill';v.className='verdict review';}
+  const weak=Object.entries(missByCat).sort((a,b)=>b[1]-a[1]).slice(0,3).map(e=>e[0]);
+  document.getElementById('scWeak').innerHTML = weak.length? 'Weakest areas: '+weak.map(w=>`<b>${w}</b>`).join(' · ') : 'Clean sweep — no missed concepts.';
+  document.getElementById('scorecard').classList.add('show');
+  document.getElementById('examSubmit').style.display='none';
+  document.getElementById('scorecard').scrollIntoView({behavior:'smooth',block:'center'});
+}
+function resetExam(){answers={};submitted=false;document.getElementById('scorecard').classList.remove('show');renderExam();window.scrollTo({top:document.querySelector('.viewnav').offsetTop,behavior:'smooth'});}
+renderExam();
+
+/* study plan */
+const planData=[
+  {d:'Day 1',t:'Lessons 1–2',k:'Percents · Rates'},
+  {d:'Day 2',t:'Lessons 3–4',k:'Ratios · Fractions'},
+  {d:'Day 3',t:'Lessons 5–6',k:'Probability · Factoring'},
+  {d:'Day 4',t:'Lessons 7–8',k:'% Change · Work'},
+  {d:'Day 5',t:'Lessons 9–10',k:'Wages · Shortcuts'},
+  {d:'Day 6',t:'Practice Test',k:'All 30, no notes',test:true},
+  {d:'Day 7',t:'Review Weak Areas',k:'Re-drill misses',test:true},
+];
+const pg=document.getElementById('planGrid');
+planData.forEach(p=>{const d=document.createElement('div');d.className='day'+(p.test?' test':'');d.innerHTML=`<div class="dl">${p.d}</div><div class="dt">${p.t}</div><div class="dl" style="margin-top:6px;letter-spacing:.06em">${p.k}</div>`;pg.appendChild(d);});
+</script>
+</div><div class="panel " id="p2">
+<div class="classbar"><span>// ASVAB · ARMED SERVICES VOCATIONAL APTITUDE BATTERY</span><span>PART 3 · WK</span></div>
+<nav class="seclink">
+<a href="asvab-general-science.html">Part 1 · General Science</a>
+<a href="asvab-arithmetic-reasoning.html">Part 2 · Arithmetic Reasoning</a>
+<a class="here">Part 3 · Word Knowledge</a>
+</nav>
+<header class="hero">
+<div class="hero-inner">
+<div class="eyebrow">Diagnostic Test · Part 3 · Word Knowledge</div>
+<h1>Word<br/>Knowledge
+      <span class="accent">Field Manual &amp; Vocabulary Drills</span>
+</h1>
+<p class="lede">Thirty-five test words, each with its meaning, a memory trick, an example, and why the trap answers fail. Learn the word families and the "most nearly means" method so you read fast and choose clean.</p>
+<div class="specrow">
+<div class="spec"><div class="k">Time Limit</div><div class="v">11<small>Minutes</small></div></div>
+<div class="spec"><div class="k">Questions</div><div class="v">35<small>Vocabulary</small></div></div>
+<div class="spec"><div class="k">Pace</div><div class="v">~19<small>Sec / Item</small></div></div>
+<div class="spec"><div class="k">Word Groups</div><div class="v">5<small>Categories</small></div></div>
+</div>
+</div>
+</header>
+<nav class="viewnav" id="viewnav">
+<button class="active" data-view="vocab">Vocabulary<span class="count">35</span></button>
+<button data-view="flash">Flashcards</button>
+<button data-view="exam">Diagnostic Exam<span class="count">35</span></button>
+<button data-view="strategy">Strategy</button>
+</nav>
+<main class="wrap">
+<section class="view active" id="view-vocab">
+<div class="sechead"><h2>Vocabulary Roster</h2><span class="tag">Tap any word to open the card</span></div>
+<p class="secsub">Every word shows its best-match synonym up front. Open the card for the meaning, a memory trick, an example sentence, and why the wrong choices don't fit. Search or filter to drill a group.</p>
+<div class="toolbar"><div class="search"><input id="searchBox" oninput="renderRoster()" placeholder="Search a word or meaning…" type="text"/></div></div>
+<div class="filters" id="filters"></div>
+<div class="roster" id="roster"></div>
+</section>
+<section class="view" id="view-flash">
+<div class="sechead"><h2>Flashcard Drills</h2><span class="tag">Tap to flip</span></div>
+<p class="secsub">Front shows the word, back shows the synonym, meaning, and memory trick. Run the deck until every word is automatic.</p>
+<div class="flash-stage">
+<div class="flash-progress">CARD <b id="fIdx">1</b> / <span id="fTot">35</span>  ·  <span id="fCat"></span></div>
+<div class="flashcard" id="flashcard" onclick="flipCard()">
+<div class="flash-inner">
+<div class="flash-face flash-front">
+<span class="fcat" id="ffCat"></span><span class="fnum" id="ffNum"></span>
+<div class="fw" id="ffW"></div>
+<span class="ftap">Tap to reveal</span>
+</div>
+<div class="flash-face flash-back">
+<div class="balbl">Most Nearly Means</div>
+<div class="baval" id="fbA"></div>
+<div class="bmean" id="fbMean"></div>
+<div class="bmem" id="fbMem"></div>
+</div>
+</div>
+</div>
+<div class="flash-controls">
+<button id="fPrev" onclick="flashNav(-1)">◀ Prev</button>
+<button onclick="shuffleDeck()">⤮ Shuffle</button>
+<button id="fNext" onclick="flashNav(1)">Next ▶</button>
+</div>
+</div>
+</section>
+<section class="view" id="view-exam">
+<div class="sechead"><h2>Diagnostic Exam</h2><span class="tag">All 35 test items</span></div>
+<p class="secsub">The real format: some items give a sentence with a blank or underlined word, others ask what a word "most nearly means." Submit to score, see the correct answer, and get the memory trick for each.</p>
+<div class="exam-meta">
+<div class="m"><div class="mk">Section</div><div class="mv">WK · Part 3</div></div>
+<div class="m"><div class="mk">Items</div><div class="mv">35</div></div>
+<div class="m"><div class="mk">Time On Test</div><div class="mv">11 min</div></div>
+<div class="m"><div class="mk">Passing Target</div><div class="mv">80%+</div></div>
+</div>
+<div class="scorecard" id="scorecard">
+<div class="stamp">// Results Logged</div>
+<div class="big"><span id="scNum">0</span><small>/35</small></div>
+<div class="verdict" id="scVerdict"></div>
+<div class="weak" id="scWeak"></div>
+<button class="retake" onclick="resetExam()">↻ Retake Exam</button>
+</div>
+<div id="examBody"></div>
+</section>
+<section class="view" id="view-strategy">
+<div class="sechead"><h2>Test Strategy</h2><span class="tag">Five-step method</span></div>
+<p class="secsub">Word Knowledge is the fastest section — about 19 seconds per item. Speed comes from method, not from knowing every word cold.</p>
+<div class="strat" id="stratList"></div>
+<div class="sechead"><h2>Word Families</h2><span class="tag">Learn synonyms together</span></div>
+<p class="secsub">Grouping near-synonyms makes "most nearly means" choices faster to spot. These pairs appear across the 35 words.</p>
+<div class="fam" id="famGrid"></div>
+</section>
+</main>
+<div class="scrim" id="scrim" onclick="if(event.target===this)closeDossier()">
+<div class="dossier" id="dossier">
+<button class="closeb" onclick="closeDossier()">✕</button>
+<div class="dossier-band"><span class="dnum" id="dNum"></span><span class="dcat" id="dCat"></span></div>
+<div class="dossier-body" id="dBody"></div>
+<div class="dossier-nav">
+<button id="dPrev" onclick="dossierNav(-1)">◀ Previous</button>
+<button id="dNext" onclick="dossierNav(1)">Next ▶</button>
+</div>
+</div>
+</div>
+<footer class="foot">ASVAB WORD KNOWLEDGE · FIELD MANUAL · <b>35 WORDS · 5 GROUPS</b> · STUDY · DRILL · DEPLOY</footer>
+<script>
+const DATA = {"words": [{"num": 1, "word": "Noble", "fmt": "define", "prompt": "Noble most nearly means", "choices": ["comely", "loose", "aristocratic", "lackadaisical"], "ans": "C", "answer": "aristocratic", "meaning": "high-ranking, honorable, of a noble family", "trick": "Noble = nobleman = aristocrat", "example": "The noble family lived in the castle.", "whywrong": "comely = attractive; loose = not tight; lackadaisical = careless.", "cat": "People & Society"}, {"num": 2, "word": "Concede", "fmt": "sentence", "prompt": "John initially disagreed with Megan, but then he had to ___ her point about the budget.", "choices": ["argue", "understand", "counter", "admit"], "ans": "D", "answer": "admit", "meaning": "to accept something is true, especially after first disagreeing", "trick": "Concede = “I give in; you are right.”", "example": "He had to concede that Megan made a good point.", "whywrong": "argue/counter mean disagree; understand is know, not admit.", "cat": "Actions & Verbs"}, {"num": 3, "word": "Goad", "fmt": "define", "prompt": "Goad most nearly means", "choices": ["listen", "provoke", "pacify", "ignore"], "ans": "B", "answer": "provoke", "meaning": "to push, urge, or irritate someone into action", "trick": "A goad is like a poke that pushes someone", "example": "His comments goaded the crowd into reacting.", "whywrong": "listen/ignore are opposite ideas; pacify means calm down.", "cat": "Actions & Verbs"}, {"num": 4, "word": "Herd", "fmt": "sentence", "prompt": "Teenagers at the mall love to roam in a ___.", "choices": ["jacket", "line", "pack", "ratio"], "ans": "C", "answer": "pack", "meaning": "a group of animals or people moving together", "trick": "Herd = group; pack = group", "example": "Teenagers moved through the mall in a herd.", "whywrong": "jacket, line, ratio do not mean a group in this context.", "cat": "People & Society"}, {"num": 5, "word": "Viable", "fmt": "sentence", "prompt": "Panicking in an emergency is not a ___ response for an EMT.", "choices": ["total", "collective", "lucid", "workable"], "ans": "D", "answer": "workable", "meaning": "able to succeed or be used", "trick": "Viable = it can work", "example": "Panicking is not a viable response in an emergency.", "whywrong": "total, collective, lucid do not mean practical/workable.", "cat": "Qualities & Descriptions"}, {"num": 6, "word": "Judicious", "fmt": "define", "prompt": "Judicious most nearly means", "choices": ["accessible", "cold", "wise", "talkative"], "ans": "C", "answer": "wise", "meaning": "showing good judgment", "trick": "Judicious = judge wisely", "example": "A judicious leader makes careful decisions.", "whywrong": "accessible = easy to reach; cold/talkative do not match.", "cat": "Qualities & Descriptions"}, {"num": 7, "word": "Hesitating", "fmt": "sentence", "prompt": "___ in a time of crisis can often lead to failure.", "choices": ["broadening", "creating", "leaving", "pausing"], "ans": "D", "answer": "pausing", "meaning": "stopping briefly before acting", "trick": "Hesitating = hitting pause", "example": "Hesitating in a crisis can lead to failure.", "whywrong": "broadening/creating/leaving are different actions.", "cat": "Actions & Verbs"}, {"num": 8, "word": "Falsifying", "fmt": "sentence", "prompt": "Applicants who insist on ___ information ruin the process for everyone.", "choices": ["fabricating", "listing", "furthering", "taking on"], "ans": "A", "answer": "fabricating", "meaning": "making false information; lying in documents", "trick": "False = not true; fabricate = make up", "example": "Falsifying an application can ruin the process.", "whywrong": "listing/furthering/taking on do not mean making false info.", "cat": "Actions & Verbs"}, {"num": 9, "word": "Hollow", "fmt": "define", "prompt": "Hollow most nearly means", "choices": ["dangerous", "potent", "empty", "superb"], "ans": "C", "answer": "empty", "meaning": "having space inside; not filled", "trick": "Hollow log = empty inside", "example": "The hollow tree had animals inside.", "whywrong": "dangerous/potent/superb do not mean empty.", "cat": "Qualities & Descriptions"}, {"num": 10, "word": "Coax", "fmt": "define", "prompt": "Coax most nearly means", "choices": ["advise", "trade", "plead", "grace"], "ans": "C", "answer": "plead", "meaning": "to gently persuade or beg someone to do something", "trick": "Coax = convince with soft pressure", "example": "She tried to coax the child into eating.", "whywrong": "advise is give counsel; trade and grace do not fit.", "cat": "Actions & Verbs"}, {"num": 11, "word": "Monotonous", "fmt": "sentence", "prompt": "The ___ speech left them all feeling sleepy.", "choices": ["telling", "boring", "caustic", "hilarious"], "ans": "B", "answer": "boring", "meaning": "dull, repetitive, lacking variety", "trick": "Mono = one; one tone = boring", "example": "The monotonous speech made everyone sleepy.", "whywrong": "telling/caustic/hilarious do not mean dull.", "cat": "Qualities & Descriptions"}, {"num": 12, "word": "Consternation", "fmt": "sentence", "prompt": "As Mrs. Higgins attempted to teach the difficult material, she sensed growing ___ among her students.", "choices": ["desires", "inability", "frustration", "behavior"], "ans": "C", "answer": "frustration", "meaning": "confusion, worry, or distress", "trick": "Consternation = stressed confusion", "example": "The hard lesson caused consternation among students.", "whywrong": "desires/inability/behavior are not feelings of distress.", "cat": "Feelings & States"}, {"num": 13, "word": "Savory", "fmt": "sentence", "prompt": "With the holidays approaching, Dave looked forward to a ___ feast or two.", "choices": ["tasty", "guilty", "heroic", "skimpy"], "ans": "A", "answer": "tasty", "meaning": "pleasant tasting, usually salty or flavorful", "trick": "Savory food is tasty food", "example": "They looked forward to a savory feast.", "whywrong": "guilty/heroic/skimpy do not describe good flavor.", "cat": "Qualities & Descriptions"}, {"num": 14, "word": "Renown", "fmt": "sentence", "prompt": "A man of some ___, the mayor walked with his chest puffed out.", "choices": ["size", "fame", "confusion", "toil"], "ans": "B", "answer": "fame", "meaning": "being widely known or famous", "trick": "Renown = reputation/fame", "example": "The mayor was a man of great renown.", "whywrong": "size/confusion/toil do not mean fame.", "cat": "People & Society"}, {"num": 15, "word": "Raconteur", "fmt": "define", "prompt": "Raconteur most nearly means", "choices": ["believer", "storyteller", "standout", "pedant"], "ans": "B", "answer": "storyteller", "meaning": "a person skilled at telling stories", "trick": "A raconteur tells accounts (stories)", "example": "The raconteur entertained the room with stories.", "whywrong": "believer/standout/pedant are different types of people.", "cat": "People & Society"}, {"num": 16, "word": "Quench", "fmt": "sentence", "prompt": "She felt that nothing could really ___ her curiosity.", "choices": ["justify", "break", "illuminate", "satisfy"], "ans": "D", "answer": "satisfy", "meaning": "to satisfy thirst, curiosity, or desire", "trick": "Quench thirst = satisfy thirst", "example": "Nothing could quench her curiosity.", "whywrong": "justify/break/illuminate do not mean satisfy.", "cat": "Actions & Verbs"}, {"num": 17, "word": "Polarized", "fmt": "sentence", "prompt": "The committee was ___ on the issue.", "choices": ["split", "disgusted", "grateful", "cold"], "ans": "A", "answer": "split", "meaning": "divided into opposing sides", "trick": "Polarized = pulled to two poles/sides", "example": "The committee was polarized on the issue.", "whywrong": "disgusted/grateful/cold do not mean divided.", "cat": "Qualities & Descriptions"}, {"num": 18, "word": "Precise", "fmt": "sentence", "prompt": "The need to be ___ was clear to everyone.", "choices": ["after the fact", "cautious", "exact", "barren"], "ans": "C", "answer": "exact", "meaning": "accurate and exact", "trick": "Precise = perfectly exact", "example": "The need to be precise was clear.", "whywrong": "after the fact/cautious/barren do not mean exact.", "cat": "Qualities & Descriptions"}, {"num": 19, "word": "Terrain", "fmt": "sentence", "prompt": "Drucker surveyed the ___ before him for water.", "choices": ["oversight", "landscape", "river", "goal"], "ans": "B", "answer": "landscape", "meaning": "the land or ground in an area", "trick": "Terrain = land/landscape", "example": "Drucker surveyed the terrain for water.", "whywrong": "oversight/river/goal are not the general land area.", "cat": "Things & Objects"}, {"num": 20, "word": "Terminal", "fmt": "define", "prompt": "Terminal most nearly means", "choices": ["easy", "glittering", "busy", "final"], "ans": "D", "answer": "final", "meaning": "last; at the end", "trick": "Terminal = terminates = ends", "example": "The terminal stage was the final stage.", "whywrong": "easy/glittering/busy do not mean final.", "cat": "Qualities & Descriptions"}, {"num": 21, "word": "Augment", "fmt": "define", "prompt": "Augment most nearly means", "choices": ["craft", "end", "throw away", "enhance"], "ans": "D", "answer": "enhance", "meaning": "to increase or improve", "trick": "Augment = add more", "example": "Extra training can augment your score.", "whywrong": "craft/end/throw away do not mean improve.", "cat": "Actions & Verbs"}, {"num": 22, "word": "Involuntary", "fmt": "sentence", "prompt": "Her ___ spasm knocked over a lamp.", "choices": ["unintentional", "painful", "listless", "binary"], "ans": "A", "answer": "unintentional", "meaning": "not controlled by choice", "trick": "Involuntary = not voluntary", "example": "The involuntary spasm knocked over a lamp.", "whywrong": "painful/listless/binary do not mean unintentional.", "cat": "Qualities & Descriptions"}, {"num": 23, "word": "Collusion", "fmt": "sentence", "prompt": "The other owners accused the brothers of ___.", "choices": ["coalition", "secret agreement", "hoping", "pretending"], "ans": "B", "answer": "secret agreement", "meaning": "secret cooperation, usually dishonest", "trick": "Collusion = secret deal", "example": "The owners were accused of collusion.", "whywrong": "coalition can be open; hoping/pretending do not fit.", "cat": "People & Society"}, {"num": 24, "word": "Tenacity", "fmt": "sentence", "prompt": "The mongoose shows great ___ in the face of danger.", "choices": ["fear", "candor", "determination", "speed"], "ans": "C", "answer": "determination", "meaning": "persistence; refusing to give up", "trick": "Tenacity = tough determination", "example": "The mongoose showed tenacity in danger.", "whywrong": "fear/candor/speed do not mean persistence.", "cat": "Feelings & States"}, {"num": 25, "word": "Tactile", "fmt": "define", "prompt": "Tactile most nearly means", "choices": ["ghastly", "easy", "patient", "tangible"], "ans": "D", "answer": "tangible", "meaning": "related to touch; able to be felt", "trick": "Tactile = touch; tangible = touchable", "example": "A tactile surface can be felt by hand.", "whywrong": "ghastly/easy/patient do not mean touchable.", "cat": "Qualities & Descriptions"}, {"num": 26, "word": "Portend", "fmt": "sentence", "prompt": "The dark clouds seemed to ___ a gloomy weekend ahead.", "choices": ["fake", "lose", "predict", "edit"], "ans": "C", "answer": "predict", "meaning": "to warn or indicate something will happen", "trick": "Portend = predict ahead", "example": "Dark clouds can portend rain.", "whywrong": "fake/lose/edit do not mean predict.", "cat": "Actions & Verbs"}, {"num": 27, "word": "Germinate", "fmt": "define", "prompt": "Germinate most nearly means", "choices": ["sprout", "oppress", "adulate", "foster"], "ans": "A", "answer": "sprout", "meaning": "to begin growing from a seed", "trick": "Germinate = seed sprouts", "example": "The seed will germinate in warm soil.", "whywrong": "oppress/adulate/foster do not mean sprout.", "cat": "Actions & Verbs"}, {"num": 28, "word": "Restore", "fmt": "define", "prompt": "Restore most nearly means", "choices": ["trip up", "invigorate", "care for", "toughen"], "ans": "B", "answer": "invigorate", "meaning": "to bring back strength, energy, or condition", "trick": "Restore energy = invigorate", "example": "A nap can restore your energy.", "whywrong": "trip up/care for/toughen do not match the answer choice best.", "cat": "Actions & Verbs"}, {"num": 29, "word": "Filament", "fmt": "define", "prompt": "Filament most nearly means", "choices": ["horse", "triage", "nightmare", "thread"], "ans": "D", "answer": "thread", "meaning": "a thin threadlike fiber or wire", "trick": "Filament = fine thread", "example": "A light bulb has a filament inside.", "whywrong": "horse/triage/nightmare are unrelated.", "cat": "Things & Objects"}, {"num": 30, "word": "Mutated", "fmt": "sentence", "prompt": "Whatever the original intent, the focus has clearly ___ at this point.", "choices": ["disappeared", "reiterated", "altered", "intensified"], "ans": "C", "answer": "altered", "meaning": "changed in form or nature", "trick": "Mutate = change", "example": "The original plan mutated over time.", "whywrong": "disappeared/reiterated/intensified do not simply mean changed.", "cat": "Actions & Verbs"}, {"num": 31, "word": "Dynamic", "fmt": "sentence", "prompt": "To be elected president, one must be a calm yet still ___ figure.", "choices": ["reassuring", "exciting", "manic", "terrible"], "ans": "B", "answer": "exciting", "meaning": "active, energetic, forceful", "trick": "Dynamic = full of energy", "example": "A president should be calm but dynamic.", "whywrong": "reassuring/manic/terrible do not mean energetic in this context.", "cat": "Qualities & Descriptions"}, {"num": 32, "word": "Congeal", "fmt": "define", "prompt": "Congeal most nearly means", "choices": ["fade", "swirl", "harden", "undulate"], "ans": "C", "answer": "harden", "meaning": "to thicken or solidify", "trick": "Congeal = gel/harden", "example": "Grease may congeal when cold.", "whywrong": "fade/swirl/undulate do not mean harden.", "cat": "Actions & Verbs"}, {"num": 33, "word": "Reconnoiter", "fmt": "define", "prompt": "Reconnoiter most nearly means", "choices": ["advance", "posit", "grade", "scout"], "ans": "D", "answer": "scout", "meaning": "to inspect or explore an area for information", "trick": "Recon = scout ahead", "example": "Soldiers reconnoiter before moving forward.", "whywrong": "advance/posit/grade do not mean scout.", "cat": "Actions & Verbs"}, {"num": 34, "word": "Accrue", "fmt": "sentence", "prompt": "Whether one can ___ enough money to live on is always the question.", "choices": ["accumulate", "acquiesce", "trap", "magnify"], "ans": "A", "answer": "accumulate", "meaning": "to gradually build up or collect", "trick": "Accrue = accumulate over time", "example": "Interest can accrue in an account.", "whywrong": "acquiesce = agree; trap/magnify do not mean collect.", "cat": "Actions & Verbs"}, {"num": 35, "word": "Innate", "fmt": "sentence", "prompt": "His ___ ability to make the correct turn was amazing.", "choices": ["unsure", "discussed", "creative", "natural"], "ans": "D", "answer": "natural", "meaning": "inborn; existing from birth", "trick": "Innate = in nature from birth", "example": "His innate ability was amazing.", "whywrong": "unsure/discussed/creative do not mean inborn.", "cat": "Qualities & Descriptions"}], "strategy": ["Use context: read the sentence first — it usually gives the mood or a clue.", "Eliminate traps: cross out choices that clearly don't fit the sentence.", "Look for roots: words like terminal, portend, and mutate have parts that hint at meaning.", "Pick the closest meaning: the ASVAB asks “most nearly means,” not the perfect dictionary definition.", "Build word families: learn synonyms together — precise/exact, accrue/accumulate, augment/enhance."]};
+const CATCOLOR = {
+  'Actions & Verbs':'#3f7c9c','Qualities & Descriptions':'#9a6a2e','People & Society':'#6f8f3a',
+  'Feelings & States':'#a8431f','Things & Objects':'#7a5aa0'
+};
+const words = DATA.words, strategy = DATA.strategy;
+
+document.querySelectorAll('#viewnav button').forEach(b=>{
+  b.onclick=()=>{
+    document.querySelectorAll('#viewnav button').forEach(x=>x.classList.remove('active'));
+    document.querySelectorAll('.view').forEach(x=>x.classList.remove('active'));
+    b.classList.add('active');
+    document.getElementById('view-'+b.dataset.view).classList.add('active');
+    window.scrollTo({top:document.querySelector('.viewnav').offsetTop-1,behavior:'smooth'});
+  };
+});
+function switchView(v){document.querySelector('#viewnav button[data-view="'+v+'"]').click();}
+
+/* filters + search + roster */
+let activeFilter='All';
+const cats=['All',...[...new Set(words.map(w=>w.cat))]];
+const fc=document.getElementById('filters');
+cats.forEach(c=>{
+  const b=document.createElement('button');
+  b.className='chip'+(c==='All'?' active':'');
+  b.textContent=c==='All'?'All Words':c;
+  b.onclick=()=>{activeFilter=c;document.querySelectorAll('.chip').forEach(x=>x.classList.remove('active'));b.classList.add('active');renderRoster();};
+  fc.appendChild(b);
+});
+function renderRoster(){
+  const q=(document.getElementById('searchBox').value||'').toLowerCase().trim();
+  const r=document.getElementById('roster');r.innerHTML='';
+  const list=words.filter(w=>(activeFilter==='All'||w.cat===activeFilter) &&
+    (!q || w.word.toLowerCase().includes(q) || w.answer.toLowerCase().includes(q) || w.meaning.toLowerCase().includes(q)));
+  if(!list.length){r.innerHTML='<div class="noresult">No words match that search.</div>';return;}
+  list.forEach(w=>{
+    const col=CATCOLOR[w.cat]||'#888';
+    const c=document.createElement('div');c.className='card';c.style.setProperty('--cat',col);
+    c.innerHTML=`<div class="cardtop"><span class="lnum">WORD ${String(w.num).padStart(2,'0')}</span><span class="catpill">${w.cat}</span></div>
+      <h3>${w.word}</h3>
+      <div class="syn">= <b>${w.answer}</b></div>
+      <span class="go">OPEN ▸</span>`;
+    c.onclick=()=>openDossier(w.num);
+    r.appendChild(c);
+  });
+}
+renderRoster();
+
+/* dossier */
+let curW=0;
+function openDossier(num){curW=words.findIndex(w=>w.num===num);paintDossier();document.getElementById('scrim').classList.add('open');document.body.style.overflow='hidden';}
+function paintDossier(){
+  const w=words[curW];const col=CATCOLOR[w.cat]||'#888';
+  document.getElementById('dossier').style.setProperty('--cat',col);
+  document.getElementById('dNum').textContent='WORD '+String(w.num).padStart(2,'0')+' / 35';
+  document.getElementById('dCat').textContent=w.cat;document.getElementById('dCat').style.background=col;
+  document.getElementById('dBody').innerHTML=`
+    <div class="wordhead"><h2>${w.word}</h2><span class="eq">most nearly means <b>${w.answer}</b></span></div>
+    <div class="defline">${w.meaning}</div>
+    <div class="block trick"><div class="mlbl">Memory Trick</div><div class="mtxt">${w.trick}</div></div>
+    <div class="block"><div class="bh">In a Sentence</div><div class="exq">${w.example}</div></div>
+    <div class="block trap"><div class="tl">Why the Traps Fail</div>${w.whywrong}</div>`;
+  document.getElementById('dPrev').disabled=curW===0;
+  document.getElementById('dNext').disabled=curW===words.length-1;
+  document.querySelector('.scrim').scrollTop=0;document.getElementById('dossier').scrollIntoView({block:'start'});
+}
+function dossierNav(d){curW=Math.max(0,Math.min(words.length-1,curW+d));paintDossier();}
+function closeDossier(){document.getElementById('scrim').classList.remove('open');document.body.style.overflow='';}
+document.addEventListener('keydown',e=>{
+  if(!document.getElementById('scrim').classList.contains('open'))return;
+  if(e.key==='Escape')closeDossier();
+  if(e.key==='ArrowRight'&&curW<words.length-1)dossierNav(1);
+  if(e.key==='ArrowLeft'&&curW>0)dossierNav(-1);
+});
+
+/* flashcards */
+let deck=words.map((_,i)=>i),fPos=0;
+document.getElementById('fTot').textContent=words.length;
+function paintFlash(){
+  const w=words[deck[fPos]];const col=CATCOLOR[w.cat]||'#888';
+  document.getElementById('flashcard').classList.remove('flipped');
+  document.getElementById('flashcard').style.setProperty('--cat',col);
+  document.getElementById('fIdx').textContent=fPos+1;
+  document.getElementById('fCat').textContent=w.cat.toUpperCase();
+  document.getElementById('ffCat').textContent=w.cat;document.getElementById('ffCat').style.background=col;
+  document.getElementById('ffNum').textContent='WORD '+String(w.num).padStart(2,'0');
+  document.getElementById('ffW').textContent=w.word;
+  document.getElementById('fbA').textContent=w.answer;
+  document.getElementById('fbMean').textContent=w.meaning;
+  document.getElementById('fbMem').textContent=w.trick;
+  document.getElementById('fPrev').disabled=fPos===0;
+  document.getElementById('fNext').disabled=fPos===deck.length-1;
+}
+function flipCard(){document.getElementById('flashcard').classList.toggle('flipped');}
+function flashNav(d){fPos=Math.max(0,Math.min(deck.length-1,fPos+d));paintFlash();}
+function shuffleDeck(){for(let i=deck.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[deck[i],deck[j]]=[deck[j],deck[i]];}fPos=0;paintFlash();}
+paintFlash();
+
+/* exam */
+let answers={},submitted=false;
+function fmtPrompt(w){
+  if(w.fmt==='define'){return `<u>${w.word}</u> most nearly means`;}
+  return w.prompt.replace('___', `<u>____</u>`);
+}
+function renderExam(){
+  const b=document.getElementById('examBody');b.innerHTML='';
+  const letters=['A','B','C','D'];
+  words.forEach(w=>{
+    const card=document.createElement('div');card.className='qcard';card.id='q-'+w.num;
+    card.innerHTML=`<div class="qhead"><span class="qn">${String(w.num).padStart(2,'0')}</span><span class="qtext">${fmtPrompt(w)}</span></div>`;
+    const opts=document.createElement('div');opts.className='opts';
+    w.choices.forEach((ch,i)=>{
+      const o=document.createElement('div');o.className='opt';o.dataset.q=w.num;o.dataset.l=letters[i];
+      o.innerHTML=`<span class="ol">${letters[i]}</span><span>${ch}</span>`;
+      o.onclick=()=>{if(submitted)return;answers[w.num]=letters[i];opts.querySelectorAll('.opt').forEach(x=>x.classList.remove('selected'));o.classList.add('selected');updateSubmit();};
+      opts.appendChild(o);
+    });
+    card.appendChild(opts);
+    const sol=document.createElement('div');sol.className='qsol';sol.id='sol-'+w.num;
+    sol.innerHTML=`<div class="sl"><span>Answer · ${w.ans}</span><a onclick="closeAndOpen(${w.num})">▸ Open word card</a></div>
+      <b>${w.word}</b> = ${w.answer}. ${w.meaning}. <span class="trick-in">Trick: ${w.trick}</span>`;
+    card.appendChild(sol);
+    b.appendChild(card);
+  });
+  const sb=document.createElement('button');sb.className='exam-submit';sb.id='examSubmit';sb.textContent='Submit Exam · 0 / 35 Answered';sb.disabled=true;sb.onclick=gradeExam;
+  b.appendChild(sb);
+}
+function closeAndOpen(num){switchView('vocab');setTimeout(()=>openDossier(num),120);}
+function updateSubmit(){const n=Object.keys(answers).length;const sb=document.getElementById('examSubmit');sb.textContent=`Submit Exam · ${n} / 35 Answered`;sb.disabled=n<35;}
+function gradeExam(){
+  submitted=true;let score=0;const missByCat={};
+  words.forEach(w=>{
+    const correct=w.ans,chosen=answers[w.num];
+    if(chosen===correct)score++; else missByCat[w.cat]=(missByCat[w.cat]||0)+1;
+    document.querySelectorAll(`.opt[data-q="${w.num}"]`).forEach(o=>{
+      o.classList.remove('selected');
+      if(o.dataset.l===correct)o.classList.add('correct');
+      else if(o.dataset.l===chosen)o.classList.add('wrong');
+    });
+    document.getElementById('sol-'+w.num).classList.add('show');
+  });
+  document.getElementById('scNum').textContent=score;
+  const pct=score/35*100;
+  const v=document.getElementById('scVerdict');
+  if(pct>=80){v.textContent='Mission Ready';v.className='verdict pass';}
+  else{v.textContent='Recommend Re-Drill';v.className='verdict review';}
+  const weak=Object.entries(missByCat).sort((a,b)=>b[1]-a[1]).slice(0,3).map(e=>e[0]);
+  document.getElementById('scWeak').innerHTML = weak.length? 'Weakest groups: '+weak.map(x=>`<b>${x}</b>`).join(' · ') : 'Clean sweep — every word correct.';
+  document.getElementById('scorecard').classList.add('show');
+  document.getElementById('examSubmit').style.display='none';
+  document.getElementById('scorecard').scrollIntoView({behavior:'smooth',block:'center'});
+}
+function resetExam(){answers={};submitted=false;document.getElementById('scorecard').classList.remove('show');renderExam();window.scrollTo({top:document.querySelector('.viewnav').offsetTop,behavior:'smooth'});}
+renderExam();
+
+/* strategy */
+const sl=document.getElementById('stratList');
+strategy.forEach((s,i)=>{const d=document.createElement('div');d.className='s';d.innerHTML=`<span class="sn">${i+1}</span><p>${s}</p>`;sl.appendChild(d);});
+const families=[['precise','exact'],['accrue','accumulate'],['augment','enhance'],['terminal','final'],['portend','predict'],['tactile','tangible'],['renown','fame'],['collusion','secret deal'],['congeal','harden'],['reconnoiter','scout'],['innate','inborn'],['mutate','change']];
+const fg=document.getElementById('famGrid');
+families.forEach(([a,b])=>{const d=document.createElement('div');d.className='famcard';d.innerHTML=`<div class="fw">${a}</div><div class="fs">= ${b}</div>`;fg.appendChild(d);});
+</script>
+</div>
+<script>
+function showTab(i,b){
+document.querySelectorAll('.panel').forEach((p,idx)=>p.classList.toggle('active',idx===i));
+document.querySelectorAll('#tabs button').forEach(btn=>btn.classList.remove('active'));
+b.classList.add('active');
+}
+</script></body></html>
